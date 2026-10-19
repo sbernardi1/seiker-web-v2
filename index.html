@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seiker AG — Fertilizantes líquidos y caudalímetros electromagnéticos</title>
+
+<meta name="description" content="Fertilizantes líquidos NITROMIX con nitrógeno, azufre, zinc y boro, y caudalímetros electromagnéticos Seiker para riego, agroindustria e industria. Venta, instalación y reparación en Argentina." />
+<meta name="theme-color" content="#0C3A35" />
+<link rel="icon" href="assets/img/logo-seiker.png?v=20261018" />
+<link rel="apple-touch-icon" href="assets/img/logo-seiker.png?v=20261018" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="Seiker AG" />
+<meta property="og:title" content="Seiker AG — Fertilizantes líquidos y caudalímetros electromagnéticos" />
+<meta property="og:description" content="Línea NITROMIX de fertilizantes líquidos y caudalímetros electromagnéticos Seiker. Venta, instalación y reparación para el agro y la industria." />
+<meta property="og:image" content="assets/img/logo-seiker.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=20261018" />
+</head>
+<body>
+
+<a class="skip" href="#principal">Saltar al contenido</a>
+<div class="prog" id="prog"></div>
+
+<!-- ══ NAVEGACIÓN ══ -->
+<header id="top">
+  <div class="topbar">
+    <a href="#servicios">Soluciones</a>
+    <a href="#nosotros">Quiénes somos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <nav aria-label="Principal">
+    <a class="brand" href="#inicio" aria-label="Seiker AG — inicio">
+      <img src="assets/img/logo-seiker.webp?v=20261018" alt="Seiker AG" width="1047" height="238" />
+    </a>
+
+    <ul class="nav-main">
+      <li class="nav-item drop">
+        <a href="#fertilizantes">Fertilizantes</a>
+        <div class="mega">
+          <p class="mega-t">Línea NITROMIX</p>
+          <a href="#fertilizantes" onclick="mostrarProducto('ns')">NITROMIX NS — Nitrógeno + Azufre</a>
+          <a href="#fertilizantes" onclick="mostrarProducto('zn')">NITROMIX Zn — Con Zinc quelado</a>
+          <a href="#fertilizantes" onclick="mostrarProducto('b')">NITROMIX B — Con Boro</a>
+          <a href="#fertilizantes" onclick="mostrarProducto('plus')">NITROMIX PLUS — Base orgánica</a>
+          <a href="#fertilizantes" onclick="mostrarProducto('np18')">NITROPLUS 18 — Foliar</a>
+        </div>
+      </li>
+      <li class="nav-item drop">
+        <a href="#caudalimetros">Caudalímetros</a>
+        <div class="mega">
+          <p class="mega-t">Medición electromagnética</p>
+          <a href="#principio">Cómo funciona — principio de medición</a>
+          <a href="#caudalimetros">Series S150 a S1500</a>
+          <a href="#cauda-servicios">Venta, instalación y reparación</a>
+          <a href="#cauda-usos">Usos industriales y agropecuarios</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#nosotros">Nosotros</a></li>
+    </ul>
+
+    <div class="nav-tools">
+      <button class="icon-btn" aria-label="Buscar en el sitio" onclick="abrirBuscador()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+      </button>
+      <a class="btn btn--solid" href="#contacto">Contacto</a>
+      <button class="icon-btn burger" aria-label="Abrir menú" onclick="abrirMovil()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="principal">
+
+<!-- ══ 01 · HERO ══ -->
+<section id="inicio">
+  <div class="hero-grid">
+    <div class="hero-main">
+      <p class="kicker" data-n="01">Soluciones agroindustriales</p>
+      <h1 class="h-xl">Nutrición y <em>medición</em><br />para el campo argentino.</h1>
+      <p class="lede">Fertilizantes líquidos de alta eficiencia y caudalímetros electromagnéticos.
+        Dos líneas, un mismo criterio: que el dato y el nutriente lleguen donde tienen que llegar.</p>
+      <div class="hero-cta">
+        <a class="btn btn--bronze" href="#servicios">Ver soluciones <span>→</span></a>
+        <a class="btn" href="#contacto">Solicitar cotización <span>→</span></a>
+      </div>
+    </div>
+
+    <aside class="hero-side" aria-label="Datos de la empresa">
+      <div class="stat"><span class="stat-n">+15</span><span class="stat-l">Años en<br />el mercado</span></div>
+      <div class="stat"><span class="stat-n">5</span><span class="stat-l">Líneas de<br />fertilizantes</span></div>
+      <div class="stat"><span class="stat-n">24h</span><span class="stat-l">Respuesta<br />técnica</span></div>
+      <div class="stat"><span class="stat-n">IP68</span><span class="stat-l">Grado de<br />protección</span></div>
+    </aside>
+  </div>
+
+  <div class="hero-strip">
+    <img class="strip-img"
+         src="assets/img/campo.webp?v=20261019"
+         srcset="assets/img/campo-sm.webp?v=20261019 820w, assets/img/campo.webp?v=20261019 1600w"
+         sizes="100vw"
+         width="1600" height="775" decoding="async"
+         alt="Lote de girasol y lote de maíz separados por un camino rural, al atardecer." />
+    <span class="strip-cap">Girasol y maíz · NITROMIX B y NS</span>
+  </div>
+</section>
+
+<!-- ══ 02 · SOLUCIONES ══ -->
+<section id="servicios" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="02">Lo que hacemos</p>
+      <h2 class="h-lg">Dos líneas que se complementan.</h2>
+      <p class="lede">Nutrición líquida para el lote y medición electromagnética para el agua
+        que lo riega. Con asesoramiento técnico incluido en ambas.</p>
+    </div>
+
+    <div class="blocks">
+      <article class="block">
+        <div class="block-n">01</div>
+        <div class="block-body">
+          <h3 class="h-md">Fertilizantes líquidos</h3>
+          <p class="body-sm">Línea NITROMIX con nitrógeno, azufre, zinc y boro. Mínima volatilización,
+            disponibilidad inmediata y logística con camiones propios hasta su lote.</p>
+          <a class="block-cta" href="#fertilizantes">Ver la línea <span>→</span></a>
+        </div>
+        <ul class="block-list block-aside">
+          <li>NITROMIX NS · Zn · B</li>
+          <li>NITROMIX PLUS Orgánico</li>
+          <li>NITROPLUS 18 Foliar</li>
+          <li>Asesoramiento agronómico</li>
+        </ul>
+      </article>
+
+      <article class="block">
+        <div class="block-n">02</div>
+        <div class="block-body">
+          <h3 class="h-md">Caudalímetros electromagnéticos</h3>
+          <p class="body-sm">Medición digital de caudal, conductividad, nivel y presión con
+            transmisión remota. Sin partes móviles dentro del caño: nada que se desgaste ni obstruya.</p>
+          <a class="block-cta" href="#caudalimetros">Ver especificaciones <span>→</span></a>
+        </div>
+        <ul class="block-list block-aside">
+          <li>Series S150 a S1500</li>
+          <li>Precisión hasta ±0,25%</li>
+          <li>Data logger y GPRS</li>
+          <li>Garantía 5 años</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 · FERTILIZANTES ══ -->
+<section id="fertilizantes" class="sec sec--ink">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="03">Fertilizantes líquidos</p>
+      <h2 class="h-lg">Línea NITROMIX.</h2>
+      <p class="lede">Cinco formulaciones para distintos momentos del cultivo.
+        Elegí una para ver su composición y dosis recomendada.</p>
+    </div>
+
+    <div class="prod-grid">
+      <div class="prod-nav" id="prod-nav" role="tablist" aria-label="Productos NITROMIX">
+        <button class="ptab on" data-p="ns"   data-n="01">NITROMIX NS</button>
+        <button class="ptab"    data-p="zn"   data-n="02">NITROMIX Zn</button>
+        <button class="ptab"    data-p="b"    data-n="03">NITROMIX B</button>
+        <button class="ptab"    data-p="plus" data-n="04">NITROMIX PLUS</button>
+        <button class="ptab"    data-p="np18" data-n="05">NITROPLUS 18</button>
+      </div>
+
+      <div class="prod-panels">
+        <article class="prod-panel on" id="pp-ns">
+          <h3 class="h-md">NITROMIX NS — Nitrógeno + Azufre</h3>
+          <p>Fertilizante base para producciones extensivas. Disponibilidad inmediata.
+             Apto para fertirriego y aplicaciones motrices.</p>
+          <div class="npg">
+            <div class="np"><span class="np-k">N</span><span class="np-v">26%</span></div>
+            <div class="np"><span class="np-k">S</span><span class="np-v">8%</span></div>
+            <div class="np"><span class="np-k">pH</span><span class="np-v">6,5</span></div>
+            <div class="np"><span class="np-k">Densidad</span><span class="np-v">1,26</span></div>
+          </div>
+          <div class="dose"><b>Dosis recomendada</b>
+            <span>100 – 300 lts/ha · Maíz, sorgo, trigo, soja, alfalfa, girasol</span></div>
+        </article>
+
+        <article class="prod-panel" id="pp-zn">
+          <h3 class="h-md">NITROMIX Zn — Con Zinc quelado</h3>
+          <p>Micronutriente esencial para gramíneas. Favorece síntesis de proteínas,
+             floración y cuaje de granos. Maximiza el rendimiento.</p>
+          <div class="npg">
+            <div class="np"><span class="np-k">N</span><span class="np-v">26%</span></div>
+            <div class="np"><span class="np-k">S</span><span class="np-v">8%</span></div>
+            <div class="np"><span class="np-k">Zn</span><span class="np-v">0,5%</span></div>
+            <div class="np"><span class="np-k">pH</span><span class="np-v">6,5</span></div>
+          </div>
+          <div class="dose"><b>Dosis recomendada</b>
+            <span>100 – 300 lts/ha · Maíz, sorgo, trigo</span></div>
+        </article>
+
+        <article class="prod-panel" id="pp-b">
+          <h3 class="h-md">NITROMIX B — Con Boro</h3>
+          <p>Especial para girasol. A la siembra asegura emergencia uniforme y desarrollo
+             radicular. En tardía, floración homogénea y llenado de granos.</p>
+          <div class="npg">
+            <div class="np"><span class="np-k">N</span><span class="np-v">26%</span></div>
+            <div class="np"><span class="np-k">S</span><span class="np-v">8%</span></div>
+            <div class="np"><span class="np-k">B</span><span class="np-v">0,5%</span></div>
+            <div class="np"><span class="np-k">pH</span><span class="np-v">6,5</span></div>
+          </div>
+          <div class="dose"><b>Dosis recomendada</b>
+            <span>100 – 300 lts/ha · Girasol, canola</span></div>
+        </article>
+
+        <article class="prod-panel" id="pp-plus">
+          <h3 class="h-md">NITROMIX PLUS — Base orgánica</h3>
+          <p>Combinación de nutrientes orgánicos y sales convencionales. Alta eficiencia
+             por bajo tamaño molecular: incorporación inmediata al suelo y reducción de volatilización.</p>
+          <div class="npg">
+            <div class="np"><span class="np-k">N equiv.</span><span class="np-v">24%</span></div>
+            <div class="np"><span class="np-k">P equiv.</span><span class="np-v">9,5%</span></div>
+            <div class="np"><span class="np-k">M.O.</span><span class="np-v">36%</span></div>
+          </div>
+          <div class="dose"><b>Dosis recomendada</b>
+            <span>Consultar según cultivo y análisis de suelo</span></div>
+        </article>
+
+        <article class="prod-panel" id="pp-np18">
+          <h3 class="h-md">NITROPLUS 18 — Fertilizante foliar</h3>
+          <p>Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.
+             Alcanza 100% de eficiencia en el uso del nitrógeno aplicado, eliminando pérdidas
+             por volatilización y lixiviación.</p>
+          <div class="npg">
+            <div class="np"><span class="np-k">N</span><span class="np-v">18%</span></div>
+            <div class="np"><span class="np-k">Ca</span><span class="np-v">7%</span></div>
+            <div class="np"><span class="np-k">Vía</span><span class="np-v">Foliar</span></div>
+          </div>
+          <div class="dose"><b>Dosis recomendada</b>
+            <span>Consultar según cultivo y estado fenológico</span></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="docs">
+      <a class="doc" href="docs/folleto-fertilizantes.pdf" download>
+        <span class="doc-x">PDF</span>
+        <span class="doc-i"><span class="doc-k">Folleto</span><span class="doc-n">Línea de fertilizantes</span></span>
+        <span class="doc-d">↓</span>
+      </a>
+      <a class="doc" href="docs/folleto-fertilizantes-cla.pdf" download>
+        <span class="doc-x">PDF</span>
+        <span class="doc-i"><span class="doc-k">Folleto ampliado</span><span class="doc-n">NITROMIX en detalle</span></span>
+        <span class="doc-d">↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 · CAUDALÍMETROS ══ -->
+<section id="caudalimetros" class="sec sec--navy">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="04">Riego y agroindustria</p>
+      <h2 class="h-lg">Caudalímetros electromagnéticos.</h2>
+      <p class="lede">Línea Seiker de medición. Caudal, conductividad, nivel y presión
+        con transmisión remota de datos. Vendemos, instalamos y reparamos.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="series">
+        <caption class="sr-only">Series disponibles con presión nominal, liner, electrodos y precisión</caption>
+        <thead>
+          <tr><th scope="col">Serie</th><th scope="col">Presión nom.</th><th scope="col">Liner</th><th scope="col">Electrodos</th><th scope="col">Precisión</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>S150</td><td>10 kg/cm²</td><td>PU / Teflon</td><td>AISI 316L</td><td>±0,25%</td></tr>
+          <tr><td>S300</td><td>20 kg/cm²</td><td>Teflon</td><td>316L / Hastelloy</td><td>±0,3%</td></tr>
+          <tr><td>S600</td><td>40 kg/cm²</td><td>Teflon</td><td>316L / Titanio</td><td>±0,5%</td></tr>
+          <tr><td>S900</td><td>60 kg/cm²</td><td>Teflon</td><td>Titanio</td><td>±0,5%</td></tr>
+          <tr><td>S1500</td><td>100 kg/cm²</td><td>Teflon</td><td>Tantalio</td><td>±0,5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pills">
+      <span class="pill">IP 68</span>
+      <span class="pill">Garantía 5 años</span>
+      <span class="pill">Data logger SD</span>
+      <span class="pill">GPRS / RS485</span>
+      <span class="pill">Solar / Baterías</span>
+    </div>
+
+    <div class="docs">
+      <a class="doc" href="docs/folleto-caudalimetro.pdf" download>
+        <span class="doc-x">PDF</span>
+        <span class="doc-i"><span class="doc-k">Folleto</span><span class="doc-n">Caudalímetros Seiker</span></span>
+        <span class="doc-d">↓</span>
+      </a>
+      <a class="doc" href="docs/ficha-caudalimetro.pdf" download>
+        <span class="doc-x">PDF</span>
+        <span class="doc-i"><span class="doc-k">Especificaciones</span><span class="doc-n">Hoja de datos técnicos</span></span>
+        <span class="doc-d">↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 · PRINCIPIO DE MEDICIÓN (firma) ══ -->
+<section id="principio" class="sec sec--navy" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="05">Cómo funciona</p>
+      <h2 class="h-lg">Medición sin partes móviles.</h2>
+      <p class="lede">El líquido conductivo atraviesa un campo magnético y genera una tensión
+        proporcional a su velocidad — ley de Faraday. Nada obstruye el caño, nada se desgasta.
+        Movés el caudal y mirás qué mide el equipo.</p>
+    </div>
+
+    <div class="prin">
+      <div class="prin-canvas">
+        <canvas id="flow-canvas" width="900" height="400" role="img"
+          aria-label="Diagrama animado: líquido atravesando el campo magnético de un caudalímetro electromagnético y la tensión que induce en los electrodos."></canvas>
+        <span class="prin-f">E = <b>B</b> · <b>v</b> · <b>D</b></span>
+      </div>
+
+      <div class="prin-panel">
+        <div class="read"><span class="read-k">Caudal</span><span class="read-v" id="r-q">120<small>m³/h</small></span></div>
+        <div class="read"><span class="read-k">Velocidad del fluido</span><span class="read-v" id="r-v">1,89<small>m/s</small></span></div>
+        <div class="read"><span class="read-k">Tensión inducida</span><span class="read-v hi" id="r-mv">2,83<small>mV</small></span></div>
+
+        <div class="ctrl">
+          <label for="c-q">Caudal — <span id="c-q-txt">120 m³/h</span></label>
+          <input type="range" id="c-q" name="caudal" min="0" max="400" value="120" step="5" />
+        </div>
+
+        <div class="ctrl">
+          <span class="ctrl-lab" id="dn-lab" style="display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.44);margin-bottom:11px;">Diámetro nominal</span>
+          <div class="dn" id="c-dn" role="group" aria-labelledby="dn-lab">
+            <button type="button" data-dn="80">DN 80</button>
+            <button type="button" data-dn="150" class="on">DN 150</button>
+            <button type="button" data-dn="200">DN 200</button>
+            <button type="button" data-dn="300">DN 300</button>
+          </div>
+        </div>
+
+        <div class="diag ok" id="diag" role="status">
+          <b>Rango óptimo</b>
+          <span id="diag-t">Velocidad dentro de 1–3 m/s. Calibre bien dimensionado.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 · SERVICIO ══ -->
+<section id="cauda-servicios" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="06">Lo que ofrecemos</p>
+      <h2 class="h-lg">Venta, instalación y reparación.</h2>
+      <p class="lede">Servicio integral: desde la elección del modelo adecuado hasta
+        la puesta en marcha y el mantenimiento correctivo en campo.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <span class="card-n">01</span>
+        <h3 class="h-sm">Venta</h3>
+        <p class="body-sm">Comercializamos la línea completa de caudalímetros Seiker.
+          Asesoramos sobre la serie y el diámetro adecuados para cada instalación.</p>
+      </article>
+      <article class="card">
+        <span class="card-n">02</span>
+        <h3 class="h-sm">Instalación</h3>
+        <p class="body-sm">Técnicos especializados realizan la instalación, puesta en marcha
+          y configuración del equipo en el lugar de trabajo.</p>
+      </article>
+      <article class="card">
+        <span class="card-n">03</span>
+        <h3 class="h-sm">Reparación y servicio</h3>
+        <p class="body-sm">Mantenimiento preventivo y correctivo. Reparación de módulo
+          electrónico, cambio de sensores y recalibración.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 07 · USOS ══ -->
+<section id="cauda-usos" class="sec sec--ink">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="07">Aplicaciones</p>
+      <h2 class="h-lg">Usos industriales y agropecuarios.</h2>
+      <p class="lede">Los caudalímetros electromagnéticos Seiker son aptos para una amplia
+        variedad de fluidos conductivos y aplicaciones industriales.</p>
+    </div>
+
+    <div class="uses">
+      <div class="use"><span class="use-n">01</span><span class="use-t">Extracción de aguas subterráneas</span></div>
+      <div class="use"><span class="use-n">02</span><span class="use-t">Redes de distribución de agua potable</span></div>
+      <div class="use"><span class="use-n">03</span><span class="use-t">Tratamiento de efluentes</span></div>
+      <div class="use"><span class="use-n">04</span><span class="use-t">Riego y agroindustria</span></div>
+      <div class="use"><span class="use-n">05</span><span class="use-t">Industria alimentaria</span></div>
+      <div class="use"><span class="use-n">06</span><span class="use-t">Industria química</span></div>
+      <div class="use"><span class="use-n">07</span><span class="use-t">Minería e hidrocarburos</span></div>
+      <div class="use"><span class="use-n">08</span><span class="use-t">Medición fiscal y facturación</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 08 · NOSOTROS ══ -->
+<section id="nosotros" class="sec sec--sand">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-n="08">Quiénes somos</p>
+      <h2 class="h-lg">Confianza y compromiso con el campo.</h2>
+      <p class="lede">Empresa argentina con más de 15 años en el sector agropecuario e industrial,
+        especializada en fertilizantes líquidos de alta eficiencia y caudalímetros
+        electromagnéticos de última generación.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card"><span class="card-n">01</span><h3 class="h-sm">Asesoramiento</h3>
+        <p class="body-sm">Ingenieros agrónomos y técnicos disponibles todo el año sin costo adicional.</p></article>
+      <article class="card"><span class="card-n">02</span><h3 class="h-sm">Respuesta 24 h</h3>
+        <p class="body-sm">Equipos y stock disponibles para no perder la ventana óptima de trabajo.</p></article>
+      <article class="card"><span class="card-n">03</span><h3 class="h-sm">Tecnología</h3>
+        <p class="body-sm">Caudalímetros IP68, data logger, GPRS y software de análisis incluido.</p></article>
+      <article class="card"><span class="card-n">04</span><h3 class="h-sm">Sustentabilidad</h3>
+        <p class="body-sm">Fertilizantes con mínima volatilización para preservar el suelo.</p></article>
+      <article class="card"><span class="card-n">05</span><h3 class="h-sm">Financiación</h3>
+        <p class="body-sm">Planes en pesos y dólares ajustados a los ciclos de producción agrícola.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 09 · CONTACTO ══ -->
+<section id="contacto" class="sec">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact-l">
+        <p class="kicker" data-n="09">Contacto</p>
+        <h2 class="h-lg">¿Listo para dar el siguiente paso?</h2>
+        <p class="body-sm" style="margin-bottom:26px">Completá el formulario y nuestro equipo se pone
+          en contacto para diseñar la solución para tu campo o industria.</p>
+
+        <div class="ci"><span class="ci-k">Dirección</span><span class="ci-v">Av. Rural 1200, Rosario, Santa Fe</span></div>
+        <div class="ci"><span class="ci-k">Teléfono</span><span class="ci-v">+54 341 000-0000</span></div>
+        <div class="ci"><span class="ci-k">Email</span><span class="ci-v">info@seikerag.com.ar</span></div>
+        <div class="ci"><span class="ci-k">Horario</span><span class="ci-v">Lunes a viernes · 8:00 – 18:00 h</span></div>
+      </div>
+
+      <form id="form-contacto" novalidate>
+        <h3 class="h-md">Solicitar información</h3>
+        <div class="frow">
+          <div class="fg"><label for="f-nombre">Nombre *</label>
+            <input type="text" id="f-nombre" name="nombre" autocomplete="name" required /></div>
+          <div class="fg"><label for="f-tel">Teléfono *</label>
+            <input type="tel" id="f-tel" name="telefono" autocomplete="tel" required /></div>
+        </div>
+        <div class="fg"><label for="f-email">Email *</label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required /></div>
+        <div class="fg"><label for="f-serv">Servicio de interés *</label>
+          <select id="f-serv" name="servicio" required>
+            <option value="">Elegí una opción</option>
+            <option>Fertilizantes líquidos NITROMIX</option>
+            <option>Compra de caudalímetros</option>
+            <option>Instalación de caudalímetros</option>
+            <option>Reparación y servicio técnico</option>
+            <option>Otra consulta</option>
+          </select></div>
+        <div class="fg"><label for="f-msg">Mensaje</label>
+          <textarea id="f-msg" name="mensaje" rows="4"></textarea></div>
+        <button type="submit" class="btn btn--bronze btn-send">Enviar consulta <span>→</span></button>
+        <p class="form-note">Este formulario todavía no está conectado a un servidor de correo —
+          escribinos directamente a <strong>info@seikerag.com.ar</strong> mientras tanto.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ PIE ══ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo-seiker.webp?v=20261018" alt="Seiker AG" width="1047" height="238" />
+        <p>Fertilizantes líquidos y caudalímetros electromagnéticos para el agro
+           y la industria argentina.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Soluciones</h4>
+        <ul>
+          <li><a href="#fertilizantes">Fertilizantes NITROMIX</a></li>
+          <li><a href="#caudalimetros">Caudalímetros Seiker</a></li>
+          <li><a href="#principio">Principio de medición</a></li>
+          <li><a href="#cauda-servicios">Servicio técnico</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#nosotros">Quiénes somos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#privacidad" onclick="abrirLegal(event)">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Seiker AG</span>
+      <span>Santa Fe · Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ BUSCADOR ══ -->
+<div class="ov" id="find" role="dialog" aria-modal="true" aria-label="Buscar en el sitio">
+  <div class="find-box">
+    <div class="find-top">
+      <svg class="find-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+      <input id="find-i" type="search" autocomplete="off" aria-label="Buscar"
+             placeholder="Buscar productos, servicios o especificaciones…" />
+      <button class="find-esc" onclick="cerrarBuscador()">ESC</button>
+    </div>
+    <div class="find-res" id="find-res"></div>
+    <div class="find-foot">↑ ↓ navegar · ↵ ir · ESC cerrar · ⌘K abrir</div>
+  </div>
+</div>
+
+<!-- ══ PRIVACIDAD ══ -->
+<div class="ov" id="legal" role="dialog" aria-modal="true" aria-labelledby="legal-t">
+  <div class="legal-box">
+    <div class="legal-top">
+      <h3 class="h-md" id="legal-t" style="padding-bottom:0">Política de privacidad</h3>
+      <button class="find-esc" onclick="cerrarLegal()">CERRAR</button>
+    </div>
+    <div class="legal-body">
+      <h4>Qué datos recolectamos</h4>
+      <p>Únicamente los que usted completa voluntariamente en nuestro formulario de contacto:
+         nombre, teléfono, correo electrónico, el servicio que le interesa y el mensaje que nos
+         escriba. No utilizamos cookies de seguimiento ni herramientas de analítica de terceros.</p>
+
+      <h4>Para qué los usamos</h4>
+      <p>Exclusivamente para responder su consulta y elaborar la propuesta comercial que nos
+         solicite. No los usamos para ningún otro fin.</p>
+
+      <h4>Con quién los compartimos</h4>
+      <p>Con nadie. No vendemos, cedemos ni transferimos sus datos a terceros.</p>
+
+      <h4>Cuánto tiempo los conservamos</h4>
+      <p>El tiempo necesario para atender su consulta y cumplir con las obligaciones comerciales
+         o fiscales que correspondan. Pasado ese plazo, se eliminan.</p>
+
+      <h4>Sus derechos</h4>
+      <p>La Ley 25.326 de Protección de los Datos Personales le garantiza el derecho a acceder a
+         sus datos, rectificarlos, actualizarlos o solicitar su supresión. Para ejercerlo,
+         escríbanos y lo resolvemos sin costo.</p>
+      <ul>
+        <li>La <strong>Agencia de Acceso a la Información Pública</strong>, órgano de control de
+            la Ley 25.326, atiende las denuncias por incumplimiento.</li>
+        <li>El titular puede solicitar el retiro o bloqueo de su información de nuestra base.</li>
+      </ul>
+
+      <h4>Contacto</h4>
+      <p>Por cualquier consulta sobre el tratamiento de sus datos, comuníquese con nosotros
+         a través de los medios publicados en la sección Contacto de este sitio.</p>
+
+      <p class="legal-date">Última actualización: octubre de 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MENÚ MÓVIL ══ -->
+<div class="ov" id="mob" role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mob-top">
+    <img src="assets/img/logo-seiker.webp?v=20261018" alt="Seiker AG" width="1047" height="238" />
+    <div style="display:flex;gap:2px">
+      <button class="icon-btn" aria-label="Buscar" onclick="cerrarMovil();abrirBuscador()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Cerrar menú" onclick="cerrarMovil()">✕</button>
+    </div>
+  </div>
+  <div class="mob-links" id="mob-links">
+    <div class="mob-row">
+      <a href="#fertilizantes">Fertilizantes</a>
+      <button class="mob-plus" data-sub="sub-f" aria-label="Desplegar fertilizantes">+</button>
+    </div>
+    <div class="mob-sub" id="sub-f">
+      <a href="#fertilizantes" onclick="mostrarProducto('ns')">NITROMIX NS</a>
+      <a href="#fertilizantes" onclick="mostrarProducto('zn')">NITROMIX Zn</a>
+      <a href="#fertilizantes" onclick="mostrarProducto('b')">NITROMIX B</a>
+      <a href="#fertilizantes" onclick="mostrarProducto('plus')">NITROMIX PLUS</a>
+      <a href="#fertilizantes" onclick="mostrarProducto('np18')">NITROPLUS 18</a>
+    </div>
+    <div class="mob-row">
+      <a href="#caudalimetros">Caudalímetros</a>
+      <button class="mob-plus" data-sub="sub-c" aria-label="Desplegar caudalímetros">+</button>
+    </div>
+    <div class="mob-sub" id="sub-c">
+      <a href="#principio">Cómo funciona</a>
+      <a href="#caudalimetros">Series y especificaciones</a>
+      <a href="#cauda-servicios">Venta e instalación</a>
+      <a href="#cauda-usos">Usos industriales</a>
+    </div>
+    <div class="mob-row"><a href="#nosotros">Quiénes somos</a></div>
+    <div class="mob-row"><a href="#contacto">Contacto</a></div>
+  </div>
+</div>
+
+<!-- Scripts clásicos con defer, en orden de dependencia.
+     A propósito NO se usan módulos ES: fallan al abrir el archivo
+     localmente y sus imports internos no heredan el ?v= de caché. -->
+<script defer src="lib/gsap.min.js?v=20261018"></script>
+<script defer src="lib/ScrollTrigger.min.js?v=20261018"></script>
+<script defer src="lib/manifest.js?v=20261018"></script>
+<script defer src="main.js?v=20261018"></script>
+</body>
+</html>
