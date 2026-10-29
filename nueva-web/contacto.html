@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contacto | Seiker</title>
+<meta name="description" content="Contactá a Seiker para cotizaciones de fertilizantes líquidos NITROMIX y caudalímetros electromagnéticos, servicio técnico y asesoramiento agronómico." />
+<meta name="theme-color" content="#063734" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="Seiker" />
+<meta property="og:title" content="Contacto | Seiker" />
+<meta property="og:description" content="Contactá a Seiker para cotizaciones de fertilizantes líquidos NITROMIX y caudalímetros electromagnéticos, servicio técnico y asesoramiento agronómico." />
+<meta property="og:image" content="assets/img/campo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261029" />
+</head>
+<body data-page="contacto">
+
+<header id="site-header">
+  <noscript><p style="padding:16px"><a href="index.html">Inicio</a> · <a href="productos.html">Productos</a> · <a href="fertilizantes.html">Fertilizantes</a> · <a href="caudalimetros.html">Caudalímetros</a> · <a href="contacto.html">Contacto</a></p></noscript>
+</header>
+
+<main id="contenido">
+  <section class="banner">
+    <img src="assets/img/campo-cielo.webp" width="1000" height="476" alt="" />
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><ol><li><a href="index.html">Inicio</a></li><li aria-current="page">Contacto</li></ol></nav>
+      <p class="eyebrow">Contacto</p>
+      <h1 class="h1">¿Listo para dar el siguiente paso?</h1>
+      <p>Contanos qué necesitás y nuestro equipo se pone en contacto para diseñar la solución para tu campo o tu industria.</p>
+    </div>
+  </section>
+
+  <section class="sec sec--gris">
+    <div class="wrap contact">
+      <div class="rv">
+        <p class="eyebrow">Hablemos</p>
+        <h2 class="h2">Estamos para ayudarte</h2>
+        <p class="lead">Cotizaciones, fichas técnicas, servicio técnico o asesoramiento agronómico: escribinos o llamanos.</p>
+        <div class="ci"><i data-ico="pin"></i><div><span class="ci-k">Dirección</span><span class="ci-v" data-cfg="direccion"></span></div></div>
+        <div class="ci"><i data-ico="tel"></i><div><span class="ci-k">Teléfono</span><a class="ci-v" data-cfg="telefono" href="#"></a></div></div>
+        <div class="ci"><i data-ico="mail"></i><div><span class="ci-k">Email</span><a class="ci-v" data-cfg="email" href="#"></a></div></div>
+        <div class="ci"><i data-ico="reloj"></i><div><span class="ci-k">Horario</span><span class="ci-v" data-cfg="horario"></span></div></div>
+      </div>
+
+      <form class="form rv" id="form-contacto" novalidate>
+        <h2>Solicitá información o una cotización</h2>
+        <p>Los campos marcados con * son obligatorios.</p>
+        <div class="frow">
+          <div class="fg"><label for="f-nombre">Nombre y apellido *</label>
+            <input id="f-nombre" name="nombre" autocomplete="name" required />
+            <span class="fg-err">Completá tu nombre.</span></div>
+          <div class="fg"><label for="f-empresa">Empresa / establecimiento</label>
+            <input id="f-empresa" name="empresa" autocomplete="organization" /></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label for="f-tel">Teléfono *</label>
+            <input id="f-tel" name="telefono" type="tel" autocomplete="tel" required />
+            <span class="fg-err">Completá un teléfono de contacto.</span></div>
+          <div class="fg"><label for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required />
+            <span class="fg-err">Ingresá un email válido.</span></div>
+        </div>
+        <div class="fg"><label for="f-loc">Localidad y provincia</label>
+          <input id="f-loc" name="localidad" autocomplete="address-level2" /></div>
+        <div class="frow">
+          <div class="fg"><label for="f-linea">Línea de interés *</label>
+            <select id="f-linea" name="linea" required></select>
+            <span class="fg-err">Elegí una opción.</span></div>
+          <div class="fg"><label for="f-producto">Producto</label>
+            <select id="f-producto" name="producto"></select></div>
+        </div>
+        <div class="fg"><label for="f-msg">Mensaje</label>
+          <textarea id="f-msg" name="mensaje" rows="4" placeholder="Contanos cultivo, superficie, caudal o lo que necesites."></textarea></div>
+        <div class="fg fg--ck"><label><input type="checkbox" id="f-priv" required />
+          <span>Acepto la <a href="privacidad.html">política de privacidad</a>.</span></label>
+          <span class="fg-err">Necesitamos tu aceptación para responderte.</span></div>
+        <button class="btn btn--pri" type="submit">Enviar consulta <i data-ico="flecha"></i></button>
+        <div class="form-ok" id="f-ok" role="status" hidden>
+          Se abrió tu programa de correo con la consulta lista para enviar. Si no se abrió,
+          <a id="f-ok-mail" href="#">hacé clic acá</a> o escribinos a <span data-cfg="email"></span>.
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Scripts clásicos con defer, en orden de dependencia. Sin módulos ES:
+     así el sitio funciona abriendo el archivo directo o desde cualquier hosting. -->
+<script defer src="assets/js/config.js?v=20261029"></script>
+<script defer src="assets/js/catalogo.js?v=20261029"></script>
+<script defer src="assets/js/ilustraciones.js?v=20261029"></script>
+<script defer src="assets/js/sitio.js?v=20261029"></script>
+</body>
+</html>

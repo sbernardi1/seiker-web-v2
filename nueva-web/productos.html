@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Buscador de productos | Seiker</title>
+<meta name="description" content="Buscá entre los fertilizantes líquidos NITROMIX y los caudalímetros electromagnéticos Seiker. Filtrá por línea, cultivo y aplicación." />
+<meta name="theme-color" content="#063734" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="Seiker" />
+<meta property="og:title" content="Buscador de productos | Seiker" />
+<meta property="og:description" content="Buscá entre los fertilizantes líquidos NITROMIX y los caudalímetros electromagnéticos Seiker. Filtrá por línea, cultivo y aplicación." />
+<meta property="og:image" content="assets/img/campo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261029" />
+</head>
+<body data-page="productos">
+
+<header id="site-header">
+  <noscript><p style="padding:16px"><a href="index.html">Inicio</a> · <a href="productos.html">Productos</a> · <a href="fertilizantes.html">Fertilizantes</a> · <a href="caudalimetros.html">Caudalímetros</a> · <a href="contacto.html">Contacto</a></p></noscript>
+</header>
+
+<main id="contenido">
+  <section class="banner banner--liso">
+    <div class="hs-pat" aria-hidden="true"></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><ol><li><a href="index.html">Inicio</a></li><li aria-current="page">Productos</li></ol></nav>
+      <p class="eyebrow">Productos y soluciones</p>
+      <h1 class="h1">Buscador de productos</h1>
+      <p>Encontrá la solución indicada para tu cultivo o tu instalación. Filtrá por línea, cultivo y tipo de aplicación.</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:48px">
+    <div class="wrap">
+      <div class="finder" id="finder">
+        <aside class="fl-side" aria-label="Filtros">
+          <div class="fl-side-h">
+            <h2>Filtros</h2>
+            <button class="ib fl-cerrar" type="button" data-filtros aria-label="Cerrar filtros"><i data-ico="cerrar"></i></button>
+          </div>
+          <div id="fl-campos"></div>
+          <button class="btn btn--line btn--sm" type="button" data-limpiar style="margin-top:22px">Limpiar filtros</button>
+        </aside>
+
+        <div class="fl-main">
+          <form class="fl-top" id="fl-form" role="search">
+            <button type="button" class="btn btn--line btn--sm fl-btn" data-filtros>Filtros <span class="fl-badge" id="fl-badge" hidden></span></button>
+            <label class="fl-q"><i data-ico="lupa"></i>
+              <input id="fl-q" type="search" placeholder="Buscar por nombre, nutriente o cultivo" aria-label="Buscar productos" /></label>
+          </form>
+          <div class="sec-h--row" style="display:flex;margin-bottom:14px">
+            <h2 class="h3" id="fl-titulo">Todos los productos</h2>
+            <span class="fl-n" id="fl-n" aria-live="polite"></span>
+          </div>
+          <div class="fl-chips" id="fl-chips"></div>
+          <div class="pgrid" id="fl-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Scripts clásicos con defer, en orden de dependencia. Sin módulos ES:
+     así el sitio funciona abriendo el archivo directo o desde cualquier hosting. -->
+<script defer src="assets/js/config.js?v=20261029"></script>
+<script defer src="assets/js/catalogo.js?v=20261029"></script>
+<script defer src="assets/js/ilustraciones.js?v=20261029"></script>
+<script defer src="assets/js/sitio.js?v=20261029"></script>
+</body>
+</html>

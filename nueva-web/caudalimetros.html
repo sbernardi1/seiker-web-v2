@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Caudalímetros electromagnéticos | Seiker</title>
+<meta name="description" content="Caudalímetros electromagnéticos Seiker, series S150 a S1500. Caudal, conductividad, nivel y presión con transmisión remota. IP68, garantía 5 años. Venta, instalación y reparación." />
+<meta name="theme-color" content="#063734" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="Seiker" />
+<meta property="og:title" content="Caudalímetros electromagnéticos | Seiker" />
+<meta property="og:description" content="Caudalímetros electromagnéticos Seiker, series S150 a S1500. Caudal, conductividad, nivel y presión con transmisión remota. IP68, garantía 5 años. Venta, instalación y reparación." />
+<meta property="og:image" content="assets/img/campo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261029" />
+</head>
+<body data-page="caudalimetros">
+
+<header id="site-header">
+  <noscript><p style="padding:16px"><a href="index.html">Inicio</a> · <a href="productos.html">Productos</a> · <a href="fertilizantes.html">Fertilizantes</a> · <a href="caudalimetros.html">Caudalímetros</a> · <a href="contacto.html">Contacto</a></p></noscript>
+</header>
+
+<main id="contenido">
+  <section class="banner banner--liso">
+    <div class="hs-pat" aria-hidden="true"></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><ol><li><a href="index.html">Inicio</a></li><li><a href="productos.html">Productos</a></li><li aria-current="page">Caudalímetros electromagnéticos</li></ol></nav>
+      <p class="eyebrow">Riego, agroindustria e industria</p>
+      <h1 class="h1">Caudalímetros electromagnéticos</h1>
+      <p>Medición digital de caudal, conductividad, nivel y presión con transmisión remota de datos. Vendemos, instalamos y reparamos.</p>
+    </div>
+    <div class="banner-art" aria-hidden="true"><span data-envase="s600"></span></div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Tecnología Seiker</p>
+        <h2 class="h2">Sin partes móviles dentro del caño.</h2>
+        <p class="lead">Nada que se desgaste ni obstruya. El equipo mide, registra y transmite los datos para que los tengas donde los necesitás.</p>
+      </div>
+      <div class="feats" data-beneficios="caudalimetros" data-stagger></div>
+    </div>
+  </section>
+
+  <section class="sec sec--gris" id="series">
+    <div class="wrap">
+      <div class="sec-h sec-h--row rv">
+        <div>
+          <p class="eyebrow">Series disponibles</p>
+          <h2 class="h2">De 10 a 100 kg/cm²</h2>
+        </div>
+        <a class="lnk" href="productos.html?linea=caudalimetros">Abrir en el buscador <i data-ico="flecha"></i></a>
+      </div>
+      <div class="tbl-wrap rv" data-tabla="caudalimetros"></div>
+      <div class="pills rv">
+        <span class="chip">IP68</span><span class="chip">Garantía 5 años</span><span class="chip">Data logger SD</span>
+        <span class="chip">GPRS / RS485</span><span class="chip">Solar / Baterías</span><span class="chip">Software de análisis incluido</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Portafolio</p>
+        <h2 class="h2">Elegí tu serie</h2>
+      </div>
+      <div class="pgrid" data-productos="caudalimetros"></div>
+    </div>
+  </section>
+
+  <section class="sec sec--gris" id="como-funciona">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2 class="h2">Medición sin partes móviles.</h2>
+        <p class="lead">El líquido conductivo atraviesa un campo magnético y genera una tensión proporcional a su velocidad —ley de Faraday—. Mové el caudal, cambiá el diámetro y mirá qué mide el equipo.</p>
+      </div>
+      <div class="prin rv">
+        <div class="prin-canvas">
+          <canvas id="flow-canvas" width="900" height="400" role="img"
+            aria-label="Diagrama animado: líquido atravesando el campo magnético de un caudalímetro electromagnético y la tensión que induce en los electrodos."></canvas>
+          <span class="prin-f">E = B · v · D</span>
+        </div>
+        <div class="prin-p">
+          <div class="reads">
+            <div class="read"><span class="read-k">Caudal</span><span class="read-v" id="r-q">120<small>m³/h</small></span></div>
+            <div class="read"><span class="read-k">Velocidad</span><span class="read-v" id="r-v">1,89<small>m/s</small></span></div>
+            <div class="read"><span class="read-k">Tensión</span><span class="read-v hi" id="r-mv">2,83<small>mV</small></span></div>
+          </div>
+          <div class="ctrl">
+            <label for="c-q">Caudal: <span id="c-q-txt">120 m³/h</span></label>
+            <input type="range" id="c-q" name="caudal" min="0" max="400" value="120" step="5" />
+          </div>
+          <div class="ctrl">
+            <span class="ctrl-lab" id="dn-lab">Diámetro nominal</span>
+            <div class="dn" id="c-dn" role="group" aria-labelledby="dn-lab">
+              <button type="button" data-dn="80" aria-pressed="false">DN 80</button>
+              <button type="button" data-dn="150" aria-pressed="true" class="on">DN 150</button>
+              <button type="button" data-dn="200" aria-pressed="false">DN 200</button>
+              <button type="button" data-dn="300" aria-pressed="false">DN 300</button>
+            </div>
+          </div>
+          <div class="diag ok" id="diag" role="status">
+            <b>Rango óptimo</b>
+            <span id="diag-t">Velocidad dentro de 1–3 m/s. Calibre bien dimensionado.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="servicio">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Lo que ofrecemos</p>
+        <h2 class="h2">Venta, instalación y reparación.</h2>
+        <p class="lead">Servicio integral: desde la elección del modelo adecuado hasta la puesta en marcha y el mantenimiento correctivo en campo.</p>
+      </div>
+      <div class="feats feats--3" data-stagger>
+        <div class="feat rv"><span class="feat-i"><i data-ico="medidor"></i></span><h3>Venta</h3>
+          <p>Comercializamos la línea completa de caudalímetros Seiker. Asesoramos sobre la serie y el diámetro adecuados para cada instalación.</p></div>
+        <div class="feat rv"><span class="feat-i"><i data-ico="engranaje"></i></span><h3>Instalación</h3>
+          <p>Técnicos especializados realizan la instalación, puesta en marcha y configuración del equipo en el lugar de trabajo.</p></div>
+        <div class="feat rv"><span class="feat-i"><i data-ico="llave"></i></span><h3>Reparación y servicio</h3>
+          <p>Mantenimiento preventivo y correctivo. Reparación de módulo electrónico, cambio de sensores y recalibración.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--gris" id="usos">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Aplicaciones</p>
+        <h2 class="h2">Usos industriales y agropecuarios.</h2>
+        <p class="lead">Aptos para una amplia variedad de fluidos conductivos y aplicaciones.</p>
+      </div>
+      <ul class="usos rv">
+        <li><span>01</span>Extracción de aguas subterráneas</li>
+        <li><span>02</span>Redes de distribución de agua potable</li>
+        <li><span>03</span>Tratamiento de efluentes</li>
+        <li><span>04</span>Riego y agroindustria</li>
+        <li><span>05</span>Industria alimentaria</li>
+        <li><span>06</span>Industria química</li>
+        <li><span>07</span>Minería e hidrocarburos</li>
+        <li><span>08</span>Medición fiscal y facturación</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Scripts clásicos con defer, en orden de dependencia. Sin módulos ES:
+     así el sitio funciona abriendo el archivo directo o desde cualquier hosting. -->
+<script defer src="assets/js/config.js?v=20261029"></script>
+<script defer src="assets/js/catalogo.js?v=20261029"></script>
+<script defer src="assets/js/ilustraciones.js?v=20261029"></script>
+<script defer src="assets/js/sitio.js?v=20261029"></script>
+<script defer src="assets/js/simulador.js?v=20261029"></script>
+</body>
+</html>
