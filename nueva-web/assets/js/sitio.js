@@ -693,7 +693,8 @@
   function initFicha() {
     var root = $("#ficha");
     if (!root) return;
-    var p = producto(param("id"));
+    /* El id viene en ?id=...; también se acepta #id por si un visor recorta la consulta */
+    var p = producto(param("id")) || producto(decodeURIComponent(location.hash.slice(1)));
     if (!p) {
       root.innerHTML = '<section class="sec"><div class="wrap narrow txt-c">' +
         '<h1 class="h2">No encontramos ese producto</h1>' +
@@ -879,7 +880,7 @@
       var href = "mailto:" + (c.email || "") + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent(cuerpo);
       $("#f-ok").hidden = false;
       $("#f-ok-mail").setAttribute("href", href);
-      location.href = href;
+      try { location.href = href; } catch (er) {}
     });
     f.addEventListener("input", function (e) {
       var g = e.target.closest(".fg");
