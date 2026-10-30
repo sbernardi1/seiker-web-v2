@@ -108,9 +108,51 @@
       '</svg>';
   }
 
+  /* ---------- Bolsa de polvo soluble (25 kg) ---------- */
+  function bolsa(p) {
+    var c = p.color || "#E8821E";
+    var g = uid("g"), s = uid("s");
+    var nm = partir(p.nombre || "");
+    var kg = /(\d+\s*kg)/i.exec(p.presentacion || "");
+    return '' +
+      '<svg class="pk pk--bolsa" viewBox="0 0 200 260" role="img" aria-label="Envase de ' + esc(p.nombre) + '">' +
+      '<defs>' +
+        '<linearGradient id="' + g + '" x1="0" x2="1">' +
+          '<stop offset="0" stop-color="#d5dad5"/><stop offset=".2" stop-color="#fbfbfa"/>' +
+          '<stop offset=".7" stop-color="#f1f3f0"/><stop offset="1" stop-color="#c8cec8"/></linearGradient>' +
+        '<linearGradient id="' + s + '" x1="0" x2="0" y1="0" y2="1">' +
+          '<stop offset="0" stop-color="#000" stop-opacity=".08"/><stop offset=".12" stop-color="#000" stop-opacity="0"/>' +
+          '<stop offset=".9" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".1"/></linearGradient>' +
+      '</defs>' +
+      '<ellipse cx="100" cy="250" rx="80" ry="7" fill="#000" opacity=".13"/>' +
+      /* cuerpo de la bolsa, apenas abombado */
+      '<path d="M28 22Q100 12 172 22Q178 130 174 238Q100 250 26 238Q22 130 28 22z" fill="url(#' + g + ')" stroke="#c3c8c3" stroke-width="1.2"/>' +
+      '<path d="M28 22Q100 12 172 22Q178 130 174 238Q100 250 26 238Q22 130 28 22z" fill="url(#' + s + ')"/>' +
+      /* costuras arriba y abajo */
+      '<path d="M30 32Q100 23 170 32" fill="none" stroke="#b9bfb9" stroke-width="1.4" stroke-dasharray="3 3"/>' +
+      '<path d="M30 229Q100 239 172 229" fill="none" stroke="#b9bfb9" stroke-width="1.4" stroke-dasharray="3 3"/>' +
+      '<path d="M40 46v170" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>' +
+      /* etiqueta impresa */
+      '<path d="M44 52h112v26H44z" fill="#063734"/>' +
+      '<text x="100" y="70" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="15" fill="#fff" letter-spacing=".5">seiker</text>' +
+      '<rect x="44" y="78" width="112" height="3" fill="' + esc(c) + '"/>' +
+      '<text x="100" y="104" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (nm[0].length > 10 ? 15 : 17) + '" fill="#063734" letter-spacing=".4">' + esc(nm[0]) + '</text>' +
+      '<text x="100" y="143" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (nm[1].length > 4 ? 33 : 40) + '" fill="' + esc(c) + '">' + esc(nm[1]) + '</text>' +
+      '<text x="100" y="161" text-anchor="middle" font-family="Roboto, sans-serif" font-size="8.5" fill="#5f6461" letter-spacing=".6">' + esc((p.bajada || "").toUpperCase()) + '</text>' +
+      '<text x="100" y="176" text-anchor="middle" font-family="Roboto, sans-serif" font-size="7.5" fill="#7b817d">' + esc(p.tipo || "") + '</text>' +
+      '<path d="M44 194h112v20H44z" fill="' + esc(c) + '"/>' +
+      '<text x="150" y="208" text-anchor="end" font-family="Outfit, sans-serif" font-weight="700" font-size="10" fill="#fff">' + esc(kg ? kg[1].toUpperCase() : "") + '</text>' +
+      (/soluble/i.test(p.tipo || "") ? '<text x="50" y="208" font-family="Roboto, sans-serif" font-size="7" fill="#fff" letter-spacing=".8">100% SOLUBLE</text>' : "") +
+      '</svg>';
+  }
+
+  /* El producto puede pedir su propio envase ("envase": "bolsa");
+     si no, se usa el de su línea. */
   function envase(p, linea) {
-    var tipo = (linea && linea.envase) || "bidon";
-    return tipo === "caudalimetro" ? caudalimetro(p) : bidon(p);
+    var tipo = p.envase || (linea && linea.envase) || "bidon";
+    if (tipo === "caudalimetro") return caudalimetro(p);
+    if (tipo === "bolsa") return bolsa(p);
+    return bidon(p);
   }
 
   /* ---------- Íconos de línea (trazo = currentColor) ---------- */
@@ -155,5 +197,5 @@
       (I[nombre] || "") + "</svg>";
   }
 
-  window.SEIKER_ILUS = { envase: envase, bidon: bidon, caudalimetro: caudalimetro, ico: ico };
+  window.SEIKER_ILUS = { envase: envase, bidon: bidon, bolsa: bolsa, caudalimetro: caudalimetro, ico: ico };
 })();

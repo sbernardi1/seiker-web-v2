@@ -31,7 +31,7 @@
 
     cifras: [
       ["+15", "años en el sector agropecuario e industrial"],
-      ["5", "formulaciones de fertilizantes líquidos"],
+      ["10", "productos de nutrición y coadyuvantes"],
       ["24 h", "de respuesta técnica"],
       ["5 años", "de garantía en caudalímetros"]
     ]

@@ -13,7 +13,8 @@ Abrí `index.html` con doble clic. Para publicarla, subí **todo el contenido de
 | `index.html` | Inicio |
 | `productos.html` | Buscador de productos (filtros por línea, cultivo y aplicación) |
 | `producto.html?id=...` | Ficha de cada producto (se arma sola desde el catálogo) |
-| `fertilizantes.html` | Página de la línea de fertilizantes líquidos |
+| `fertilizantes.html` | Página de la línea de fertilizantes líquidos (NITROMIX) |
+| `linea.html?id=...` | Página de las líneas sin página propia (Soluciones nutricionales, Coadyuvantes y las que se sumen) |
 | `caudalimetros.html` | Página de la línea de caudalímetros, con el simulador "Cómo funciona" |
 | `agronomia.html` | Notas técnicas y preguntas frecuentes |
 | `quienes-somos.html` | Empresa |
@@ -46,8 +47,27 @@ Campos de un producto:
 | `cultivos`, `aplicacion` | Alimentan los filtros del buscador |
 | `beneficios` | Lista con tildes de la ficha |
 | `color` | Color de la etiqueta del envase dibujado |
-| `documentos` | `[{ nombre: "Ficha técnica", url: "docs/ficha.pdf" }]` |
+| `documentos` | `[{ nombre: "Folleto", url: "docs/folleto.pdf" }]`: los PDF van en la carpeta `docs/` |
 | `destacado` | `true` lo muestra en el carrusel del inicio |
+
+Campos opcionales para fichas completas (los usan Starter Plus, Mastermins Plus,
+Nitrate Balancer, Harvest More y Natur'l Óleo; copiá uno de esos como modelo):
+
+| Campo | Qué muestra |
+|---|---|
+| `beneficios` como pares | `[["Macollaje", "Favorece el macollaje..."]]`: grilla de beneficios con título |
+| `frase` | Frase destacada en una franja verde |
+| `composicion` con detalle | `[["Zinc (Zn)", "5%", "≈ 65 g/L"]]`: el tercer dato va en letra chica |
+| `propiedades` | Densidad, pH, formulación, envase, etc. |
+| `presentacion` | Envase, en los datos clave de la ficha |
+| `envase` | `"bolsa"` dibuja una bolsa en lugar de un bidón (si no hay foto) |
+| `comoActua` | Título, texto y 2 tarjetas (`modo: "comparar"`) o 3 pasos (`modo: "flujo"`) |
+| `guia` | Tablas de dosis por cultivo. Una fila con un solo texto, como `["Frutales"]`, es un subtítulo |
+| `notas` | Recuadros de preparación, importante, almacenamiento. Agregá `"alerta"` como tercer dato para marcarlo en rojo |
+| `relacionados` | Ids de productos que se sugieren al final de la ficha |
+
+Las fotos de producto con fondo transparente van en `assets/img/productos/`
+(formato `.webp` o `.png`). Las fotos de cada línea, en `assets/img/lineas/`.
 
 ## Datos de la empresa
 
@@ -63,5 +83,5 @@ correo del visitante, se puede conectar a un servicio de formularios.
 
 ## Después de cambiar algo
 
-Si el hosting muestra la versión vieja, cambiá el número `?v=20261029` de los
+Si el hosting muestra la versión vieja, cambiá el número `?v=20261030` de los
 `<script>` y del `<link>` de estilos en las páginas (por ejemplo, a la fecha del día).

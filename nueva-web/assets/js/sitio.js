@@ -47,10 +47,17 @@
   }
   function deLinea(id) { return CAT.productos.filter(function (p) { return p.linea === id; }); }
   function urlProducto(p) { return "producto.html?id=" + encodeURIComponent(p.id); }
-  function urlLinea(l) { return l.pagina || ("productos.html?linea=" + encodeURIComponent(l.id)); }
+  function urlLinea(l) { return l.pagina || ("linea.html?id=" + encodeURIComponent(l.id)); }
   function imagenDe(p) {
-    if (p.imagen) return '<img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" />';
+    if (p.imagen) return '<img class="pk pk--foto" src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" />';
     return IL ? IL.envase(p, linea(p.linea)) : "";
+  }
+  /* Productos explícitos de "relacionados" primero, después el resto de la línea */
+  function relacionadosDe(p) {
+    var lista = [];
+    (p.relacionados || []).forEach(function (id) { var r = producto(id); if (r && r !== p) lista.push(r); });
+    deLinea(p.linea).forEach(function (r) { if (r !== p && lista.indexOf(r) < 0) lista.push(r); });
+    return lista;
   }
 
   /* ----------------------------------------------------------
@@ -67,13 +74,13 @@
     return '' +
       '<div class="mega" id="mega-prod" role="region" aria-label="Productos y soluciones">' +
         '<div class="wrap mega-in">' +
-          '<div class="mega-cols">' + cols +
-            '<div class="mega-col"><span class="mega-h mega-h--plain">Servicios</span><ul>' +
-              '<li><a href="caudalimetros.html#servicio"><b>Venta e instalación</b><span>Asesoramiento y puesta en marcha</span></a></li>' +
-              '<li><a href="caudalimetros.html#servicio"><b>Reparación y servicio técnico</b><span>Preventivo, correctivo y recalibración</span></a></li>' +
-              '<li><a href="caudalimetros.html#como-funciona"><b>Cómo funciona</b><span>Principio de medición electromagnética</span></a></li>' +
-              '<li><a href="agronomia.html"><b>Asesoramiento agronómico</b><span>Ingenieros agrónomos todo el año</span></a></li>' +
-            "</ul></div>" +
+          '<div class="mega-main">' +
+            '<div class="mega-cols">' + cols + "</div>" +
+            '<div class="mega-serv"><span>Servicios</span>' +
+              '<a href="caudalimetros.html#servicio">Venta, instalación y reparación de caudalímetros</a>' +
+              '<a href="caudalimetros.html#como-funciona">Cómo funciona la medición</a>' +
+              '<a href="agronomia.html">Asesoramiento agronómico</a>' +
+            "</div>" +
           "</div>" +
           '<a class="mega-promo" href="productos.html">' +
             '<img src="assets/img/campo-girasol.webp" alt="" loading="lazy" />' +
@@ -170,11 +177,9 @@
     var redes = ["instagram", "facebook", "linkedin", "youtube"].filter(function (k) { return r[k]; }).map(function (k) {
       return '<a href="' + esc(r[k]) + '" target="_blank" rel="noopener" aria-label="' + k + '">' + ico(k) + "</a>";
     }).join("");
-    var cols = CAT.lineas.map(function (l) {
-      return '<div class="ft-col"><h4>' + esc(l.nombre) + "</h4><ul>" +
-        deLinea(l.id).map(function (p) { return '<li><a href="' + urlProducto(p) + '">' + esc(p.nombre) + "</a></li>"; }).join("") +
-        "</ul></div>";
-    }).join("");
+    var cols = '<div class="ft-col"><h4>Productos y soluciones</h4><ul>' +
+      CAT.lineas.map(function (l) { return '<li><a href="' + urlLinea(l) + '">' + esc(l.nombre) + "</a></li>"; }).join("") +
+      '<li><a href="productos.html">Buscador de productos</a></li></ul></div>';
     var cta = PAGINA === "contacto" ? "" :
       '<div class="ft-cta"><div class="wrap ft-cta-in">' +
         "<div><h2>¿Necesitás asesoramiento?</h2><p>Nuestro equipo técnico te ayuda a elegir la solución para tu campo o tu industria.</p></div>" +
@@ -187,15 +192,15 @@
         '<div class="ft-grid">' +
           '<div class="ft-brand">' +
             '<img src="assets/img/logo-seiker-blanco.webp" alt="Seiker" width="1047" height="238" />' +
-            "<p>Fertilizantes líquidos y caudalímetros electromagnéticos para el agro y la industria argentina.</p>" +
+            "<p>Fertilizantes, nutrición foliar, coadyuvantes y caudalímetros electromagnéticos para el agro y la industria argentina.</p>" +
             (redes ? '<div class="ft-redes">' + redes + "</div>" : "") +
           "</div>" +
           cols +
           '<div class="ft-col"><h4>Compañía</h4><ul>' +
             '<li><a href="quienes-somos.html">Quiénes somos</a></li>' +
             '<li><a href="agronomia.html">Agronomía</a></li>' +
-            '<li><a href="productos.html">Buscador de productos</a></li>' +
             '<li><a href="contacto.html">Contacto</a></li>' +
+            '<li><a href="privacidad.html">Política de privacidad</a></li>' +
           "</ul></div>" +
           '<div class="ft-col ft-contacto"><h4>Contacto</h4><ul>' +
             (c.direccion ? "<li>" + ico("pin") + esc(c.direccion) + "</li>" : "") +
@@ -219,7 +224,7 @@
 
     /* Sección activa en el menú */
     var activa = PAGINA;
-    if (PAGINA === "producto" || PAGINA === "productos" || linea(PAGINA)) activa = "productos";
+    if (PAGINA === "producto" || PAGINA === "productos" || PAGINA === "linea" || linea(PAGINA)) activa = "productos";
     $$(".m-item").forEach(function (li) {
       if (li.getAttribute("data-sec") === activa) li.classList.add("on");
     });
@@ -319,12 +324,18 @@
     indice = [];
     CAT.productos.forEach(function (p) {
       var l = linea(p.linea) || {};
-      var specs = (p.composicion || []).map(function (c) { return c[0] + " " + c[1]; }).join(" · ");
+      var specs = (p.composicion || []).concat(p.propiedades || []).map(function (c) { return c.join(" "); }).join(" · ");
+      var guia = (p.guia || []).map(function (g) {
+        return g.titulo + " " + g.filas.map(function (f) { return f.join(" "); }).join(" ") + " " + (g.pie || "");
+      }).join(" ");
+      var notas = (p.notas || []).map(function (n) { return n[0] + " " + [].concat(n[1]).join(" "); }).join(" ");
+      var ben = (p.beneficios || []).map(function (b) { return [].concat(b).join(" "); }).join(" ");
       indice.push({
         tipo: "Producto", titulo: p.nombre + " — " + p.bajada, url: urlProducto(p),
         texto: p.resumen,
         busca: norm([p.nombre, p.bajada, p.tipo, p.resumen, (p.descripcion || []).join(" "), specs,
-          (p.cultivos || []).join(" "), (p.aplicacion || []).join(" "), (p.beneficios || []).join(" "),
+          (p.cultivos || []).join(" "), (p.aplicacion || []).join(" "), ben, guia, notas,
+          p.comoActua ? p.comoActua.titulo + " " + p.comoActua.texto : "",
           (p.usos || []).join(" "), l.nombre].join(" "))
       });
     });
@@ -354,7 +365,7 @@
     if (term.length < 2) {
       resultados = [];
       cont.innerHTML = '<p class="sch-hint">Búsquedas frecuentes</p><div class="sch-chips">' +
-        ["Nitrógeno", "Boro", "Girasol", "Foliar", "IP68", "Reparación"].map(function (s) {
+        ["Zinc", "Boro", "Papa", "Foliar", "Coadyuvante", "IP68"].map(function (s) {
           return '<button type="button" class="chip" data-q="' + s + '">' + s + "</button>";
         }).join("") + "</div>";
       return;
@@ -440,9 +451,22 @@
     $$("[data-beneficios]").forEach(function (g) {
       var l = linea(g.getAttribute("data-beneficios"));
       if (!l) return;
-      var icos = l.id === "caudalimetros" ? ["engranaje", "escudo", "senal", "check"] : ["hoja", "gota", "camion", "persona"];
+      var icos = l.iconos || ["check"];
       g.innerHTML = (l.beneficios || []).map(function (b, i) {
         return '<div class="feat"><span class="feat-i">' + ico(icos[i % icos.length]) + "</span><h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
+      }).join("");
+    });
+    /* Una tarjeta por línea (inicio y quiénes somos) */
+    $$("[data-lineas]").forEach(function (g) {
+      g.innerHTML = CAT.lineas.map(function (l) {
+        var n = deLinea(l.id).length, arte = producto(l.arte);
+        var media = l.imagen
+          ? '<img src="' + esc(l.imagen) + '" alt="" loading="lazy" decoding="async" />'
+          : '<div class="cat-art" aria-hidden="true">' + (arte ? imagenDe(arte) : "") + "</div>";
+        return '<a class="cat rv" href="' + urlLinea(l) + '">' + media +
+          '<div class="cat-b"><span class="tag">' + n + (n === 1 ? " producto" : " productos") + "</span>" +
+          "<h3>" + esc(l.nombre) + "</h3><p>" + esc(l.resumen) + "</p>" +
+          '<span class="lnk lnk--light">Ver la línea' + ico("flecha") + "</span></div></a>";
       }).join("");
     });
     $$("[data-cifras]").forEach(function (g) {
@@ -475,11 +499,12 @@
       } else {
         cols = ["Producto", "Composición", "Dosis", "Cultivos"];
         filas = lista.map(function (p) {
+          var cu = p.cultivos || [];
           return [p, (p.composicion || []).map(function (c) { return c[0] + " " + c[1]; }).join(" · "),
-            p.dosis || "—", (p.cultivos || []).join(", ") || "Consultar"];
+            p.dosis || "—", cu.length > 5 ? cu.slice(0, 5).join(", ") + " y " + (cu.length - 5) + " más" : (cu.join(", ") || "Consultar")];
         });
       }
-      box.innerHTML = '<table class="tbl"><caption class="sr-only">Comparativa de la línea</caption><thead><tr>' +
+      box.innerHTML = '<table class="tbl' + (iguales ? " tbl--series" : "") + '"><caption class="sr-only">Comparativa de la línea</caption><thead><tr>' +
         cols.map(function (c) { return '<th scope="col">' + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
         filas.map(function (f) {
           return '<tr><td><a href="' + urlProducto(f[0]) + '">' + esc(f[0].nombre) + "</a></td>" +
@@ -583,11 +608,13 @@
     }
     var cultivos = unicos("cultivos"), aplic = unicos("aplicacion");
 
+    /* Más de 8 opciones: se muestran las primeras y el resto con "Ver todos" */
     function grupoChecks(titulo, nombre, valores) {
       if (!valores.length) return "";
-      return '<fieldset class="fl-g"><legend>' + titulo + "</legend>" + valores.map(function (v) {
+      return '<fieldset class="fl-g' + (valores.length > 8 ? " fl-g--corto" : "") + '"><legend>' + titulo + "</legend>" + valores.map(function (v) {
         return '<label class="ck"><input type="checkbox" name="' + nombre + '" value="' + esc(v) + '"><span>' + esc(v) + "</span></label>";
-      }).join("") + "</fieldset>";
+      }).join("") + (valores.length > 8 ? '<button type="button" class="fl-mas" data-mas>Ver todos (' + valores.length + ")</button>" : "") +
+      "</fieldset>";
     }
     $("#fl-campos").innerHTML = '' +
       '<fieldset class="fl-g"><legend>Línea de productos</legend>' +
@@ -604,6 +631,12 @@
     qi.value = estado.q;
 
     function sincronizarControles() {
+      $$(".fl-g--corto", root).forEach(function (g) {
+        if ($$(".ck input", g).slice(8).some(function (c) { return estado.cultivos.indexOf(c.value) >= 0; })) {
+          g.classList.remove("fl-g--corto");
+          var b = $("[data-mas]", g); if (b) b.textContent = "Ver menos";
+        }
+      });
       $$('input[name="linea"]', root).forEach(function (r) { r.checked = r.value === estado.linea; });
       $$('input[name="cultivo"]', root).forEach(function (c) { c.checked = estado.cultivos.indexOf(c.value) >= 0; });
       $$('input[name="aplic"]', root).forEach(function (c) { c.checked = estado.aplic.indexOf(c.value) >= 0; });
@@ -674,6 +707,12 @@
         if (k === "aplic") estado.aplic = estado.aplic.filter(function (c) { return c !== v; });
         sincronizarControles(); filtrar();
       }
+      var mas = e.target.closest("[data-mas]");
+      if (mas) {
+        var g = mas.closest(".fl-g");
+        g.classList.toggle("fl-g--corto");
+        mas.textContent = g.classList.contains("fl-g--corto") ? "Ver todos (" + $$(".ck", g).length + ")" : "Ver menos";
+      }
       if (e.target.closest("[data-limpiar]")) {
         estado = { q: "", linea: "", cultivos: [], aplic: [] };
         qi.value = ""; sincronizarControles(); filtrar();
@@ -708,19 +747,120 @@
     if (md) md.setAttribute("content", p.resumen);
 
     var cotizar = "contacto.html?producto=" + encodeURIComponent(p.id);
-    var tabs = [["descripcion", "Descripción"]];
-    if ((p.composicion || []).length) tabs.push(["composicion", p.tituloComposicion || "Composición"]);
-    if (p.dosis || (p.cultivos || []).length) tabs.push(["dosis", "Dosis y cultivos"]);
-    if ((p.usos || []).length) tabs.push(["usos", "Usos"]);
-    tabs.push(["documentos", "Documentos"]);
+    var comp = p.composicion || [], props = p.propiedades || [], cu = p.cultivos || [], ap = p.aplicacion || [];
+    var guia = p.guia || [], notas = p.notas || [], docs = p.documentos || [];
+    var ben = p.beneficios || [], benPares = ben.length && typeof ben[0] !== "string";
+    var esCauda = p.linea === "caudalimetros";
 
+    /* Datos clave del encabezado */
     var datos = [];
     if (p.dosis) datos.push(["Dosis", p.dosis]);
-    if ((p.cultivos || []).length) datos.push(["Cultivos", p.cultivos.join(", ")]);
-    if ((p.aplicacion || []).length) datos.push(["Aplicación", p.aplicacion.join(" · ")]);
+    if (cu.length) datos.push(["Cultivos", cu.length > 6 ? cu.slice(0, 5).join(", ") + " y " + (cu.length - 5) + " más" : cu.join(", ")]);
+    if (ap.length) datos.push(["Aplicación", ap.join(" · ")]);
+    if (p.presentacion) datos.push(["Presentación", p.presentacion]);
     if ((p.mide || []).length) datos.push(["Mide", p.mide.join(" · ")]);
 
-    var relacionados = deLinea(p.linea).filter(function (x) { return x.id !== p.id; });
+    /* Cada sección: [id, título de la pestaña, html]. El fondo se alterna solo. */
+    var secciones = [];
+
+    secciones.push(["descripcion", "Descripción",
+      (benPares
+        ? '<div class="pd-desc"><p class="eyebrow">Descripción</p><h2 class="h2">' + esc(p.nombre) + "</h2>" +
+            (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
+          '<h3 class="h4 pd-ben-t">Beneficios</h3>' +
+          '<div class="ben-grid' + (ben.length % 4 === 0 ? " ben-grid--4" : "") + '">' + ben.map(function (b) {
+            return '<div class="ben">' + ico("check") + "<h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
+          }).join("") + "</div>"
+        : '<div class="pd-cols"><div><p class="eyebrow">Descripción</p><h2 class="h2">' + esc(p.nombre) + "</h2>" +
+            (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
+          (ben.length ? '<aside class="pd-ben"><h3>Beneficios y características</h3><ul>' +
+            ben.map(function (b) { return "<li>" + ico("check") + "<span>" + esc(b) + "</span></li>"; }).join("") +
+          "</ul></aside>" : "") + "</div>")]);
+
+    if (comp.length) secciones.push(["composicion", p.tituloComposicion || (esCauda ? "Especificaciones" : "Composición"),
+      '<p class="eyebrow">' + esc(p.tituloComposicion || (esCauda ? "Especificaciones técnicas" : "Composición")) + "</p>" +
+      '<h2 class="h2">' + (esCauda ? "Especificaciones de la serie" : "Composición garantizada") + "</h2>" +
+      '<div class="spec-grid">' + comp.map(function (c) {
+        return '<div class="spec"><span class="spec-v">' + esc(c[1]) + '</span><span class="spec-k">' + esc(c[0]) + "</span>" +
+          (c[2] ? '<span class="spec-d">' + esc(c[2]) + "</span>" : "") + "</div>";
+      }).join("") + "</div>" +
+      (props.length ? '<dl class="props">' + props.map(function (x) {
+        return "<div><dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd></div>";
+      }).join("") + "</dl>" : "")]);
+
+    var ca = p.comoActua;
+    if (ca) secciones.push(["como-actua", "Cómo actúa",
+      '<div class="sec-h"><p class="eyebrow">Cómo actúa</p><h2 class="h2">' + esc(ca.titulo) + '</h2><p class="lead">' + esc(ca.texto) + "</p></div>" +
+      '<div class="actua actua--' + (ca.modo === "flujo" ? "flujo" : "comparar") + '">' + (ca.pasos || []).map(function (ps, i, arr) {
+        var marca = ca.modo === "flujo" ? '<span class="actua-n">' + (i + 1) + "</span>" : ico(i ? "check" : "cerrar", "actua-i");
+        return '<div class="actua-p">' + marca + "<h3>" + esc(ps[0]) + "</h3><p>" + esc(ps[1]) + "</p></div>" +
+          (ca.modo === "flujo" && i < arr.length - 1 ? '<span class="actua-fl" aria-hidden="true">' + ico("flecha") + "</span>" : "");
+      }).join("") + "</div>" +
+      (ca.nota ? '<p class="actua-nota">' + ico("escudo") + "<span>" + esc(ca.nota) + "</span></p>" : "")]);
+
+    if (guia.length || notas.length || p.dosis || cu.length) {
+      var html = '<p class="eyebrow">' + (guia.length ? "Guía de aplicación" : "Dosis y cultivos") + "</p>" +
+        '<h2 class="h2">' + (guia.length ? "Dosis por cultivo" : "Recomendación de uso") + "</h2>";
+      if (guia.length) {
+        html += guia.map(function (g) {
+          var n = g.columnas.length;
+          return (guia.length > 1 ? '<h3 class="h4 guia-t">' + esc(g.titulo) + "</h3>" : "") +
+            '<div class="tbl-wrap"><table class="tbl tbl--guia"><caption class="sr-only">' + esc(g.titulo) + "</caption><thead><tr>" +
+            g.columnas.map(function (c) { return '<th scope="col">' + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+            g.filas.map(function (f) {
+              if (f.length === 1) return '<tr class="tbl-grupo"><th colspan="' + n + '" scope="colgroup">' + esc(f[0]) + "</th></tr>";
+              /* data-label: en el celular cada fila se apila como ficha y muestra el nombre de la columna */
+              return "<tr>" + f.map(function (v, k) {
+                if (!k) return '<th scope="row">' + esc(v) + "</th>";
+                return '<td data-label="' + esc(g.columnas[k] || "") + '"' + (k === (g.colDosis == null ? 1 : g.colDosis) ? ' class="c-dosis"' : "") + ">" + esc(v) + "</td>";
+              }).join("") + "</tr>";
+            }).join("") + "</tbody></table></div>" +
+            (g.pie ? '<p class="nota guia-pie">' + esc(g.pie) + "</p>" : "");
+        }).join("");
+        if (cu.length || ap.length) html += '<div class="pd-chips">' +
+          (cu.length ? '<div><h3 class="h4">Cultivos</h3><div class="chips">' + cu.map(function (c) {
+            return '<a class="chip" href="productos.html?cultivo=' + encodeURIComponent(c) + '">' + ico("planta") + esc(c) + "</a>";
+          }).join("") + "</div></div>" : "") +
+          (ap.length ? '<div><h3 class="h4">Aplicación</h3><div class="chips">' + ap.map(function (c) {
+            return '<span class="chip">' + esc(c) + "</span>"; }).join("") + "</div></div>" : "") + "</div>";
+      } else {
+        html = '<div class="pd-cols"><div>' + html +
+          (p.dosis ? '<div class="dose"><span>Dosis recomendada</span><b>' + esc(p.dosis) + "</b></div>" : "") +
+          '<p class="nota">Las dosis son orientativas. Ajustalas con tu asesor según el análisis de suelo, el cultivo y su estado.</p></div>' +
+          (cu.length ? '<div><h3 class="h4">Cultivos</h3><div class="chips">' +
+            cu.map(function (c) { return '<a class="chip" href="productos.html?cultivo=' + encodeURIComponent(c) + '">' + ico("planta") + esc(c) + "</a>"; }).join("") +
+            "</div>" + (ap.length ? '<h3 class="h4">Aplicación</h3><div class="chips">' +
+            ap.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("") + "</div>" : "") + "</div>"
+          : '<div class="pd-asesor">' + ico("persona") + "<h3>¿Qué dosis usar en tu lote?</h3><p>Te ayudamos a definirla según cultivo, estado fenológico y análisis de suelo.</p>" +
+            '<a class="lnk" href="' + cotizar + '">Consultar a un agrónomo' + ico("flecha") + "</a></div>") + "</div>";
+      }
+      if (notas.length) html += '<div class="notas">' + notas.map(function (nt) {
+        var cuerpo = Array.isArray(nt[1])
+          ? "<ol>" + nt[1].map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>"
+          : "<p>" + esc(nt[1]) + "</p>";
+        return '<div class="nota-b' + (nt[2] === "alerta" ? " nota-b--alerta" : "") + '"><h3>' + esc(nt[0]) + "</h3>" + cuerpo + "</div>";
+      }).join("") + "</div>";
+      secciones.push(["dosis", guia.length ? "Guía de aplicación" : "Dosis y cultivos", html]);
+    }
+
+    if ((p.usos || []).length) secciones.push(["usos", "Usos",
+      '<p class="eyebrow">Usos</p><h2 class="h2">Aplicaciones industriales y agropecuarias</h2>' +
+      '<ul class="usos">' + p.usos.map(function (u, i) {
+        return "<li><span>" + (i < 9 ? "0" : "") + (i + 1) + "</span>" + esc(u) + "</li>";
+      }).join("") + "</ul>"]);
+
+    secciones.push(["documentos", "Documentos",
+      '<p class="eyebrow">Documentos</p><h2 class="h2">Fichas y documentación</h2><div class="docs">' +
+      (docs.length ? docs.map(function (d) {
+        return '<a class="doc" href="' + esc(d.url) + '" target="_blank" rel="noopener">' + ico("doc") +
+          "<span><b>" + esc(d.nombre) + "</b><small>PDF · abrir o descargar</small></span>" + ico("flecha") + "</a>";
+      }).join("") : "") +
+      '<a class="doc" href="' + cotizar + '&doc=ficha">' + ico("mail") +
+        "<span><b>" + (docs.length ? "Pedir más información" : "Ficha técnica de " + esc(p.nombre)) + "</b>" +
+        "<small>Te la enviamos por email</small></span>" + ico("flecha") + "</a></div>"]);
+
+    var relacionados = relacionadosDe(p);
+    var folleto = docs[0];
 
     root.innerHTML = '' +
       '<div class="crumbs"><div class="wrap"><ol>' +
@@ -741,68 +881,23 @@
           }).join("") + "</dl>" : "") +
           '<div class="btns">' +
             '<a class="btn btn--pri" href="' + cotizar + '">Solicitar cotización' + ico("flecha") + "</a>" +
-            '<a class="btn btn--line" href="#documentos">Ficha técnica</a>' +
+            (folleto ? '<a class="btn btn--line" href="' + esc(folleto.url) + '" target="_blank" rel="noopener">Ver folleto PDF</a>'
+                     : '<a class="btn btn--line" href="#documentos">Ficha técnica</a>') +
           "</div>" +
         "</div>" +
-        '<div class="pd-img">' + imagenDe(p) + "</div>" +
+        '<div class="pd-img' + (p.imagen ? " pd-img--foto" : "") + '">' + imagenDe(p) + "</div>" +
       "</div></section>" +
 
       '<nav class="pd-tabs" aria-label="Secciones del producto"><div class="wrap"><ul>' +
-        tabs.map(function (t, i) { return '<li><a href="#' + t[0] + '"' + (i ? "" : ' class="on"') + ">" + esc(t[1]) + "</a></li>"; }).join("") +
+        secciones.map(function (t, i) { return '<li><a href="#' + t[0] + '"' + (i ? "" : ' class="on"') + ">" + esc(t[1]) + "</a></li>"; }).join("") +
       "</ul></div></nav>" +
 
-      '<section class="sec pd-sec" id="descripcion"><div class="wrap pd-cols">' +
-        "<div>" +
-          '<p class="eyebrow">Descripción</p><h2 class="h2">' + esc(p.nombre) + "</h2>" +
-          (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") +
-        "</div>" +
-        ((p.beneficios || []).length ? '<aside class="pd-ben"><h3>Beneficios y características</h3><ul>' +
-          p.beneficios.map(function (b) { return "<li>" + ico("check") + "<span>" + esc(b) + "</span></li>"; }).join("") +
-        "</ul></aside>" : "") +
-      "</div></section>" +
+      secciones.map(function (s, i) {
+        return '<section class="sec pd-sec' + (i % 2 ? " sec--gris" : "") + '" id="' + s[0] + '"><div class="wrap">' + s[2] + "</div></section>" +
+          (i === 0 && p.frase ? '<div class="pd-frase"><div class="wrap"><blockquote>' + esc(p.frase) + "</blockquote></div></div>" : "");
+      }).join("") +
 
-      ((p.composicion || []).length ? '<section class="sec sec--gris pd-sec" id="composicion"><div class="wrap">' +
-        '<p class="eyebrow">' + esc(p.tituloComposicion || "Composición") + '</p><h2 class="h2">' +
-          (p.linea === "caudalimetros" ? "Especificaciones de la serie" : "Composición garantizada") + "</h2>" +
-        '<div class="spec-grid">' + p.composicion.map(function (c) {
-          return '<div class="spec"><span class="spec-v">' + esc(c[1]) + '</span><span class="spec-k">' + esc(c[0]) + "</span></div>";
-        }).join("") + "</div>" +
-      "</div></section>" : "") +
-
-      (p.dosis || (p.cultivos || []).length ? '<section class="sec pd-sec" id="dosis"><div class="wrap pd-cols">' +
-        '<div><p class="eyebrow">Dosis y cultivos</p><h2 class="h2">Recomendación de uso</h2>' +
-          (p.dosis ? '<div class="dose"><span>Dosis recomendada</span><b>' + esc(p.dosis) + "</b></div>" : "") +
-          '<p class="nota">Las dosis son orientativas. Ajustalas con tu asesor según el análisis de suelo, el cultivo y su estado.</p>' +
-        "</div>" +
-        ((p.cultivos || []).length ? '<div><h3 class="h4">Cultivos</h3><div class="chips">' +
-          p.cultivos.map(function (c) { return '<a class="chip" href="productos.html?cultivo=' + encodeURIComponent(c) + '">' + ico("planta") + esc(c) + "</a>"; }).join("") +
-        "</div>" +
-        ((p.aplicacion || []).length ? '<h3 class="h4">Aplicación</h3><div class="chips">' +
-          p.aplicacion.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("") + "</div>" : "") +
-        "</div>" : '<div class="pd-asesor">' + ico("persona") + "<h3>¿Qué dosis usar en tu lote?</h3><p>Te ayudamos a definirla según cultivo, estado fenológico y análisis de suelo.</p>" +
-          '<a class="lnk" href="' + cotizar + '">Consultar a un agrónomo' + ico("flecha") + "</a></div>") +
-      "</div></section>" : "") +
-
-      ((p.usos || []).length ? '<section class="sec sec--gris pd-sec" id="usos"><div class="wrap">' +
-        '<p class="eyebrow">Usos</p><h2 class="h2">Aplicaciones industriales y agropecuarias</h2>' +
-        '<ul class="usos">' + p.usos.map(function (u, i) {
-          return '<li><span>' + (i < 9 ? "0" : "") + (i + 1) + "</span>" + esc(u) + "</li>";
-        }).join("") + "</ul>" +
-      "</div></section>" : "") +
-
-      '<section class="sec pd-sec" id="documentos"><div class="wrap">' +
-        '<p class="eyebrow">Documentos</p><h2 class="h2">Fichas y documentación</h2>' +
-        '<div class="docs">' +
-          ((p.documentos || []).length ? p.documentos.map(function (d) {
-            return '<a class="doc" href="' + esc(d.url) + '" target="_blank" rel="noopener">' + ico("doc") +
-              "<span><b>" + esc(d.nombre) + "</b><small>PDF</small></span>" + ico("flecha") + "</a>";
-          }).join("") :
-          '<a class="doc" href="' + cotizar + '&doc=ficha">' + ico("doc") +
-            "<span><b>Ficha técnica de " + esc(p.nombre) + "</b><small>Pedila y te la enviamos por email</small></span>" + ico("flecha") + "</a>") +
-        "</div>" +
-      "</div></section>" +
-
-      (relacionados.length ? '<section class="sec sec--gris"><div class="wrap">' +
+      (relacionados.length ? '<section class="sec ' + (secciones.length % 2 ? "sec--gris" : "") + '"><div class="wrap">' +
         '<div class="sec-h sec-h--row"><div><p class="eyebrow">' + esc(l.nombre) + '</p><h2 class="h2">Productos relacionados</h2></div>' +
         '<a class="lnk" href="' + urlLinea(l) + '">Ver toda la línea' + ico("flecha") + "</a></div>" +
         '<div class="fila-box" data-fila><div class="fila">' + relacionados.map(tarjeta).join("") + "</div>" +
@@ -818,6 +913,46 @@
       secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
       links.forEach(function (a, i) { a.classList.toggle("on", i === cur); });
     }, { passive: true });
+  }
+
+  /* ----------------------------------------------------------
+     PÁGINA DE LÍNEA (linea.html?id=...): para las líneas que no
+     tienen una página propia escrita a mano.
+     ---------------------------------------------------------- */
+  function initLinea() {
+    var root = $("#linea-page");
+    if (!root) return;
+    var l = linea(param("id")) || linea(decodeURIComponent(location.hash.slice(1)));
+    if (!l) {
+      root.innerHTML = '<section class="sec"><div class="wrap narrow txt-c"><h1 class="h2">No encontramos esa línea</h1>' +
+        '<a class="btn btn--pri" href="productos.html">Ir al buscador de productos' + ico("flecha") + "</a></div></section>";
+      return;
+    }
+    document.title = l.nombre + " | Seiker";
+    var md = $('meta[name="description"]');
+    if (md) md.setAttribute("content", l.resumen);
+    var lista = deLinea(l.id), n = lista.length;
+    root.innerHTML = '' +
+      '<section class="banner">' +
+        (l.imagen ? '<img src="' + esc(l.imagen) + '" alt="" />' : "") +
+        '<div class="wrap">' +
+          '<nav class="crumbs" aria-label="Ruta"><ol><li><a href="index.html">Inicio</a></li><li><a href="productos.html">Productos</a></li>' +
+          '<li aria-current="page">' + esc(l.nombre) + "</li></ol></nav>" +
+          '<p class="eyebrow">Productos y soluciones</p>' +
+          '<h1 class="h1">' + esc(l.nombre) + "</h1><p>" + esc(l.resumen) + "</p>" +
+        "</div>" +
+        '<div class="banner-art banner-art--bidones" aria-hidden="true">' +
+          lista.slice(0, 3).map(function (p) { return imagenDe(p); }).join("") + "</div>" +
+      "</section>" +
+      ((l.beneficios || []).length ? '<section class="sec"><div class="wrap">' +
+        '<div class="sec-h rv"><p class="eyebrow">Por qué elegir esta línea</p><h2 class="h2">' + esc(l.nombre) + "</h2></div>" +
+        '<div class="feats" data-beneficios="' + esc(l.id) + '" data-stagger></div></div></section>' : "") +
+      '<section class="sec sec--gris"><div class="wrap">' +
+        '<div class="sec-h sec-h--row rv"><div><p class="eyebrow">Portafolio</p><h2 class="h2">' + n + (n === 1 ? " producto" : " productos") + "</h2></div>" +
+        '<a class="lnk" href="productos.html?linea=' + encodeURIComponent(l.id) + '">Abrir en el buscador' + ico("flecha") + "</a></div>" +
+        '<div class="pgrid" data-productos="' + esc(l.id) + '"></div></div></section>' +
+      (n > 1 ? '<section class="sec"><div class="wrap"><div class="sec-h rv"><p class="eyebrow">Comparativa</p>' +
+        '<h2 class="h2">Composición y dosis de la línea</h2></div><div class="tbl-wrap rv" data-tabla="' + esc(l.id) + '"></div></div></section>' : "");
   }
 
   /* ----------------------------------------------------------
@@ -929,6 +1064,7 @@
 
   function arrancar() {
     safe(initLayout, "layout");
+    safe(initLinea, "linea");
     safe(initMenu, "menu");
     safe(initBuscar, "buscar");
     safe(initGrillas, "grillas");
