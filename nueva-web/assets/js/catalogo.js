@@ -179,7 +179,7 @@
         "Mínima volatilización"
       ],
       color: "#1F7A4D",
-      imagen: "",
+      imagen: "assets/img/productos/nitromix-ns.webp",
       documentos: [],
       destacado: true
     },
@@ -205,7 +205,7 @@
         "Apunta a maximizar el rendimiento"
       ],
       color: "#2D6E96",
-      imagen: "",
+      imagen: "assets/img/productos/nitromix-zn.webp",
       documentos: [],
       destacado: false
     },
@@ -231,7 +231,7 @@
         "Acompaña el llenado de granos"
       ],
       color: "#B7832A",
-      imagen: "",
+      imagen: "assets/img/productos/nitromix-b.webp",
       documentos: [],
       destacado: true
     },
@@ -257,7 +257,7 @@
         "Reducción de la volatilización"
       ],
       color: "#6B4F2A",
-      imagen: "",
+      imagen: "assets/img/productos/nitromix-plus.webp",
       documentos: [],
       destacado: false
     },
@@ -294,7 +294,7 @@
         "Aplicación foliar"
       ],
       color: "#5E8A2E",
-      imagen: "",
+      imagen: "assets/img/productos/nitroplus-18.webp",
       documentos: [],
       destacado: false
     },
@@ -575,7 +575,7 @@
         ["Importante", "No dejar las bolsas abiertas: el producto toma humedad del aire. Complementa, no reemplaza, la fertilización al suelo. Usar con tensioactivo o junto con agroquímicos. No aplicar con temperatura o insolación elevadas."]
       ],
       color: "#E8821E",
-      imagen: "",
+      imagen: "assets/img/productos/harvest-more.webp",
       documentos: [{ nombre: "Folleto Harvest More 5-5-45", url: "docs/harvest-more.pdf" }],
       relacionados: ["nitrate-balancer"],
       destacado: true
