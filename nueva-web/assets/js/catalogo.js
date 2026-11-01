@@ -170,7 +170,7 @@
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["pH", "6,5"], ["Densidad", "1,26"]],
       dosis: "100 – 300 l/ha",
-      cultivos: ["Maíz", "Sorgo", "Trigo", "Soja", "Alfalfa", "Girasol"],
+      cultivos: ["Maíz", "Sorgo", "Trigo", "Girasol"],   // sin soja ni alfalfa: las leguminosas fijan su propio nitrógeno
       aplicacion: ["Fertirriego", "Aplicación motriz"],
       beneficios: [
         "Fertilizante base para producciones extensivas",
@@ -273,9 +273,20 @@
         "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
       ],
       composicion: [["N", "18%"], ["Ca", "7%"], ["Vía", "Foliar"]],
-      dosis: "Consultar según cultivo y estado fenológico",
-      cultivos: [],
+      dosis: "10 l/ha en trigo y cebada",
+      cultivos: ["Trigo", "Cebada"],
       aplicacion: ["Foliar"],
+      guia: [{
+        titulo: "Dosis por cultivo",
+        columnas: ["Cultivo", "Dosis", "Momento de aplicación"],
+        filas: [
+          ["Trigo · Cebada", "10 l/ha", "Desde macollaje hasta hoja bandera"]
+        ],
+        pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
+      }],
+      notas: [
+        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITROPLUS 18 y después los demás productos."]
+      ],
       beneficios: [
         "Nitrógeno amínico + calcio",
         "100% de eficiencia en el uso del nitrógeno aplicado",
