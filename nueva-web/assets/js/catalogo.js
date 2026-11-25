@@ -52,7 +52,7 @@
     },
     {
       id: "nutricion",
-      nombre: "Nutrición vegetal",
+      nombre: "Nutrición",
       corto: "Nutrición",
       envase: "bidon",
       imagen: "assets/img/lineas/nutricion.webp",
@@ -350,7 +350,7 @@
       destacado: false
     },
 
-    /* ─────────── NUTRICIÓN VEGETAL ─────────── */
+    /* ─────────── NUTRICIÓN ─────────── */
     {
       id: "starter-plus",
       linea: "nutricion",

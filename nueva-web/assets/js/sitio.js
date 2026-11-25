@@ -206,7 +206,7 @@
         '<div class="ft-grid">' +
           '<div class="ft-brand">' +
             '<img src="assets/img/logo-seiker-blanco.webp" alt="Seiker" width="1047" height="238" />' +
-            "<p>Fertilizantes, nutrición vegetal, coadyuvantes y agroprecisión para el agro y la industria argentina.</p>" +
+            "<p>Fertilizantes, nutrición, coadyuvantes y agroprecisión para el agro y la industria argentina.</p>" +
             (redes ? '<div class="ft-redes">' + redes + "</div>" : "") +
           "</div>" +
           cols +
