@@ -214,20 +214,115 @@
             '<li><a href="quienes-somos.html">Quiénes somos</a></li>' +
             '<li><a href="agronomia.html">Agronomía</a></li>' +
             '<li><a href="contacto.html">Contacto</a></li>' +
-            '<li><a href="privacidad.html">Política de privacidad</a></li>' +
-          "</ul></div>" +
-          '<div class="ft-col ft-contacto"><h4>Contacto</h4><ul>' +
-            (c.direccion ? "<li>" + ico("pin") + esc(c.direccion) + "</li>" : "") +
-            (c.telefono ? '<li><a href="tel:' + esc(c.telefono.replace(/[^\d+]/g, "")) + '">' + ico("tel") + esc(c.telefono) + "</a></li>" : "") +
-            (c.email ? '<li><a href="mailto:' + esc(c.email) + '">' + ico("mail") + esc(c.email) + "</a></li>" : "") +
-            (c.horario ? "<li>" + ico("reloj") + esc(c.horario) + "</li>" : "") +
           "</ul></div>" +
         "</div>" +
       "</div></div>" +
       '<div class="ft-bot"><div class="wrap ft-bot-in">' +
         "<span>© " + new Date().getFullYear() + " " + esc((CFG.razonSocial || "Seiker").replace(/\.$/, "")) + ". Todos los derechos reservados.</span>" +
-        '<span class="ft-legal"><a href="privacidad.html">Política de privacidad</a><span>' + ico("mundo") + "Argentina | Español</span></span>" +
+        '<span class="ft-legal">' +
+          '<a href="terminos.html">Términos y condiciones</a>' +
+          '<a href="privacidad.html">Política de privacidad</a>' +
+          '<button type="button" class="ft-cookies" data-cookies>Preferencias sobre cookies</button>' +
+          "<span>" + ico("mundo") + "Argentina | Español</span></span>" +
       "</div></div>";
+  }
+
+  /* ----------------------------------------------------------
+     COOKIES: aviso en la primera visita y panel de preferencias
+     (se reabre con "Preferencias sobre cookies", al pie).
+     Hoy el sitio no usa cookies analíticas ni publicitarias. Si se
+     suma, por ejemplo, Google Analytics, se carga solo cuando
+     SEIKER_COOKIES.permite("analiticas") es verdadero, o al recibir
+     el evento "seiker:cookies" con esa categoría aceptada.
+     ---------------------------------------------------------- */
+  var CLAVE_COOKIES = "seiker-cookies";
+  function leerCookies() {
+    try { return JSON.parse(localStorage.getItem(CLAVE_COOKIES) || "null"); } catch (e) { return null; }
+  }
+  function guardarCookies(pref) {
+    pref.fecha = new Date().toISOString();
+    try { localStorage.setItem(CLAVE_COOKIES, JSON.stringify(pref)); } catch (e) {}
+    window.SEIKER_COOKIES.pref = pref;
+    try { document.dispatchEvent(new CustomEvent("seiker:cookies", { detail: pref })); } catch (e) {}
+  }
+  window.SEIKER_COOKIES = {
+    pref: leerCookies(),
+    permite: function (cat) { var p = this.pref; return cat === "necesarias" || !!(p && p[cat]); }
+  };
+
+  function initCookies() {
+    var CATS = [
+      ["necesarias", "Necesarias", "Hacen que el sitio funcione y recuerdan esta elección. No se pueden desactivar."],
+      ["analiticas", "Analíticas", "Nos ayudarían a entender, de forma agregada, cómo se usa el sitio para mejorarlo."],
+      ["publicidad", "Publicidad", "Permitirían mostrarte información de Seiker en otros sitios según tus intereses."]
+    ];
+    var aviso = document.createElement("div");
+    aviso.className = "ck-aviso"; aviso.setAttribute("role", "region"); aviso.setAttribute("aria-label", "Aviso de cookies");
+    aviso.innerHTML = '' +
+      '<div class="ck-aviso-t"><b>Usamos cookies</b><p>Usamos las cookies necesarias para que el sitio funcione. Con tu permiso, también podríamos usar ' +
+      'cookies analíticas y publicitarias. Podés cambiar tu elección cuando quieras desde «Preferencias sobre cookies», al pie de la página. ' +
+      'Más información en la <a href="privacidad.html#cookies">política de privacidad</a>.</p></div>' +
+      '<div class="ck-aviso-b">' +
+        '<button type="button" class="btn btn--line btn--sm" data-ck="config">Configurar</button>' +
+        '<button type="button" class="btn btn--line btn--sm" data-ck="necesarias">Solo necesarias</button>' +
+        '<button type="button" class="btn btn--pri btn--sm" data-ck="todas">Aceptar todas</button>' +
+      "</div>";
+    var panel = document.createElement("div");
+    panel.className = "ov ck-ov"; panel.id = "ck-pref";
+    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); panel.setAttribute("aria-labelledby", "ck-tit");
+    panel.innerHTML = '' +
+      '<div class="ck-panel">' +
+        '<div class="ck-top"><h2 id="ck-tit">Preferencias sobre cookies</h2>' +
+          '<button class="ib" type="button" data-ck="cerrar" aria-label="Cerrar">' + ico("cerrar") + "</button></div>" +
+        "<p>Elegí qué cookies aceptás. Hoy el sitio no usa cookies analíticas ni publicitarias: si se suman, solo se activan con tu consentimiento.</p>" +
+        CATS.map(function (c) {
+          var fija = c[0] === "necesarias";
+          return '<label class="ck-cat"><span><b>' + c[1] + "</b><small>" + c[2] + "</small></span>" +
+            '<span class="ck-sw"><input type="checkbox" name="' + c[0] + '"' + (fija ? " checked disabled" : "") + " />" +
+            '<i aria-hidden="true"></i><em class="sr-only">' + (fija ? "Siempre activas" : "Activar") + "</em></span></label>";
+        }).join("") +
+        '<div class="ck-panel-b">' +
+          '<button type="button" class="btn btn--line" data-ck="guardar">Guardar preferencias</button>' +
+          '<button type="button" class="btn btn--pri" data-ck="todas">Aceptar todas</button>' +
+        "</div>" +
+      "</div>";
+    document.body.appendChild(aviso);
+    document.body.appendChild(panel);
+
+    function cerrarAviso() { aviso.classList.remove("open"); }
+    function abrirPanel() {
+      var p = window.SEIKER_COOKIES.pref || {};
+      $$('.ck-cat input:not([disabled])', panel).forEach(function (i) { i.checked = !!p[i.name]; });
+      panel.classList.add("open"); document.documentElement.classList.add("no-scroll");
+      setTimeout(function () { var b = $(".ck-top .ib", panel); if (b) b.focus(); }, 40);
+    }
+    function cerrarPanel() { panel.classList.remove("open"); document.documentElement.classList.remove("no-scroll"); }
+    function elegir(todas, desdePanel) {
+      var pref = { necesarias: true };
+      CATS.slice(1).forEach(function (c) {
+        var i = $('.ck-cat input[name="' + c[0] + '"]', panel);
+        pref[c[0]] = todas === true ? true : (todas === false ? false : !!(desdePanel && i && i.checked));
+      });
+      guardarCookies(pref); cerrarAviso(); cerrarPanel();
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("[data-cookies]")) { e.preventDefault(); abrirPanel(); return; }
+      var b = e.target.closest("[data-ck]");
+      if (b) {
+        var k = b.getAttribute("data-ck");
+        if (k === "config") abrirPanel();
+        else if (k === "necesarias") elegir(false);
+        else if (k === "todas") elegir(true);
+        else if (k === "guardar") elegir(null, true);
+        else if (k === "cerrar") cerrarPanel();
+        return;
+      }
+      if (e.target === panel) cerrarPanel();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && panel.classList.contains("open")) cerrarPanel(); });
+    if (!window.SEIKER_COOKIES.pref) setTimeout(function () { aviso.classList.add("open"); }, 600);
+    if (location.hash === "#preferencias-cookies") abrirPanel();
   }
 
   function initLayout() {
@@ -1101,6 +1196,7 @@
 
   function arrancar() {
     safe(initLayout, "layout");
+    safe(initCookies, "cookies");
     safe(initLinea, "linea");
     safe(initMenu, "menu");
     safe(initBuscar, "buscar");

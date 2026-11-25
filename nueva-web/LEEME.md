@@ -19,7 +19,8 @@ Abrí `index.html` con doble clic. Para publicarla, subí **todo el contenido de
 | `agronomia.html` | Notas técnicas y preguntas frecuentes |
 | `quienes-somos.html` | Empresa |
 | `contacto.html` | Formulario y datos de contacto |
-| `privacidad.html` | Política de privacidad |
+| `privacidad.html` | Política de privacidad y cookies |
+| `terminos.html` | Términos y condiciones de uso |
 
 ## Cargar o editar productos
 
@@ -92,6 +93,26 @@ Teléfono, email, dirección, horario, WhatsApp y redes sociales se cambian en
 **`assets/js/config.js`**. Los valores marcados `PENDIENTE` vienen de la web anterior
 y hay que confirmarlos antes de publicar.
 
+## Cookies y textos legales
+
+Al pie de cada página están **Términos y condiciones**, **Política de privacidad** y
+**Preferencias sobre cookies**, como en corteva.com/ar. En la primera visita aparece un
+aviso para aceptar o rechazar cookies; la elección se guarda en el navegador y se puede
+cambiar desde el pie.
+
+Hoy el sitio no usa cookies analíticas ni publicitarias. Si se suma, por ejemplo,
+Google Analytics, hay que cargarlo solo con consentimiento:
+
+```js
+if (SEIKER_COOKIES.permite("analiticas")) { /* cargar la analítica */ }
+document.addEventListener("seiker:cookies", function (e) {
+  if (e.detail.analiticas) { /* cargar la analítica */ }
+});
+```
+
+Los textos de términos y privacidad son un modelo: conviene que los revise el asesor
+legal de la empresa antes de publicar.
+
 ## Formulario de contacto
 
 No hay servidor detrás. Al enviar, se abre el programa de correo del visitante con la
@@ -100,5 +121,5 @@ correo del visitante, se puede conectar a un servicio de formularios.
 
 ## Después de cambiar algo
 
-Si el hosting muestra la versión vieja, cambiá el número `?v=20261125d` de los
+Si el hosting muestra la versión vieja, cambiá el número `?v=20261125e` de los
 `<script>` y del `<link>` de estilos en las páginas (por ejemplo, a la fecha del día).
