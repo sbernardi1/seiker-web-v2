@@ -15,7 +15,7 @@
     });
   }
 
-  /* "NITRO-SOL NS" → ["NITRO-SOL", "NS"]; "Caudalímetro S150" → ["Caudalímetro", "S150"] */
+  /* "Nitro-Sol Zn" → ["Nitro-Sol", "Zn"]; "Caudalímetro S150" → ["Caudalímetro", "S150"] */
   function partir(nombre) {
     var i = nombre.lastIndexOf(" ");
     return i > 0 ? [nombre.slice(0, i), nombre.slice(i + 1)] : [nombre, ""];

@@ -43,18 +43,18 @@
   }
   function producto(id) {
     for (var i = 0; i < CAT.productos.length; i++) if (CAT.productos[i].id === id) return CAT.productos[i];
-    /* Enlaces viejos: producto.html?id=nitromix-ns sigue abriendo NITRO-SOL NS */
+    /* Enlaces viejos: producto.html?id=nitromix-ns sigue abriendo Nitro-Sol */
     for (var j = 0; j < CAT.productos.length; j++) {
       var a = CAT.productos[j].antes;
       if (a && norm(a).replace(/\s+/g, "-") === id) return CAT.productos[j];
     }
     return null;
   }
-  /* Marcas bicolor: NITRO (azul) / FOZ (rojo) + SOL (negro) / VIO (marrón).
+  /* Marcas bicolor: Nitro (azul) / Foz (rojo) + Sol (negro) / Vio (marrón).
      Recibe texto ya escapado y devuelve HTML. En fondos oscuros, el CSS
      hace que hereden el color del texto. */
   function marca(html) {
-    return String(html).replace(/\b(NITRO|FOZ)-(SOL|VIO)\b/g, function (m, a, b) {
+    return String(html).replace(/\b(Nitro|Foz)-(Sol|Vio)\b/gi, function (m, a, b) {
       return '<span class="mkw"><span class="mk mk-' + a.toLowerCase() + '">' + a + '</span><span class="mk mk-' + b.toLowerCase() + '">-' + b + "</span></span>";
     });
   }
@@ -206,7 +206,7 @@
         '<div class="ft-grid">' +
           '<div class="ft-brand">' +
             '<img src="assets/img/logo-seiker-blanco.webp" alt="Seiker" width="1047" height="238" />' +
-            "<p>Fertilizantes líquidos, nutrición vegetal, coadyuvantes y agroprecisión para el agro y la industria argentina.</p>" +
+            "<p>Fertilizantes, nutrición vegetal, coadyuvantes y agroprecisión para el agro y la industria argentina.</p>" +
             (redes ? '<div class="ft-redes">' + redes + "</div>" : "") +
           "</div>" +
           cols +
@@ -752,7 +752,7 @@
   /* ----------------------------------------------------------
      FICHA DE PRODUCTO (producto.html?id=...)
      ---------------------------------------------------------- */
-  /* Tabla con una columna por formulación (ej. FOZ-SOL 6-8-6 y 16-9,5-6) */
+  /* Tabla con una columna por formulación (ej. Foz-Sol 6-8-6 y 16-9,5-6) */
   function htmlFormulaciones(fm) {
     if (!fm || !(fm.filas || []).length) return "";
     return '<h3 class="h4 guia-t">' + esc(fm.titulo || "Formulaciones") + "</h3>" +

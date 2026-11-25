@@ -36,12 +36,12 @@
   var lineas = [
     {
       id: "fertilizantes",
-      nombre: "Fertilizantes líquidos",
+      nombre: "Fertilizantes",
       corto: "Fertilizantes",
       pagina: "fertilizantes.html",   // si no tiene página propia, se usa linea.html?id=...
       envase: "bidon",                // dibujo por defecto: "bidon", "bolsa" o "caudalimetro"
       imagen: "assets/img/campo-girasol.webp",  // foto de la tarjeta y del encabezado de la línea
-      resumen: "Líneas NITRO-SOL y FOZ-SOL con nitrógeno, fósforo, azufre, zinc y boro. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
+      resumen: "Nitro-Sol, Nitro-Vio, Foz-Sol y Foz-Vio: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
       iconos: ["hoja", "gota", "camion", "persona"],
       beneficios: [
         ["Mínima volatilización", "Formulaciones pensadas para que el nitrógeno quede en el lote y no se pierda en el aire."],
@@ -158,17 +158,17 @@
 
   var productos = [
 
-    /* ─────────── FERTILIZANTES LÍQUIDOS ─────────── */
+    /* ─────────── FERTILIZANTES ─────────── */
     {
-      id: "nitro-sol-ns",
+      id: "nitro-sol",
       linea: "fertilizantes",
-      nombre: "NITRO-SOL NS",
+      nombre: "Nitro-Sol",
       antes: "NITROMIX NS",
       bajada: "Nitrógeno + Azufre",
       tipo: "Fertilizante líquido",
       resumen: "Fertilizante base para producciones extensivas. Disponibilidad inmediata. Apto para fertirriego y aplicaciones motrices.",
       descripcion: [
-        "NITRO-SOL NS es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
+        "Nitro-Sol es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
         "Es apto para fertirriego y para aplicaciones motrices, lo que permite integrarlo al esquema de trabajo del establecimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["pH", "6,5"], ["Densidad", "1,26"]],
@@ -182,20 +182,20 @@
         "Mínima volatilización"
       ],
       color: "#1F7A4D",
-      imagen: "assets/img/productos/nitro-sol-ns.webp",
+      imagen: "assets/img/productos/nitro-sol.webp",
       documentos: [],
       destacado: true
     },
     {
       id: "nitro-sol-zn",
       linea: "fertilizantes",
-      nombre: "NITRO-SOL Zn",
+      nombre: "Nitro-Sol Zn",
       antes: "NITROMIX Zn",
       bajada: "Con Zinc quelado",
       tipo: "Fertilizante líquido",
       resumen: "Micronutriente esencial para gramíneas. Favorece la síntesis de proteínas, la floración y el cuaje de granos. Maximiza el rendimiento.",
       descripcion: [
-        "NITRO-SOL Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
+        "Nitro-Sol Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
         "Favorece la síntesis de proteínas, la floración y el cuaje de granos, con el objetivo de maximizar el rendimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["Zn", "0,5%"], ["pH", "6,5"]],
@@ -216,13 +216,13 @@
     {
       id: "nitro-sol-b",
       linea: "fertilizantes",
-      nombre: "NITRO-SOL B",
+      nombre: "Nitro-Sol B",
       antes: "NITROMIX B",
       bajada: "Con Boro",
       tipo: "Fertilizante líquido",
       resumen: "Especial para girasol. A la siembra asegura emergencia uniforme y desarrollo radicular. En aplicación tardía, floración homogénea y llenado de granos.",
       descripcion: [
-        "NITRO-SOL B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
+        "Nitro-Sol B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
         "Aplicado a la siembra asegura una emergencia uniforme y un buen desarrollo radicular. En aplicación tardía acompaña una floración homogénea y el llenado de granos."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["B", "0,5%"], ["pH", "6,5"]],
@@ -241,15 +241,15 @@
       destacado: true
     },
     {
-      id: "nitro-sol-plus",
+      id: "nitro-vio",
       linea: "fertilizantes",
-      nombre: "NITRO-SOL PLUS",
+      nombre: "Nitro-Vio",
       antes: "NITROMIX PLUS",
       bajada: "Base orgánica",
       tipo: "Fertilizante líquido orgánico",
       resumen: "Combinación de nutrientes orgánicos y sales convencionales. Alta eficiencia por bajo tamaño molecular: incorporación inmediata al suelo y reducción de la volatilización.",
       descripcion: [
-        "NITRO-SOL PLUS combina nutrientes de origen orgánico con sales convencionales.",
+        "Nitro-Vio combina nutrientes de origen orgánico con sales convencionales.",
         "Su bajo tamaño molecular le da alta eficiencia: se incorpora de inmediato al suelo y reduce la volatilización."
       ],
       composicion: [["N equiv.", "24%"], ["P equiv.", "9,5%"], ["M.O.", "36%"]],
@@ -262,20 +262,20 @@
         "Incorporación inmediata al suelo",
         "Reducción de la volatilización"
       ],
-      color: "#6B4F2A",
-      imagen: "assets/img/productos/nitro-sol-plus.webp",
+      color: "#5A3A1F",
+      imagen: "assets/img/productos/nitro-vio.webp",
       documentos: [],
       destacado: false
     },
     {
       id: "foz-sol",
       linea: "fertilizantes",
-      nombre: "FOZ-SOL",
+      nombre: "Foz-Sol",
       bajada: "Nitrógeno + Fósforo + Azufre",
       tipo: "Fertilizante líquido",
       resumen: "Fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en sus distintas etapas de desarrollo.",
       descripcion: [
-        "FOZ-SOL es un fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en las distintas etapas de desarrollo.",
+        "Foz-Sol es un fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en las distintas etapas de desarrollo.",
         "Sus dos formulaciones permiten una rápida disponibilidad y absorción, con menor volatilidad y mayor aprovechamiento por parte del cultivo."
       ],
       frase: "Fósforo: el nutriente que almacena y transfiere la energía dentro de la planta.",
@@ -326,6 +326,28 @@
       imagen: "assets/img/productos/foz-sol.webp",
       documentos: [],
       destacado: true
+    },
+    {
+      /* FICHA PROVISORIA: falta definir composición, dosis y cultivos */
+      id: "foz-vio",
+      linea: "fertilizantes",
+      nombre: "Foz-Vio",
+      bajada: "Próximamente",
+      tipo: "Fertilizante",
+      resumen: "Nuevo desarrollo de la familia Vio. Estamos preparando su ficha técnica: consultanos por composición, dosis y disponibilidad.",
+      descripcion: [
+        "Foz-Vio es un nuevo desarrollo de la familia Vio de Seiker.",
+        "Estamos terminando su ficha técnica. Mientras tanto, escribinos y un asesor te cuenta composición, dosis recomendada y disponibilidad."
+      ],
+      composicion: [],
+      dosis: "",
+      cultivos: [],
+      aplicacion: [],
+      beneficios: [],
+      color: "#5A3A1F",
+      imagen: "assets/img/productos/foz-vio.webp",
+      documentos: [],
+      destacado: false
     },
 
     /* ─────────── NUTRICIÓN VEGETAL ─────────── */
@@ -610,15 +632,14 @@
       destacado: true
     },
     {
-      id: "nitro-vio-18",
+      id: "nitroplus-18",
       linea: "nutricion",
-      nombre: "NITRO-VIO 18",
-      antes: "NITROPLUS 18",
+      nombre: "NITROPLUS 18",
       bajada: "Fertilizante foliar",
       tipo: "Fertilizante foliar",
       resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
       descripcion: [
-        "NITRO-VIO 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
+        "NITROPLUS 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
         "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
       ],
       composicion: [["N", "18%"], ["Ca", "7%"], ["Vía", "Foliar"]],
@@ -634,7 +655,7 @@
         pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
       }],
       notas: [
-        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITRO-VIO 18 y después los demás productos."]
+        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITROPLUS 18 y después los demás productos."]
       ],
       beneficios: [
         "Nitrógeno amínico + calcio",
@@ -642,30 +663,8 @@
         "Sin pérdidas por volatilización ni lixiviación",
         "Aplicación foliar"
       ],
-      color: "#5A3A1F",
-      imagen: "assets/img/productos/nitro-vio-18.webp",
-      documentos: [],
-      destacado: false
-    },
-    {
-      /* FICHA PROVISORIA: falta definir composición, dosis y cultivos */
-      id: "foz-vio",
-      linea: "nutricion",
-      nombre: "FOZ-VIO",
-      bajada: "Próximamente",
-      tipo: "Nutrición vegetal",
-      resumen: "Nuevo desarrollo de la familia VIO. Estamos preparando su ficha técnica: consultanos por composición, dosis y disponibilidad.",
-      descripcion: [
-        "FOZ-VIO es un nuevo desarrollo de la familia VIO de Seiker.",
-        "Estamos terminando su ficha técnica. Mientras tanto, escribinos y un asesor te cuenta composición, dosis recomendada y disponibilidad."
-      ],
-      composicion: [],
-      dosis: "",
-      cultivos: [],
-      aplicacion: [],
-      beneficios: [],
-      color: "#5A3A1F",
-      imagen: "assets/img/productos/foz-vio.webp",
+      color: "#5E8A2E",
+      imagen: "assets/img/productos/nitroplus-18.webp",
       documentos: [],
       destacado: false
     },
