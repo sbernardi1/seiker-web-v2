@@ -100,5 +100,5 @@ correo del visitante, se puede conectar a un servicio de formularios.
 
 ## Después de cambiar algo
 
-Si el hosting muestra la versión vieja, cambiá el número `?v=20261125c` de los
+Si el hosting muestra la versión vieja, cambiá el número `?v=20261125d` de los
 `<script>` y del `<link>` de estilos en las páginas (por ejemplo, a la fecha del día).

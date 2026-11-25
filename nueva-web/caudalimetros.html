@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261125c" />
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261125d" />
 </head>
 <body data-page="caudalimetros">
 
@@ -33,8 +33,53 @@
       <p class="eyebrow">Riego, agroindustria e industria</p>
       <h1 class="h1">Agroprecisión</h1>
       <p>Caudalímetros electromagnéticos y equipos de riego. Medición digital de caudal, conductividad, nivel y presión con transmisión remota de datos. Vendemos, instalamos y reparamos.</p>
+      <div class="btns banner-btns">
+        <a class="btn btn--gold" href="#como-funciona">Probá el simulador <i data-ico="flecha"></i></a>
+        <a class="btn btn--ghost-light" href="#series">Ver series</a>
+      </div>
     </div>
     <div class="banner-art" aria-hidden="true"><span data-envase="s600"></span></div>
+  </section>
+
+  <section class="sec sec--gris" id="como-funciona">
+    <div class="wrap">
+      <div class="sec-h rv">
+        <p class="eyebrow">Simulador</p>
+        <h2 class="h2">Probá cómo mide un caudalímetro.</h2>
+        <p class="lead">El líquido conductivo atraviesa un campo magnético y genera una tensión proporcional a su velocidad —ley de Faraday—. Mové el caudal, cambiá el diámetro y mirá qué mide el equipo.</p>
+      </div>
+      <div class="prin rv">
+        <div class="prin-canvas">
+          <canvas id="flow-canvas" width="900" height="400" role="img"
+            aria-label="Diagrama animado: líquido atravesando el campo magnético de un caudalímetro electromagnético y la tensión que induce en los electrodos."></canvas>
+          <span class="prin-f">E = B · v · D</span>
+        </div>
+        <div class="prin-p">
+          <div class="reads">
+            <div class="read"><span class="read-k">Caudal</span><span class="read-v" id="r-q">120<small>m³/h</small></span></div>
+            <div class="read"><span class="read-k">Velocidad</span><span class="read-v" id="r-v">1,89<small>m/s</small></span></div>
+            <div class="read"><span class="read-k">Tensión</span><span class="read-v hi" id="r-mv">2,83<small>mV</small></span></div>
+          </div>
+          <div class="ctrl">
+            <label for="c-q">Caudal: <span id="c-q-txt">120 m³/h</span></label>
+            <input type="range" id="c-q" name="caudal" min="0" max="400" value="120" step="5" />
+          </div>
+          <div class="ctrl">
+            <span class="ctrl-lab" id="dn-lab">Diámetro nominal</span>
+            <div class="dn" id="c-dn" role="group" aria-labelledby="dn-lab">
+              <button type="button" data-dn="80" aria-pressed="false">DN 80</button>
+              <button type="button" data-dn="150" aria-pressed="true" class="on">DN 150</button>
+              <button type="button" data-dn="200" aria-pressed="false">DN 200</button>
+              <button type="button" data-dn="300" aria-pressed="false">DN 300</button>
+            </div>
+          </div>
+          <div class="diag ok" id="diag" role="status">
+            <b>Rango óptimo</b>
+            <span id="diag-t">Velocidad dentro de 1–3 m/s. Calibre bien dimensionado.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="sec">
@@ -75,48 +120,7 @@
     </div>
   </section>
 
-  <section class="sec sec--gris" id="como-funciona">
-    <div class="wrap">
-      <div class="sec-h rv">
-        <p class="eyebrow">Cómo funciona</p>
-        <h2 class="h2">Medición sin partes móviles.</h2>
-        <p class="lead">El líquido conductivo atraviesa un campo magnético y genera una tensión proporcional a su velocidad —ley de Faraday—. Mové el caudal, cambiá el diámetro y mirá qué mide el equipo.</p>
-      </div>
-      <div class="prin rv">
-        <div class="prin-canvas">
-          <canvas id="flow-canvas" width="900" height="400" role="img"
-            aria-label="Diagrama animado: líquido atravesando el campo magnético de un caudalímetro electromagnético y la tensión que induce en los electrodos."></canvas>
-          <span class="prin-f">E = B · v · D</span>
-        </div>
-        <div class="prin-p">
-          <div class="reads">
-            <div class="read"><span class="read-k">Caudal</span><span class="read-v" id="r-q">120<small>m³/h</small></span></div>
-            <div class="read"><span class="read-k">Velocidad</span><span class="read-v" id="r-v">1,89<small>m/s</small></span></div>
-            <div class="read"><span class="read-k">Tensión</span><span class="read-v hi" id="r-mv">2,83<small>mV</small></span></div>
-          </div>
-          <div class="ctrl">
-            <label for="c-q">Caudal: <span id="c-q-txt">120 m³/h</span></label>
-            <input type="range" id="c-q" name="caudal" min="0" max="400" value="120" step="5" />
-          </div>
-          <div class="ctrl">
-            <span class="ctrl-lab" id="dn-lab">Diámetro nominal</span>
-            <div class="dn" id="c-dn" role="group" aria-labelledby="dn-lab">
-              <button type="button" data-dn="80" aria-pressed="false">DN 80</button>
-              <button type="button" data-dn="150" aria-pressed="true" class="on">DN 150</button>
-              <button type="button" data-dn="200" aria-pressed="false">DN 200</button>
-              <button type="button" data-dn="300" aria-pressed="false">DN 300</button>
-            </div>
-          </div>
-          <div class="diag ok" id="diag" role="status">
-            <b>Rango óptimo</b>
-            <span id="diag-t">Velocidad dentro de 1–3 m/s. Calibre bien dimensionado.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="servicio">
+  <section class="sec sec--gris" id="servicio">
     <div class="wrap">
       <div class="sec-h rv">
         <p class="eyebrow">Lo que ofrecemos</p>
@@ -134,7 +138,7 @@
     </div>
   </section>
 
-  <section class="sec sec--gris" id="usos">
+  <section class="sec" id="usos">
     <div class="wrap">
       <div class="sec-h rv">
         <p class="eyebrow">Aplicaciones</p>
@@ -159,10 +163,10 @@
 
 <!-- Scripts clásicos con defer, en orden de dependencia. Sin módulos ES:
      así el sitio funciona abriendo el archivo directo o desde cualquier hosting. -->
-<script defer src="assets/js/config.js?v=20261125c"></script>
-<script defer src="assets/js/catalogo.js?v=20261125c"></script>
-<script defer src="assets/js/ilustraciones.js?v=20261125c"></script>
-<script defer src="assets/js/sitio.js?v=20261125c"></script>
-<script defer src="assets/js/simulador.js?v=20261125c"></script>
+<script defer src="assets/js/config.js?v=20261125d"></script>
+<script defer src="assets/js/catalogo.js?v=20261125d"></script>
+<script defer src="assets/js/ilustraciones.js?v=20261125d"></script>
+<script defer src="assets/js/sitio.js?v=20261125d"></script>
+<script defer src="assets/js/simulador.js?v=20261125d"></script>
 </body>
 </html>

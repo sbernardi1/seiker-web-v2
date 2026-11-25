@@ -49,7 +49,7 @@
       cx.fillRect(0, ejeY - R - 4, W, 4);
       cx.fillRect(0, ejeY + R, W, 4);
 
-      cx.fillStyle = "#06302d";
+      cx.fillStyle = V("--prim");                       // líquido: color principal de la paleta
       cx.fillRect(0, ejeY - R, W, R * 2);
 
       /* Campo magnético entre bobinas */
@@ -78,8 +78,8 @@
         var rap = perfil(p.t) * Math.min(v / 3.2, 1.3);
         var largo = 4 + rap * 29;
         var lg = cx.createLinearGradient(p.x - largo, 0, p.x, 0);
-        lg.addColorStop(0, "rgba(111,211,176,0)");
-        lg.addColorStop(1, "rgba(" + Math.round(140 + rap * 60) + "," + Math.round(215 + rap * 30) + "," + Math.round(195 + rap * 40) + "," + (.5 + rap * .45) + ")");
+        lg.addColorStop(0, "rgba(140,195,230,0)");
+        lg.addColorStop(1, "rgba(" + Math.round(150 + rap * 60) + "," + Math.round(200 + rap * 35) + "," + Math.round(235 + rap * 20) + "," + (.5 + rap * .45) + ")");
         cx.strokeStyle = lg; cx.lineWidth = p.r;
         cx.beginPath(); cx.moveTo(p.x - largo, y); cx.lineTo(p.x, y); cx.stroke();
       });
@@ -114,8 +114,8 @@
         var ex = planoX + lado * ELIPSE;
         if (senal > .02) {
           var hal = cx.createRadialGradient(ex, ejeY, 2, ex, ejeY, 12 + senal * 21);
-          hal.addColorStop(0, "rgba(111,211,176," + (senal * .6) + ")");
-          hal.addColorStop(1, "rgba(111,211,176,0)");
+          hal.addColorStop(0, "rgba(140,195,230," + (senal * .6) + ")");
+          hal.addColorStop(1, "rgba(140,195,230,0)");
           cx.fillStyle = hal;
           cx.beginPath(); cx.arc(ex, ejeY, 12 + senal * 21, 0, Math.PI * 2); cx.fill();
         }

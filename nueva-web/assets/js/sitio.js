@@ -92,7 +92,7 @@
             '<div class="mega-cols">' + cols + "</div>" +
             '<div class="mega-serv"><span>Servicios</span>' +
               '<a href="caudalimetros.html#servicio">Venta, instalación y reparación de caudalímetros</a>' +
-              '<a href="caudalimetros.html#como-funciona">Cómo funciona la medición</a>' +
+              '<a href="caudalimetros.html#como-funciona">Simulador de caudalímetro</a>' +
               '<a href="agronomia.html">Asesoramiento agronómico</a>' +
             "</div>" +
           "</div>" +

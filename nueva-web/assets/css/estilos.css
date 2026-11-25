@@ -920,3 +920,6 @@ a.ci-v:hover { text-decoration: underline; }
 @media (max-width: 640px) {
   .tbl--form th, .tbl--form td { padding: 12px 10px; font-size: .9rem; }
 }
+
+/* ---------- Botones del banner (Agroprecisión: acceso directo al simulador) ---------- */
+.banner .banner-btns { margin-top: 24px; }
