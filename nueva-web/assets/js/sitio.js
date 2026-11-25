@@ -43,8 +43,22 @@
   }
   function producto(id) {
     for (var i = 0; i < CAT.productos.length; i++) if (CAT.productos[i].id === id) return CAT.productos[i];
+    /* Enlaces viejos: producto.html?id=nitromix-ns sigue abriendo NITRO-SOL NS */
+    for (var j = 0; j < CAT.productos.length; j++) {
+      var a = CAT.productos[j].antes;
+      if (a && norm(a).replace(/\s+/g, "-") === id) return CAT.productos[j];
+    }
     return null;
   }
+  /* Marcas bicolor: NITRO (azul) / FOZ (rojo) + SOL (negro) / VIO (marrón).
+     Recibe texto ya escapado y devuelve HTML. En fondos oscuros, el CSS
+     hace que hereden el color del texto. */
+  function marca(html) {
+    return String(html).replace(/\b(NITRO|FOZ)-(SOL|VIO)\b/g, function (m, a, b) {
+      return '<span class="mkw"><span class="mk mk-' + a.toLowerCase() + '">' + a + '</span><span class="mk mk-' + b.toLowerCase() + '">-' + b + "</span></span>";
+    });
+  }
+  function nombreHTML(p) { return marca(esc(p.nombre)); }
   function deLinea(id) { return CAT.productos.filter(function (p) { return p.linea === id; }); }
   function urlProducto(p) { return "producto.html?id=" + encodeURIComponent(p.id); }
   function urlLinea(l) { return l.pagina || ("linea.html?id=" + encodeURIComponent(l.id)); }
@@ -66,7 +80,7 @@
   function htmlMega() {
     var cols = CAT.lineas.map(function (l) {
       var items = deLinea(l.id).map(function (p) {
-        return '<li><a href="' + urlProducto(p) + '"><b>' + esc(p.nombre) + "</b><span>" + esc(p.bajada) + "</span></a></li>";
+        return '<li><a href="' + urlProducto(p) + '"><b>' + nombreHTML(p) + "</b><span>" + esc(p.bajada) + "</span></a></li>";
       }).join("");
       return '<div class="mega-col"><a class="mega-h" href="' + urlLinea(l) + '">' + esc(l.nombre) + ico("flecha") + "</a>" +
              "<ul>" + items + "</ul></div>";
@@ -96,7 +110,7 @@
     return '' +
       '<a class="skip" href="#contenido">Saltar al contenido</a>' +
       '<div class="util"><div class="wrap util-in">' +
-        '<span class="util-l">Soluciones agroindustriales para el campo argentino</span>' +
+        '<span class="util-l">Desarrollo agrotecnológico para el campo argentino</span>' +
         '<nav class="util-r" aria-label="Secundario">' +
           '<a href="quienes-somos.html">Quiénes somos</a>' +
           '<a href="agronomia.html">Agronomía</a>' +
@@ -132,7 +146,7 @@
           '<button class="mn-row" type="button" aria-expanded="false" aria-controls="mn-' + i + '">' + esc(l.nombre) + ico("chevron", "chev") + "</button>" +
           '<div class="mn-sub" id="mn-' + i + '">' +
             '<a class="mn-all" href="' + urlLinea(l) + '">Ver toda la línea</a>' +
-            deLinea(l.id).map(function (p) { return '<a href="' + urlProducto(p) + '">' + esc(p.nombre) + "</a>"; }).join("") +
+            deLinea(l.id).map(function (p) { return '<a href="' + urlProducto(p) + '">' + nombreHTML(p) + "</a>"; }).join("") +
           "</div>" +
         "</div>";
     }).join("");
@@ -192,7 +206,7 @@
         '<div class="ft-grid">' +
           '<div class="ft-brand">' +
             '<img src="assets/img/logo-seiker-blanco.webp" alt="Seiker" width="1047" height="238" />' +
-            "<p>Fertilizantes, nutrición foliar, coadyuvantes y caudalímetros electromagnéticos para el agro y la industria argentina.</p>" +
+            "<p>Fertilizantes líquidos, nutrición vegetal, coadyuvantes y agroprecisión para el agro y la industria argentina.</p>" +
             (redes ? '<div class="ft-redes">' + redes + "</div>" : "") +
           "</div>" +
           cols +
@@ -333,7 +347,7 @@
       indice.push({
         tipo: "Producto", titulo: p.nombre + " — " + p.bajada, url: urlProducto(p),
         texto: p.resumen,
-        busca: norm([p.nombre, p.bajada, p.tipo, p.resumen, (p.descripcion || []).join(" "), specs,
+        busca: norm([p.nombre, p.antes || "", p.bajada, p.tipo, p.resumen, (p.descripcion || []).join(" "), specs,
           (p.cultivos || []).join(" "), (p.aplicacion || []).join(" "), ben, guia, notas,
           p.comoActua ? p.comoActua.titulo + " " + p.comoActua.texto : "",
           (p.usos || []).join(" "), l.nombre].join(" "))
@@ -385,7 +399,7 @@
     cont.innerHTML = '<p class="sch-hint">' + resultados.length + " resultado" + (resultados.length > 1 ? "s" : "") + "</p>" +
       resultados.map(function (e, i) {
         return '<a class="sch-it" data-i="' + i + '" href="' + esc(e.url) + '"><span class="tag">' + esc(e.tipo) + "</span>" +
-          "<b>" + esc(e.titulo) + "</b><i>" + recorte(e.texto || "", palabras[0]) + "</i></a>";
+          "<b>" + marca(esc(e.titulo)) + "</b><i>" + recorte(e.texto || "", palabras[0]) + "</i></a>";
       }).join("");
   }
 
@@ -428,7 +442,7 @@
           '<div class="pcard-img">' + imagenDe(p) + "</div>" +
           '<div class="pcard-b">' +
             '<span class="tag">' + esc(l.corto || p.tipo) + "</span>" +
-            "<h3>" + esc(p.nombre) + "</h3>" +
+            "<h3>" + nombreHTML(p) + "</h3>" +
             '<p class="pcard-sub">' + esc(p.bajada) + "</p>" +
             '<p class="pcard-t">' + esc(p.resumen) + "</p>" +
             (datos ? '<div class="pcard-d">' + datos + "</div>" : "") +
@@ -456,9 +470,18 @@
         return '<div class="feat"><span class="feat-i">' + ico(icos[i % icos.length]) + "</span><h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
       }).join("");
     });
-    /* Una tarjeta por línea (inicio y quiénes somos) */
+    /* Una tarjeta por línea (inicio y quiénes somos).
+       data-lineas="fertilizantes,nutricion,@id,caudalimetros" elige cuáles y en qué
+       orden; "@id" ubica la tarjeta fija escrita en el HTML con data-extra="id". */
     $$("[data-lineas]").forEach(function (g) {
-      g.innerHTML = CAT.lineas.map(function (l) {
+      var extras = {};
+      $$("[data-extra]", g).forEach(function (el) { extras[el.getAttribute("data-extra")] = el.outerHTML; });
+      var orden = (g.getAttribute("data-lineas") || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean);
+      if (!orden.length) orden = CAT.lineas.map(function (l) { return l.id; });
+      g.innerHTML = orden.map(function (id) {
+        if (id.charAt(0) === "@") return extras[id.slice(1)] || "";
+        var l = linea(id);
+        if (!l) return "";
         var n = deLinea(l.id).length, arte = producto(l.arte);
         var media = l.imagen
           ? '<img src="' + esc(l.imagen) + '" alt="" loading="lazy" decoding="async" />'
@@ -483,7 +506,7 @@
        los mismos datos (caso caudalímetros) va una columna por dato;
        si no (caso fertilizantes), una columna de composición resumida. */
     $$("[data-tabla]").forEach(function (box) {
-      var lista = deLinea(box.getAttribute("data-tabla"));
+      var lista = deLinea(box.getAttribute("data-tabla")).filter(function (p) { return (p.composicion || []).length; });
       if (!lista.length) return;
       var claves = (lista[0].composicion || []).map(function (c) { return c[0]; });
       var iguales = lista.every(function (p) {
@@ -507,7 +530,7 @@
       box.innerHTML = '<table class="tbl' + (iguales ? " tbl--series" : "") + '"><caption class="sr-only">Comparativa de la línea</caption><thead><tr>' +
         cols.map(function (c) { return '<th scope="col">' + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
         filas.map(function (f) {
-          return '<tr><td><a href="' + urlProducto(f[0]) + '">' + esc(f[0].nombre) + "</a></td>" +
+          return '<tr><td><a href="' + urlProducto(f[0]) + '">' + nombreHTML(f[0]) + "</a></td>" +
             f.slice(1).map(function (v) { return "<td>" + esc(v) + "</td>"; }).join("") + "</tr>";
         }).join("") + "</tbody></table>";
     });
@@ -649,7 +672,7 @@
         if (estado.cultivos.length && !estado.cultivos.some(function (c) { return (p.cultivos || []).indexOf(c) >= 0; })) return false;
         if (estado.aplic.length && !estado.aplic.some(function (c) { return (p.aplicacion || []).indexOf(c) >= 0; })) return false;
         if (ws.length) {
-          var t = norm([p.nombre, p.bajada, p.tipo, p.resumen, (p.cultivos || []).join(" "),
+          var t = norm([p.nombre, p.antes || "", p.bajada, p.tipo, p.resumen, (p.cultivos || []).join(" "),
             (p.composicion || []).map(function (c) { return c.join(" "); }).join(" "),
             (p.aplicacion || []).join(" ")].join(" "));
           if (!ws.every(function (w) { return t.indexOf(w) >= 0; })) return false;
@@ -729,6 +752,20 @@
   /* ----------------------------------------------------------
      FICHA DE PRODUCTO (producto.html?id=...)
      ---------------------------------------------------------- */
+  /* Tabla con una columna por formulación (ej. FOZ-SOL 6-8-6 y 16-9,5-6) */
+  function htmlFormulaciones(fm) {
+    if (!fm || !(fm.filas || []).length) return "";
+    return '<h3 class="h4 guia-t">' + esc(fm.titulo || "Formulaciones") + "</h3>" +
+      '<div class="tbl-wrap"><table class="tbl tbl--form"><caption class="sr-only">' + esc(fm.titulo || "Formulaciones") + "</caption><thead><tr>" +
+      fm.columnas.map(function (c) { return '<th scope="col">' + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      fm.filas.map(function (f) {
+        return "<tr>" + f.map(function (v, k) {
+          return k ? '<td data-label="' + esc(fm.columnas[k] || "") + '">' + esc(v) + "</td>" : '<th scope="row">' + esc(v) + "</th>";
+        }).join("") + "</tr>";
+      }).join("") + "</tbody></table></div>" +
+      (fm.pie ? '<p class="nota guia-pie">' + esc(fm.pie) + "</p>" : "");
+  }
+
   function initFicha() {
     var root = $("#ficha");
     if (!root) return;
@@ -765,13 +802,13 @@
 
     secciones.push(["descripcion", "Descripción",
       (benPares
-        ? '<div class="pd-desc"><p class="eyebrow">Descripción</p><h2 class="h2">' + esc(p.nombre) + "</h2>" +
+        ? '<div class="pd-desc"><p class="eyebrow">Descripción</p><h2 class="h2">' + nombreHTML(p) + "</h2>" +
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
           '<h3 class="h4 pd-ben-t">Beneficios</h3>' +
           '<div class="ben-grid' + (ben.length % 4 === 0 ? " ben-grid--4" : "") + '">' + ben.map(function (b) {
             return '<div class="ben">' + ico("check") + "<h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
           }).join("") + "</div>"
-        : '<div class="pd-cols"><div><p class="eyebrow">Descripción</p><h2 class="h2">' + esc(p.nombre) + "</h2>" +
+        : '<div class="pd-cols"><div><p class="eyebrow">Descripción</p><h2 class="h2">' + nombreHTML(p) + "</h2>" +
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
           (ben.length ? '<aside class="pd-ben"><h3>Beneficios y características</h3><ul>' +
             ben.map(function (b) { return "<li>" + ico("check") + "<span>" + esc(b) + "</span></li>"; }).join("") +
@@ -786,7 +823,7 @@
       }).join("") + "</div>" +
       (props.length ? '<dl class="props">' + props.map(function (x) {
         return "<div><dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd></div>";
-      }).join("") + "</dl>" : "")]);
+      }).join("") + "</dl>" : "") + htmlFormulaciones(p.formulaciones)]);
 
     var ca = p.comoActua;
     if (ca) secciones.push(["como-actua", "Cómo actúa",
@@ -873,7 +910,7 @@
       '<section class="pd-hero"><div class="wrap pd-hero-in">' +
         '<div class="pd-txt">' +
           '<span class="tag">' + esc(p.tipo) + "</span>" +
-          "<h1>" + esc(p.nombre) + "</h1>" +
+          "<h1>" + nombreHTML(p) + "</h1>" +
           '<p class="pd-sub">' + esc(p.bajada) + "</p>" +
           '<p class="lead">' + esc(p.resumen) + "</p>" +
           (datos.length ? '<dl class="pd-datos">' + datos.map(function (d) {

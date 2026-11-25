@@ -8,12 +8,14 @@
 
    CÓMO AGREGAR UN PRODUCTO
    1. Copiá un bloque { ... } de la lista "productos" de abajo.
-   2. Cambiale el "id" (sin espacios ni tildes, ej. "nitromix-s").
-      Ese id es la dirección de su ficha: producto.html?id=nitromix-s
+   2. Cambiale el "id" (sin espacios ni tildes, ej. "nitro-sol-s").
+      Ese id es la dirección de su ficha: producto.html?id=nitro-sol-s
    3. Completá los campos. Los que no tengas, borralos o dejalos
       vacíos ([] o ""): la ficha oculta lo que falta.
    4. Si tenés foto del producto, guardala en assets/img/productos/
       y poné la ruta en "imagen". Si no, se dibuja un envase.
+   5. Si el producto cambió de nombre, poné el nombre viejo en
+      "antes": los enlaces y búsquedas viejas lo siguen encontrando.
 
    FICHAS COMPLETAS: STARTER PLUS es el modelo con todos los
    campos (beneficios con título, cómo actúa, guía de dosis,
@@ -39,7 +41,7 @@
       pagina: "fertilizantes.html",   // si no tiene página propia, se usa linea.html?id=...
       envase: "bidon",                // dibujo por defecto: "bidon", "bolsa" o "caudalimetro"
       imagen: "assets/img/campo-girasol.webp",  // foto de la tarjeta y del encabezado de la línea
-      resumen: "Línea NITROMIX con nitrógeno, azufre, zinc y boro. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
+      resumen: "Líneas NITRO-SOL y FOZ-SOL con nitrógeno, fósforo, azufre, zinc y boro. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
       iconos: ["hoja", "gota", "camion", "persona"],
       beneficios: [
         ["Mínima volatilización", "Formulaciones pensadas para que el nitrógeno quede en el lote y no se pierda en el aire."],
@@ -50,11 +52,11 @@
     },
     {
       id: "nutricion",
-      nombre: "Soluciones nutricionales",
+      nombre: "Nutrición vegetal",
       corto: "Nutrición",
       envase: "bidon",
       imagen: "assets/img/lineas/nutricion.webp",
-      resumen: "Fertilizantes foliares y solubles para cada etapa del cultivo: micronutrientes para el arranque, nutrición completa, balance fuente/sumidero y potasio para el llenado.",
+      resumen: "Nutrición vegetal mineral y orgánica: micronutrientes para el arranque, nutrición completa, nitrógeno foliar, balance fuente/sumidero y potasio para el llenado.",
       iconos: ["escudo", "gota", "planta", "check"],
       beneficios: [
         ["Nutrientes protegidos", "Micronutrientes quelatados o acomplejados, con una absorción cercana al 100%."],
@@ -80,12 +82,12 @@
     },
     {
       id: "caudalimetros",
-      nombre: "Caudalímetros electromagnéticos",
-      corto: "Caudalímetros",
+      nombre: "Agroprecisión",
+      corto: "Agroprecisión",
       pagina: "caudalimetros.html",
       envase: "caudalimetro",
       arte: "s600",                   // sin foto: se dibuja este producto
-      resumen: "Medición digital de caudal, conductividad, nivel y presión con transmisión remota. Sin partes móviles dentro del caño: nada que se desgaste ni obstruya.",
+      resumen: "Caudalímetros electromagnéticos y equipos de riego. Medición digital de caudal, conductividad, nivel y presión con transmisión remota, sin partes móviles dentro del caño.",
       iconos: ["engranaje", "escudo", "senal", "check"],
       beneficios: [
         ["Sin partes móviles", "Nada se interpone en el caño: no hay desgaste mecánico ni obstrucciones."],
@@ -158,14 +160,15 @@
 
     /* ─────────── FERTILIZANTES LÍQUIDOS ─────────── */
     {
-      id: "nitromix-ns",
+      id: "nitro-sol-ns",
       linea: "fertilizantes",
-      nombre: "NITROMIX NS",
+      nombre: "NITRO-SOL NS",
+      antes: "NITROMIX NS",
       bajada: "Nitrógeno + Azufre",
       tipo: "Fertilizante líquido",
       resumen: "Fertilizante base para producciones extensivas. Disponibilidad inmediata. Apto para fertirriego y aplicaciones motrices.",
       descripcion: [
-        "NITROMIX NS es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
+        "NITRO-SOL NS es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
         "Es apto para fertirriego y para aplicaciones motrices, lo que permite integrarlo al esquema de trabajo del establecimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["pH", "6,5"], ["Densidad", "1,26"]],
@@ -179,19 +182,20 @@
         "Mínima volatilización"
       ],
       color: "#1F7A4D",
-      imagen: "assets/img/productos/nitromix-ns.webp",
+      imagen: "assets/img/productos/nitro-sol-ns.webp",
       documentos: [],
       destacado: true
     },
     {
-      id: "nitromix-zn",
+      id: "nitro-sol-zn",
       linea: "fertilizantes",
-      nombre: "NITROMIX Zn",
+      nombre: "NITRO-SOL Zn",
+      antes: "NITROMIX Zn",
       bajada: "Con Zinc quelado",
       tipo: "Fertilizante líquido",
       resumen: "Micronutriente esencial para gramíneas. Favorece la síntesis de proteínas, la floración y el cuaje de granos. Maximiza el rendimiento.",
       descripcion: [
-        "NITROMIX Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
+        "NITRO-SOL Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
         "Favorece la síntesis de proteínas, la floración y el cuaje de granos, con el objetivo de maximizar el rendimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["Zn", "0,5%"], ["pH", "6,5"]],
@@ -205,19 +209,20 @@
         "Apunta a maximizar el rendimiento"
       ],
       color: "#2D6E96",
-      imagen: "assets/img/productos/nitromix-zn.webp",
+      imagen: "assets/img/productos/nitro-sol-zn.webp",
       documentos: [],
       destacado: false
     },
     {
-      id: "nitromix-b",
+      id: "nitro-sol-b",
       linea: "fertilizantes",
-      nombre: "NITROMIX B",
+      nombre: "NITRO-SOL B",
+      antes: "NITROMIX B",
       bajada: "Con Boro",
       tipo: "Fertilizante líquido",
       resumen: "Especial para girasol. A la siembra asegura emergencia uniforme y desarrollo radicular. En aplicación tardía, floración homogénea y llenado de granos.",
       descripcion: [
-        "NITROMIX B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
+        "NITRO-SOL B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
         "Aplicado a la siembra asegura una emergencia uniforme y un buen desarrollo radicular. En aplicación tardía acompaña una floración homogénea y el llenado de granos."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["B", "0,5%"], ["pH", "6,5"]],
@@ -231,19 +236,20 @@
         "Acompaña el llenado de granos"
       ],
       color: "#B7832A",
-      imagen: "assets/img/productos/nitromix-b.webp",
+      imagen: "assets/img/productos/nitro-sol-b.webp",
       documentos: [],
       destacado: true
     },
     {
-      id: "nitromix-plus",
+      id: "nitro-sol-plus",
       linea: "fertilizantes",
-      nombre: "NITROMIX PLUS",
+      nombre: "NITRO-SOL PLUS",
+      antes: "NITROMIX PLUS",
       bajada: "Base orgánica",
       tipo: "Fertilizante líquido orgánico",
       resumen: "Combinación de nutrientes orgánicos y sales convencionales. Alta eficiencia por bajo tamaño molecular: incorporación inmediata al suelo y reducción de la volatilización.",
       descripcion: [
-        "NITROMIX PLUS combina nutrientes de origen orgánico con sales convencionales.",
+        "NITRO-SOL PLUS combina nutrientes de origen orgánico con sales convencionales.",
         "Su bajo tamaño molecular le da alta eficiencia: se incorpora de inmediato al suelo y reduce la volatilización."
       ],
       composicion: [["N equiv.", "24%"], ["P equiv.", "9,5%"], ["M.O.", "36%"]],
@@ -257,49 +263,72 @@
         "Reducción de la volatilización"
       ],
       color: "#6B4F2A",
-      imagen: "assets/img/productos/nitromix-plus.webp",
+      imagen: "assets/img/productos/nitro-sol-plus.webp",
       documentos: [],
       destacado: false
     },
     {
-      id: "nitroplus-18",
+      id: "foz-sol",
       linea: "fertilizantes",
-      nombre: "NITROPLUS 18",
-      bajada: "Fertilizante foliar",
-      tipo: "Fertilizante foliar",
-      resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
+      nombre: "FOZ-SOL",
+      bajada: "Nitrógeno + Fósforo + Azufre",
+      tipo: "Fertilizante líquido",
+      resumen: "Fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en sus distintas etapas de desarrollo.",
       descripcion: [
-        "NITROPLUS 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
-        "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
+        "FOZ-SOL es un fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en las distintas etapas de desarrollo.",
+        "Sus dos formulaciones permiten una rápida disponibilidad y absorción, con menor volatilidad y mayor aprovechamiento por parte del cultivo."
       ],
-      composicion: [["N", "18%"], ["Ca", "7%"], ["Vía", "Foliar"]],
-      dosis: "10 l/ha en trigo y cebada",
-      cultivos: ["Trigo", "Cebada"],
-      aplicacion: ["Foliar"],
-      guia: [{
-        titulo: "Dosis por cultivo",
-        columnas: ["Cultivo", "Dosis", "Momento de aplicación"],
+      frase: "Fósforo: el nutriente que almacena y transfiere la energía dentro de la planta.",
+      composicion: [["N", "6 – 16%", "Nitrógeno · según formulación"], ["P", "8 – 9,5%", "Fósforo · según formulación"], ["S", "6%", "Azufre"]],
+      /* Tabla de la ficha técnica: una columna por formulación */
+      formulaciones: {
+        titulo: "Formulaciones",
+        columnas: ["Nutriente", "Formulación 6-8-6", "Formulación 16-9,5-6"],
         filas: [
-          ["Trigo · Cebada", "10 l/ha", "Desde macollaje hasta hoja bandera"]
+          ["Nitrógeno (N)", "6%", "16%"],
+          ["Fósforo (P)", "8%", "9,5%"],
+          ["Azufre (S)", "6%", "6%"],
+          ["Densidad relativa", "1,18", "1,19"],
+          ["pH", "2,8", "4,8"],
+          ["Solubilidad en agua", "100%", "100%"]
         ],
-        pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
+        pie: "Nutrientes expresados en % p/p."
+      },
+      dosis: "60 – 180 l/ha según cultivo",
+      cultivos: ["Maíz", "Trigo", "Sorgo", "Cebada", "Girasol", "Pasturas"],   // la ficha dice cereales, oleaginosas y pasturas
+      aplicacion: ["Cobertura total", "Chorreado entre surcos"],
+      guia: [{
+        titulo: "Dosis recomendada",
+        columnas: ["Cultivo", "Dosis"],
+        filas: [
+          ["Cereales", "90 – 180 l/ha"],
+          ["Oleaginosas", "90 – 180 l/ha"],
+          ["Pasturas", "60 – 120 l/ha"]
+        ]
+      }, {
+        titulo: "Momento de aplicación",
+        columnas: ["Momento", "Cómo se aplica"],
+        colDosis: false,              // esta tabla no tiene columna de dosis
+        filas: [
+          ["Presiembra", "En cobertura total"],
+          ["Siembra", "En cobertura total"],
+          ["Postemergencia · refertilización", "Chorreado entre surcos con caños de bajada"]
+        ],
+        pie: "Ajustá la dosis con tu asesor según el análisis de suelo, el cultivo y su estado."
       }],
-      notas: [
-        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITROPLUS 18 y después los demás productos."]
-      ],
       beneficios: [
-        "Nitrógeno amínico + calcio",
-        "100% de eficiencia en el uso del nitrógeno aplicado",
-        "Sin pérdidas por volatilización ni lixiviación",
-        "Aplicación foliar"
+        ["Base fosforada", "Fósforo líquido, nutriente esencial para almacenar y transferir energía dentro de la planta."],
+        ["Nutrición balanceada", "Nitrógeno, fósforo y azufre para las distintas etapas de desarrollo del cultivo."],
+        ["Dos formulaciones", "6-8-6 y 16-9,5-6, para elegir según el cultivo y el momento de aplicación."],
+        ["Rápida absorción", "100% soluble en agua: rápida disponibilidad, menor volatilidad y mayor aprovechamiento."]
       ],
-      color: "#5E8A2E",
-      imagen: "assets/img/productos/nitroplus-18.webp",
+      color: "#8B1A1A",
+      imagen: "assets/img/productos/foz-sol.webp",
       documentos: [],
-      destacado: false
+      destacado: true
     },
 
-    /* ─────────── SOLUCIONES NUTRICIONALES ─────────── */
+    /* ─────────── NUTRICIÓN VEGETAL ─────────── */
     {
       id: "starter-plus",
       linea: "nutricion",
@@ -580,6 +609,66 @@
       relacionados: ["nitrate-balancer"],
       destacado: true
     },
+    {
+      id: "nitro-vio-18",
+      linea: "nutricion",
+      nombre: "NITRO-VIO 18",
+      antes: "NITROPLUS 18",
+      bajada: "Fertilizante foliar",
+      tipo: "Fertilizante foliar",
+      resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
+      descripcion: [
+        "NITRO-VIO 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
+        "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
+      ],
+      composicion: [["N", "18%"], ["Ca", "7%"], ["Vía", "Foliar"]],
+      dosis: "10 l/ha en trigo y cebada",
+      cultivos: ["Trigo", "Cebada"],
+      aplicacion: ["Foliar"],
+      guia: [{
+        titulo: "Dosis por cultivo",
+        columnas: ["Cultivo", "Dosis", "Momento de aplicación"],
+        filas: [
+          ["Trigo · Cebada", "10 l/ha", "Desde macollaje hasta hoja bandera"]
+        ],
+        pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
+      }],
+      notas: [
+        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITRO-VIO 18 y después los demás productos."]
+      ],
+      beneficios: [
+        "Nitrógeno amínico + calcio",
+        "100% de eficiencia en el uso del nitrógeno aplicado",
+        "Sin pérdidas por volatilización ni lixiviación",
+        "Aplicación foliar"
+      ],
+      color: "#5A3A1F",
+      imagen: "assets/img/productos/nitro-vio-18.webp",
+      documentos: [],
+      destacado: false
+    },
+    {
+      /* FICHA PROVISORIA: falta definir composición, dosis y cultivos */
+      id: "foz-vio",
+      linea: "nutricion",
+      nombre: "FOZ-VIO",
+      bajada: "Próximamente",
+      tipo: "Nutrición vegetal",
+      resumen: "Nuevo desarrollo de la familia VIO. Estamos preparando su ficha técnica: consultanos por composición, dosis y disponibilidad.",
+      descripcion: [
+        "FOZ-VIO es un nuevo desarrollo de la familia VIO de Seiker.",
+        "Estamos terminando su ficha técnica. Mientras tanto, escribinos y un asesor te cuenta composición, dosis recomendada y disponibilidad."
+      ],
+      composicion: [],
+      dosis: "",
+      cultivos: [],
+      aplicacion: [],
+      beneficios: [],
+      color: "#5A3A1F",
+      imagen: "assets/img/productos/foz-vio.webp",
+      documentos: [],
+      destacado: false
+    },
 
     /* ─────────── COADYUVANTES ─────────── */
     {
@@ -658,17 +747,46 @@
       destacado: true
     },
 
-    /* ─────────── CAUDALÍMETROS ELECTROMAGNÉTICOS ─────────── */
+    /* ─────────── AGROPRECISIÓN: CAUDALÍMETROS Y EQUIPOS DE RIEGO ─────────── */
     serie("s150",  "Caudalímetro S150",  "10 kg/cm²",  "PU / Teflon", "AISI 316L",        "±0,25%",
-      "La serie de mayor precisión de la línea: ±0,25%. Presión nominal de 10 kg/cm², liner de PU o Teflon y electrodos de acero inoxidable AISI 316L.", "#063734"),
+      "La serie de mayor precisión de la línea: ±0,25%. Presión nominal de 10 kg/cm², liner de PU o Teflon y electrodos de acero inoxidable AISI 316L.", "#27221f"),
     serie("s300",  "Caudalímetro S300",  "20 kg/cm²",  "Teflon",      "316L / Hastelloy", "±0,3%",
-      "Presión nominal de 20 kg/cm², liner de Teflon y electrodos de 316L o Hastelloy. Precisión de ±0,3%.", "#063734"),
+      "Presión nominal de 20 kg/cm², liner de Teflon y electrodos de 316L o Hastelloy. Precisión de ±0,3%.", "#27221f"),
     serie("s600",  "Caudalímetro S600",  "40 kg/cm²",  "Teflon",      "316L / Titanio",   "±0,5%",
-      "Presión nominal de 40 kg/cm², liner de Teflon y electrodos de 316L o Titanio. Precisión de ±0,5%.", "#063734"),
+      "Presión nominal de 40 kg/cm², liner de Teflon y electrodos de 316L o Titanio. Precisión de ±0,5%.", "#27221f"),
     serie("s900",  "Caudalímetro S900",  "60 kg/cm²",  "Teflon",      "Titanio",          "±0,5%",
-      "Presión nominal de 60 kg/cm², liner de Teflon y electrodos de Titanio. Precisión de ±0,5%.", "#063734"),
+      "Presión nominal de 60 kg/cm², liner de Teflon y electrodos de Titanio. Precisión de ±0,5%.", "#27221f"),
     serie("s1500", "Caudalímetro S1500", "100 kg/cm²", "Teflon",      "Tantalio",         "±0,5%",
-      "Para las presiones más altas de la línea: 100 kg/cm². Liner de Teflon y electrodos de Tantalio. Precisión de ±0,5%.", "#063734")
+      "Para las presiones más altas de la línea: 100 kg/cm². Liner de Teflon y electrodos de Tantalio. Precisión de ±0,5%.", "#27221f"),
+
+    {
+      /* FICHA PROVISORIA: completar con modelos, marcas y especificaciones */
+      id: "equipos-riego",
+      linea: "caudalimetros",
+      nombre: "Equipos de riego",
+      bajada: "Riego para el agro",
+      tipo: "Equipo de riego",
+      envase: "riego",                 // se dibuja un equipo de riego (sin foto todavía)
+      resumen: "Equipos de riego para producciones agrícolas, con asesoramiento para dimensionarlos según el lote, la fuente de agua y el cultivo.",
+      descripcion: [
+        "Equipos de riego para producciones agrícolas, con el asesoramiento técnico de Seiker para elegirlos y dimensionarlos según el lote, la fuente de agua y el cultivo.",
+        "Se complementan con los caudalímetros electromagnéticos Seiker para medir y registrar el agua que se aplica."
+      ],
+      composicion: [],
+      cultivos: [],
+      aplicacion: ["Riego"],
+      dosis: "",
+      beneficios: [
+        "Dimensionamiento según lote, fuente de agua y cultivo",
+        "Medición del agua aplicada con caudalímetros Seiker",
+        "Asesoramiento técnico para elegir el equipo",
+        "Financiación según el ciclo productivo"
+      ],
+      color: "#27221f",
+      imagen: "",
+      documentos: [],
+      destacado: false
+    }
   ];
 
   window.SEIKER_CATALOGO = { lineas: lineas, productos: productos };

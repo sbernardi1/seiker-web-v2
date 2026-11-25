@@ -16,6 +16,7 @@
     var cv = document.getElementById("flow-canvas");
     if (!cv) return;
     var cx = cv.getContext("2d");
+    var V = function (n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
     var W = 900, H = 400;
     var DN = 150, Q = 120;
     var quieto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -120,8 +121,8 @@
         }
         cx.beginPath(); cx.arc(ex, ejeY, 8.5, 0, Math.PI * 2);
         cx.fillStyle = "#ffffff"; cx.fill();
-        cx.strokeStyle = "#063734"; cx.lineWidth = 2; cx.stroke();
-        cx.fillStyle = "#063734";
+        cx.strokeStyle = V("--prim"); cx.lineWidth = 2; cx.stroke();
+        cx.fillStyle = V("--prim");
         cx.font = '700 12px Roboto, sans-serif';
         cx.textAlign = "center"; cx.textBaseline = "middle";
         cx.fillText(lado === 1 ? "+" : "−", ex, ejeY + .5);
@@ -129,7 +130,7 @@
       });
 
       /* Cable hacia la lectura */
-      cx.strokeStyle = "rgba(6,55,52," + (.35 + senal * .55) + ")"; cx.lineWidth = 2;
+      cx.strokeStyle = "rgba(" + V("--prim-rgb") + "," + (.35 + senal * .55) + ")"; cx.lineWidth = 2;
       cx.beginPath();
       cx.moveTo(planoX + ELIPSE, ejeY);
       cx.lineTo(planoX + ELIPSE + 26, ejeY);
@@ -138,7 +139,7 @@
       cx.lineTo(W - 112, ejeY + R + 64);
       cx.stroke();
       cx.font = '600 14px "IBM Plex Mono", monospace';
-      cx.fillStyle = "#063734";
+      cx.fillStyle = V("--prim");
       cx.textAlign = "right";
       cx.fillText(num(mV(), 2) + " mV", W - 122, ejeY + R + 62);
 
@@ -147,7 +148,7 @@
       cx.fillStyle = "#5f6461";
       cx.fillText("ELECTRODOS", planoX, ejeY + R + pared + 58);
       cx.textAlign = "left";
-      cx.fillStyle = "#1F7A4D";
+      cx.fillStyle = V("--acento");
       cx.fillText("FLUJO  →", 20, ejeY - R - pared - 18);
     }
 

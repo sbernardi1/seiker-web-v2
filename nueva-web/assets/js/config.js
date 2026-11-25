@@ -31,7 +31,7 @@
 
     cifras: [
       ["+15", "años en el sector agropecuario e industrial"],
-      ["10", "productos de nutrición y coadyuvantes"],
+      ["+10", "productos de nutrición vegetal y coadyuvantes"],
       ["24 h", "de respuesta técnica"],
       ["5 años", "de garantía en caudalímetros"]
     ]

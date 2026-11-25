@@ -15,7 +15,7 @@
     });
   }
 
-  /* "NITROMIX NS" → ["NITROMIX", "NS"]; "Caudalímetro S150" → ["Caudalímetro", "S150"] */
+  /* "NITRO-SOL NS" → ["NITRO-SOL", "NS"]; "Caudalímetro S150" → ["Caudalímetro", "S150"] */
   function partir(nombre) {
     var i = nombre.lastIndexOf(" ");
     return i > 0 ? [nombre.slice(0, i), nombre.slice(i + 1)] : [nombre, ""];
@@ -23,7 +23,7 @@
 
   /* ---------- Bidón de 20 L ---------- */
   function bidon(p) {
-    var c = p.color || "#1F7A4D";
+    var c = p.color || "#5e564f";
     var g = uid("b"), k = uid("k"), s = uid("s");
     var nm = partir(p.nombre || "");
     var largo = nm[1].length > 3;
@@ -51,10 +51,10 @@
       '<path d="M24 92v130" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>' +
       /* etiqueta */
       '<rect x="36" y="84" width="136" height="138" rx="7" fill="#fff" stroke="#dfe3df"/>' +
-      '<path d="M36 91a7 7 0 0 1 7-7h122a7 7 0 0 1 7 7v25H36z" fill="#063734"/>' +
+      '<path d="M36 91a7 7 0 0 1 7-7h122a7 7 0 0 1 7 7v25H36z" style="fill:var(--prim)"/>' +
       '<text x="104" y="106" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="15" fill="#fff" letter-spacing=".5">seiker</text>' +
       '<rect x="36" y="116" width="136" height="3" fill="#a8823f"/>' +
-      '<text x="104" y="141" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="' + (nm[0].length > 9 ? 13 : 15) + '" fill="#063734" letter-spacing=".6">' + esc(nm[0]) + '</text>' +
+      '<text x="104" y="141" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="' + (nm[0].length > 9 ? 13 : 15) + '" style="fill:var(--prim)" letter-spacing=".6">' + esc(nm[0]) + '</text>' +
       '<text x="104" y="' + (largo ? 172 : 177) + '" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (largo ? 28 : 38) + '" fill="' + esc(c) + '">' + esc(nm[1]) + '</text>' +
       '<text x="104" y="196" text-anchor="middle" font-family="Roboto, sans-serif" font-size="8.5" fill="#5f6461">' + esc((p.bajada || "").toUpperCase()) + '</text>' +
       '<path d="M36 205h136v10a7 7 0 0 1-7 7H43a7 7 0 0 1-7-7z" fill="' + esc(c) + '"/>' +
@@ -79,7 +79,7 @@
         '<linearGradient id="' + a + '" x1="0" x2="0" y1="0" y2="1">' +
           '<stop offset="0" stop-color="#eef1f0"/><stop offset=".45" stop-color="#b9c1be"/><stop offset="1" stop-color="#7d8784"/></linearGradient>' +
         '<linearGradient id="' + v + '" x1="0" x2="0" y1="0" y2="1">' +
-          '<stop offset="0" stop-color="#0d5550"/><stop offset=".5" stop-color="#063734"/><stop offset="1" stop-color="#03211f"/></linearGradient>' +
+          '<stop offset="0" style="stop-color:var(--degrade-claro)"/><stop offset=".5" style="stop-color:var(--prim)"/><stop offset="1" style="stop-color:var(--degrade-oscuro)"/></linearGradient>' +
         '<linearGradient id="' + d + '" x1="0" x2="0" y1="0" y2="1">' +
           '<stop offset="0" stop-color="#d9efe2"/><stop offset="1" stop-color="#b5d8c4"/></linearGradient>' +
       '</defs>' +
@@ -99,9 +99,9 @@
       '<rect x="66" y="22" width="128" height="80" rx="14" fill="url(#' + v + ')"/>' +
       '<rect x="66" y="22" width="128" height="6" rx="3" fill="#fff" opacity=".14"/>' +
       '<rect x="80" y="36" width="100" height="36" rx="5" fill="url(#' + d + ')"/>' +
-      '<text x="172" y="60" text-anchor="end" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="15" fill="#063734">128,4</text>' +
-      '<text x="88" y="48" font-family="Roboto, sans-serif" font-size="6.5" fill="#063734" opacity=".75">m³/h</text>' +
-      '<rect x="88" y="62" width="40" height="3" rx="1.5" fill="#063734" opacity=".35"/>' +
+      '<text x="172" y="60" text-anchor="end" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="15" style="fill:var(--prim)">128,4</text>' +
+      '<text x="88" y="48" font-family="Roboto, sans-serif" font-size="6.5" style="fill:var(--prim)" opacity=".75">m³/h</text>' +
+      '<rect x="88" y="62" width="40" height="3" rx="1.5" style="fill:var(--prim)" opacity=".35"/>' +
       '<text x="80" y="90" font-family="Outfit, sans-serif" font-weight="700" font-size="10" fill="#fff" letter-spacing=".4">seiker</text>' +
       '<circle cx="170" cy="87" r="3.2" fill="#6fd39a"/>' +
       '<circle cx="180" cy="87" r="3.2" fill="#c9a35f"/>' +
@@ -133,10 +133,10 @@
       '<path d="M30 229Q100 239 172 229" fill="none" stroke="#b9bfb9" stroke-width="1.4" stroke-dasharray="3 3"/>' +
       '<path d="M40 46v170" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>' +
       /* etiqueta impresa */
-      '<path d="M44 52h112v26H44z" fill="#063734"/>' +
+      '<path d="M44 52h112v26H44z" style="fill:var(--prim)"/>' +
       '<text x="100" y="70" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="15" fill="#fff" letter-spacing=".5">seiker</text>' +
       '<rect x="44" y="78" width="112" height="3" fill="' + esc(c) + '"/>' +
-      '<text x="100" y="104" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (nm[0].length > 10 ? 15 : 17) + '" fill="#063734" letter-spacing=".4">' + esc(nm[0]) + '</text>' +
+      '<text x="100" y="104" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (nm[0].length > 10 ? 15 : 17) + '" style="fill:var(--prim)" letter-spacing=".4">' + esc(nm[0]) + '</text>' +
       '<text x="100" y="143" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="' + (nm[1].length > 4 ? 33 : 40) + '" fill="' + esc(c) + '">' + esc(nm[1]) + '</text>' +
       '<text x="100" y="161" text-anchor="middle" font-family="Roboto, sans-serif" font-size="8.5" fill="#5f6461" letter-spacing=".6">' + esc((p.bajada || "").toUpperCase()) + '</text>' +
       '<text x="100" y="176" text-anchor="middle" font-family="Roboto, sans-serif" font-size="7.5" fill="#7b817d">' + esc(p.tipo || "") + '</text>' +
@@ -146,10 +146,67 @@
       '</svg>';
   }
 
+  /* ---------- Equipo de riego (pivote central) ---------- */
+  function riego(p) {
+    var a = uid("a"), v = uid("v");
+    var P0 = 30, T = [133, 236], Y = 98;
+    function tramo(x0, x1) {
+      var r = '<path d="M' + x0 + " " + (Y + 2) + "Q" + (x0 + x1) / 2 + " " + (Y + 38) + " " + x1 + " " + (Y + 2) + '" fill="none" stroke="#8e9794" stroke-width="2"/>';
+      [.2, .35, .5, .65, .8].forEach(function (t) {
+        var x = x0 + (x1 - x0) * t, y = Y + 2 + 72 * t * (1 - t);
+        r += '<path d="M' + x.toFixed(1) + " " + Y + "V" + y.toFixed(1) + '" stroke="#9aa3a0" stroke-width="1.4"/>';
+      });
+      return r;
+    }
+    function bajada(x) {
+      return '<path d="M' + x + " " + (Y + 3) + "V150" + '" stroke="#a7afac" stroke-width="1.2"/>' +
+        '<rect x="' + (x - 2.5) + '" y="149" width="5" height="5" rx="1" fill="#6f7875"/>' +
+        '<path d="M' + x + " 155q-7 11-12 19M" + x + " 155q7 11 12 19M" + x + ' 155v20" fill="none" stroke="#8cc3e6" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>';
+    }
+    function torre(x) {
+      return '<path d="M' + x + " " + Y + "L" + (x - 12) + " 212M" + x + " " + Y + "L" + (x + 12) + ' 212" stroke="url(#' + a + ')" stroke-width="5" stroke-linecap="round"/>' +
+        '<path d="M' + (x - 8) + " 180H" + (x + 8) + '" stroke="#8e9794" stroke-width="3"/>' +
+        '<rect x="' + (x - 5) + '" y="196" width="10" height="9" rx="2" style="fill:var(--prim)"/>' +
+        [x - 12, x + 12].map(function (cx) {
+          return '<circle cx="' + cx + '" cy="220" r="10" fill="#3a3f3d"/><circle cx="' + cx + '" cy="220" r="4" fill="#b9c1be"/>';
+        }).join("");
+    }
+    var gotas = "";
+    for (var x = 46; x <= 228; x += 17) gotas += bajada(x);
+    return '' +
+      '<svg class="pk pk--cauda pk--riego" viewBox="0 0 260 260" role="img" aria-label="' + esc(p.nombre || "Equipo de riego") + '">' +
+      '<defs>' +
+        '<linearGradient id="' + a + '" x1="0" x2="0" y1="0" y2="1">' +
+          '<stop offset="0" stop-color="#eef1f0"/><stop offset=".45" stop-color="#b9c1be"/><stop offset="1" stop-color="#7d8784"/></linearGradient>' +
+        '<linearGradient id="' + v + '" x1="0" x2="0" y1="0" y2="1">' +
+          '<stop offset="0" style="stop-color:var(--degrade-claro)"/><stop offset="1" style="stop-color:var(--prim)"/></linearGradient>' +
+      '</defs>' +
+      '<ellipse cx="134" cy="234" rx="124" ry="8" fill="#000" opacity=".12"/>' +
+      /* torre central */
+      '<path d="M' + (P0 - 16) + " 230L" + P0 + " " + Y + "L" + (P0 + 16) + ' 230" fill="none" stroke="url(#' + a + ')" stroke-width="5" stroke-linecap="round"/>' +
+      '<path d="M' + (P0 - 11) + " 190H" + (P0 + 11) + "M" + (P0 - 6) + " 150H" + (P0 + 6) + '" stroke="#8e9794" stroke-width="3"/>' +
+      '<rect x="' + (P0 - 3) + '" y="' + (Y - 6) + '" width="6" height="134" fill="url(#' + a + ')"/>' +
+      /* tablero de control */
+      '<rect x="' + (P0 + 8) + '" y="132" width="28" height="36" rx="4" fill="url(#' + v + ')"/>' +
+      '<rect x="' + (P0 + 13) + '" y="138" width="18" height="9" rx="1.5" fill="#d9e4ea"/>' +
+      '<circle cx="' + (P0 + 16) + '" cy="158" r="2.6" style="fill:var(--dorado-3)"/>' +
+      '<circle cx="' + (P0 + 24) + '" cy="158" r="2.6" fill="#8cc3e6"/>' +
+      /* tramos, bajantes y torres móviles */
+      tramo(P0, T[0]) + tramo(T[0], T[1]) + gotas +
+      '<path d="M' + P0 + " " + Y + "H" + (T[1] + 18) + '" stroke="#b9c1be" stroke-width="5" stroke-linecap="round"/>' +
+      '<path d="M' + P0 + " " + (Y - 1.5) + "H" + (T[1] + 18) + '" stroke="#fff" stroke-width="1.2" opacity=".7"/>' +
+      torre(T[0]) + torre(T[1]) +
+      /* cañón final */
+      '<path d="M' + (T[1] + 18) + " " + Y + "q12 -14 22 -4" + '" fill="none" stroke="#8cc3e6" stroke-width="2" stroke-linecap="round" opacity=".85"/>' +
+      '<circle cx="' + P0 + '" cy="' + (Y - 8) + '" r="5" style="fill:var(--prim)"/>' +
+      '</svg>';
+  }
+
   /* El producto puede pedir su propio envase ("envase": "bolsa");
      si no, se usa el de su línea. */
   function envase(p, linea) {
     var tipo = p.envase || (linea && linea.envase) || "bidon";
+    if (tipo === "riego") return riego(p);
     if (tipo === "caudalimetro") return caudalimetro(p);
     if (tipo === "bolsa") return bolsa(p);
     return bidon(p);
@@ -197,5 +254,5 @@
       (I[nombre] || "") + "</svg>";
   }
 
-  window.SEIKER_ILUS = { envase: envase, bidon: bidon, bolsa: bolsa, caudalimetro: caudalimetro, ico: ico };
+  window.SEIKER_ILUS = { envase: envase, bidon: bidon, bolsa: bolsa, caudalimetro: caudalimetro, riego: riego, ico: ico };
 })();
