@@ -41,7 +41,7 @@
       pagina: "fertilizantes.html",   // si no tiene página propia, se usa linea.html?id=...
       envase: "bidon",                // dibujo por defecto: "bidon", "bolsa" o "caudalimetro"
       imagen: "assets/img/campo-girasol.webp",  // foto de la tarjeta y del encabezado de la línea
-      resumen: "Nitro-Sol, NitroVio O+, Foz-Sol y FozVio O+: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
+      resumen: "NitroSol, NitroVio O+, FozSol y FozVio O+: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
       iconos: ["hoja", "gota", "camion", "persona"],
       beneficios: [
         ["Mínima volatilización", "Formulaciones pensadas para que el nitrógeno quede en el lote y no se pierda en el aire."],
@@ -162,13 +162,13 @@
     {
       id: "nitro-sol",
       linea: "fertilizantes",
-      nombre: "Nitro-Sol",
+      nombre: "NitroSol",
       antes: "NITROMIX NS",
       bajada: "Nitrógeno + Azufre",
       tipo: "Fertilizante líquido",
       resumen: "Fertilizante base para producciones extensivas. Disponibilidad inmediata. Apto para fertirriego y aplicaciones motrices.",
       descripcion: [
-        "Nitro-Sol es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
+        "NitroSol es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
         "Es apto para fertirriego y para aplicaciones motrices, lo que permite integrarlo al esquema de trabajo del establecimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["pH", "6,5"], ["Densidad", "1,26"]],
@@ -183,19 +183,20 @@
       ],
       color: "#1F7A4D",
       imagen: "assets/img/productos/nitro-sol.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: true
     },
     {
       id: "nitro-sol-zn",
       linea: "fertilizantes",
-      nombre: "Nitro-Sol Zn",
+      nombre: "NitroSol Zn",
       antes: "NITROMIX Zn",
       bajada: "Con Zinc quelado",
       tipo: "Fertilizante líquido",
       resumen: "Micronutriente esencial para gramíneas. Favorece la síntesis de proteínas, la floración y el cuaje de granos. Maximiza el rendimiento.",
       descripcion: [
-        "Nitro-Sol Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
+        "NitroSol Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
         "Favorece la síntesis de proteínas, la floración y el cuaje de granos, con el objetivo de maximizar el rendimiento."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["Zn", "0,5%"], ["pH", "6,5"]],
@@ -210,19 +211,20 @@
       ],
       color: "#2D6E96",
       imagen: "assets/img/productos/nitro-sol-zn.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: false
     },
     {
       id: "nitro-sol-b",
       linea: "fertilizantes",
-      nombre: "Nitro-Sol B",
+      nombre: "NitroSol B",
       antes: "NITROMIX B",
       bajada: "Con Boro",
       tipo: "Fertilizante líquido",
       resumen: "Especial para girasol. A la siembra asegura emergencia uniforme y desarrollo radicular. En aplicación tardía, floración homogénea y llenado de granos.",
       descripcion: [
-        "Nitro-Sol B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
+        "NitroSol B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
         "Aplicado a la siembra asegura una emergencia uniforme y un buen desarrollo radicular. En aplicación tardía acompaña una floración homogénea y el llenado de granos."
       ],
       composicion: [["N", "26%"], ["S", "8%"], ["B", "0,5%"], ["pH", "6,5"]],
@@ -237,6 +239,7 @@
       ],
       color: "#B7832A",
       imagen: "assets/img/productos/nitro-sol-b.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: true
     },
@@ -262,20 +265,21 @@
         "Incorporación inmediata al suelo",
         "Reducción de la volatilización"
       ],
-      color: "#5A3A1F",
+      color: "#625A2B",
       imagen: "assets/img/productos/nitro-vio.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: false
     },
     {
       id: "foz-sol",
       linea: "fertilizantes",
-      nombre: "Foz-Sol",
+      nombre: "FozSol",
       bajada: "Nitrógeno + Fósforo + Azufre",
       tipo: "Fertilizante líquido",
       resumen: "Fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en sus distintas etapas de desarrollo.",
       descripcion: [
-        "Foz-Sol es un fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en las distintas etapas de desarrollo.",
+        "FozSol es un fertilizante de base fosforado líquido que cubre de forma balanceada las necesidades nutricionales de los cultivos en las distintas etapas de desarrollo.",
         "Sus dos formulaciones permiten una rápida disponibilidad y absorción, con menor volatilidad y mayor aprovechamiento por parte del cultivo."
       ],
       frase: "Fósforo: el nutriente que almacena y transfiere la energía dentro de la planta.",
@@ -324,6 +328,7 @@
       ],
       color: "#8B1A1A",
       imagen: "assets/img/productos/foz-sol.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: true
     },
@@ -344,8 +349,9 @@
       cultivos: [],
       aplicacion: [],
       beneficios: [],
-      color: "#5A3A1F",
+      color: "#625A2B",
       imagen: "assets/img/productos/foz-vio.webp",
+      logo: true,                     // la imagen es el logo de la marca, no un envase
       documentos: [],
       destacado: false
     },

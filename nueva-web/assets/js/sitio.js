@@ -43,21 +43,21 @@
   }
   function producto(id) {
     for (var i = 0; i < CAT.productos.length; i++) if (CAT.productos[i].id === id) return CAT.productos[i];
-    /* Enlaces viejos: producto.html?id=nitromix-ns sigue abriendo Nitro-Sol */
+    /* Enlaces viejos: producto.html?id=nitromix-ns sigue abriendo NitroSol */
     for (var j = 0; j < CAT.productos.length; j++) {
       var a = CAT.productos[j].antes;
       if (a && norm(a).replace(/\s+/g, "-") === id) return CAT.productos[j];
     }
     return null;
   }
-  /* Marcas bicolor: Nitro (azul) / Foz (rojo) + Sol (negro) / Vio O+ (marrón).
-     Nitro-Sol y Foz-Sol llevan guion; NitroVio O+ y FozVio O+, no.
+  /* Marcas bicolor, como en los logos: Nitro (azul) / Foz (rojo) + Sol (amarillo)
+     / Vio O+ (marrón verdoso, la línea orgánica). Se escriben sin guion.
      Recibe texto ya escapado y devuelve HTML. En fondos oscuros, el CSS
      hace que hereden el color del texto. */
   function marca(html) {
-    return String(html).replace(/\b(Nitro|Foz)(-Sol\b|Vio O\+)/g, function (m, a, b) {
+    return String(html).replace(/\b(Nitro|Foz)(Sol|Vio)\b( O\+)?/g, function (m, a, b, o) {
       return '<span class="mkw"><span class="mk mk-' + a.toLowerCase() + '">' + a + '</span><span class="mk mk-' +
-        (b.charAt(0) === "-" ? "sol" : "vio mk-junto") + '">' + b + "</span></span>";
+        (b === "Sol" ? "sol" : "vio mk-junto") + '">' + b + (o || "") + "</span></span>";
     });
   }
   function nombreHTML(p) { return marca(esc(p.nombre)); }
@@ -65,7 +65,8 @@
   function urlProducto(p) { return "producto.html?id=" + encodeURIComponent(p.id); }
   function urlLinea(l) { return l.pagina || ("linea.html?id=" + encodeURIComponent(l.id)); }
   function imagenDe(p) {
-    if (p.imagen) return '<img class="pk pk--foto" src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" />';
+    if (p.imagen) return '<img class="pk pk--' + (p.logo ? "logo" : "foto") + '" src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) +
+      '" loading="lazy" decoding="async" />';
     return IL ? IL.envase(p, linea(p.linea)) : "";
   }
   /* Productos explícitos de "relacionados" primero, después el resto de la línea */
@@ -849,7 +850,7 @@
   /* ----------------------------------------------------------
      FICHA DE PRODUCTO (producto.html?id=...)
      ---------------------------------------------------------- */
-  /* Tabla con una columna por formulación (ej. Foz-Sol 6-8-6 y 16-9,5-6) */
+  /* Tabla con una columna por formulación (ej. FozSol 6-8-6 y 16-9,5-6) */
   function htmlFormulaciones(fm) {
     if (!fm || !(fm.filas || []).length) return "";
     return '<h3 class="h4 guia-t">' + esc(fm.titulo || "Formulaciones") + "</h3>" +
@@ -1019,7 +1020,7 @@
                      : '<a class="btn btn--line" href="#documentos">Ficha técnica</a>') +
           "</div>" +
         "</div>" +
-        '<div class="pd-img' + (p.imagen ? " pd-img--foto" : "") + '">' + imagenDe(p) + "</div>" +
+        '<div class="pd-img' + (p.imagen ? (p.logo ? " pd-img--logo" : " pd-img--foto") : "") + '">' + imagenDe(p) + "</div>" +
       "</div></section>" +
 
       '<nav class="pd-tabs" aria-label="Secciones del producto"><div class="wrap"><ul>' +
