@@ -50,12 +50,14 @@
     }
     return null;
   }
-  /* Marcas bicolor: Nitro (azul) / Foz (rojo) + Sol (negro) / Vio (marrón).
+  /* Marcas bicolor: Nitro (azul) / Foz (rojo) + Sol (negro) / Vio O+ (marrón).
+     Nitro-Sol y Foz-Sol llevan guion; NitroVio O+ y FozVio O+, no.
      Recibe texto ya escapado y devuelve HTML. En fondos oscuros, el CSS
      hace que hereden el color del texto. */
   function marca(html) {
-    return String(html).replace(/\b(Nitro|Foz)-(Sol|Vio)\b/gi, function (m, a, b) {
-      return '<span class="mkw"><span class="mk mk-' + a.toLowerCase() + '">' + a + '</span><span class="mk mk-' + b.toLowerCase() + '">-' + b + "</span></span>";
+    return String(html).replace(/\b(Nitro|Foz)(-Sol\b|Vio O\+)/g, function (m, a, b) {
+      return '<span class="mkw"><span class="mk mk-' + a.toLowerCase() + '">' + a + '</span><span class="mk mk-' +
+        (b.charAt(0) === "-" ? "sol" : "vio mk-junto") + '">' + b + "</span></span>";
     });
   }
   function nombreHTML(p) { return marca(esc(p.nombre)); }
@@ -442,7 +444,7 @@
       indice.push({
         tipo: "Producto", titulo: p.nombre + " — " + p.bajada, url: urlProducto(p),
         texto: p.resumen,
-        busca: norm([p.nombre, p.antes || "", p.bajada, p.tipo, p.resumen, (p.descripcion || []).join(" "), specs,
+        busca: norm([p.nombre, p.id, p.id.replace(/-/g, " "), p.antes || "", p.bajada, p.tipo, p.resumen, (p.descripcion || []).join(" "), specs,
           (p.cultivos || []).join(" "), (p.aplicacion || []).join(" "), ben, guia, notas,
           p.comoActua ? p.comoActua.titulo + " " + p.comoActua.texto : "",
           (p.usos || []).join(" "), l.nombre].join(" "))
@@ -767,7 +769,7 @@
         if (estado.cultivos.length && !estado.cultivos.some(function (c) { return (p.cultivos || []).indexOf(c) >= 0; })) return false;
         if (estado.aplic.length && !estado.aplic.some(function (c) { return (p.aplicacion || []).indexOf(c) >= 0; })) return false;
         if (ws.length) {
-          var t = norm([p.nombre, p.antes || "", p.bajada, p.tipo, p.resumen, (p.cultivos || []).join(" "),
+          var t = norm([p.nombre, p.id, p.id.replace(/-/g, " "), p.antes || "", p.bajada, p.tipo, p.resumen, (p.cultivos || []).join(" "),
             (p.composicion || []).map(function (c) { return c.join(" "); }).join(" "),
             (p.aplicacion || []).join(" ")].join(" "));
           if (!ws.every(function (w) { return t.indexOf(w) >= 0; })) return false;

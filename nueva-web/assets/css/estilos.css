@@ -16,7 +16,7 @@
   --dorado-3: #c9a35f;
   --dorado-claro: #f5eee2;
 
-  /* Colores de las marcas de producto (Nitro-Sol, Foz-Sol, Nitro-Vio, Foz-Vio) */
+  /* Colores de las marcas de producto (Nitro-Sol, Foz-Sol, NitroVio O+, FozVio O+) */
   --mk-nitro: #1b365d;      /* azul oscuro */
   --mk-foz: #8b1a1a;        /* rojo oscuro */
   --mk-sol: #000000;        /* negro */
@@ -904,6 +904,7 @@ a.ci-v:hover { text-decoration: underline; }
 .mk-foz { color: var(--mk-foz); }
 .mk-sol { color: var(--mk-sol); }
 .mk-vio { color: var(--mk-vio); }
+.mk-junto { margin-left: -.045em; }   /* NitroVio O+: sin hueco visible entre "o" y "V" */
 /* Sobre fondos oscuros la marca hereda el color del texto (si no, no se lee) */
 .hs .mk, .banner .mk, .cat .mk, .sec--verde .mk, .ft-main .mk, .mega-promo .mk { color: inherit; }
 

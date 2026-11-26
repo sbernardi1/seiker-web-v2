@@ -72,7 +72,7 @@ Nitrate Balancer, Harvest More y Natur'l Óleo; copiá uno de esos como modelo):
 Las fotos de producto con fondo transparente van en `assets/img/productos/`
 (formato `.webp` o `.png`). Las fotos de cada línea, en `assets/img/lineas/`.
 
-Las marcas Nitro-Sol, Foz-Sol, Nitro-Vio y Foz-Vio se pintan solas en dos colores
+Las marcas Nitro-Sol, Foz-Sol, NitroVio O+ y FozVio O+ se pintan solas en dos colores
 (Nitro azul oscuro, Foz rojo oscuro, Sol negro, Vio marrón oscuro) en tarjetas, menú,
 fichas y tablas. Los colores están al principio de `assets/css/estilos.css` (`--mk-...`).
 
@@ -121,5 +121,5 @@ correo del visitante, se puede conectar a un servicio de formularios.
 
 ## Después de cambiar algo
 
-Si el hosting muestra la versión vieja, cambiá el número `?v=20261125e` de los
+Si el hosting muestra la versión vieja, cambiá el número `?v=20261126a` de los
 `<script>` y del `<link>` de estilos en las páginas (por ejemplo, a la fecha del día).

@@ -41,7 +41,7 @@
       pagina: "fertilizantes.html",   // si no tiene página propia, se usa linea.html?id=...
       envase: "bidon",                // dibujo por defecto: "bidon", "bolsa" o "caudalimetro"
       imagen: "assets/img/campo-girasol.webp",  // foto de la tarjeta y del encabezado de la línea
-      resumen: "Nitro-Sol, Nitro-Vio, Foz-Sol y Foz-Vio: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
+      resumen: "Nitro-Sol, NitroVio O+, Foz-Sol y FozVio O+: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
       iconos: ["hoja", "gota", "camion", "persona"],
       beneficios: [
         ["Mínima volatilización", "Formulaciones pensadas para que el nitrógeno quede en el lote y no se pierda en el aire."],
@@ -243,13 +243,13 @@
     {
       id: "nitro-vio",
       linea: "fertilizantes",
-      nombre: "Nitro-Vio",
+      nombre: "NitroVio O+",
       antes: "NITROMIX PLUS",
       bajada: "Base orgánica",
       tipo: "Fertilizante líquido orgánico",
       resumen: "Combinación de nutrientes orgánicos y sales convencionales. Alta eficiencia por bajo tamaño molecular: incorporación inmediata al suelo y reducción de la volatilización.",
       descripcion: [
-        "Nitro-Vio combina nutrientes de origen orgánico con sales convencionales.",
+        "NitroVio O+ combina nutrientes de origen orgánico con sales convencionales.",
         "Su bajo tamaño molecular le da alta eficiencia: se incorpora de inmediato al suelo y reduce la volatilización."
       ],
       composicion: [["N equiv.", "24%"], ["P equiv.", "9,5%"], ["M.O.", "36%"]],
@@ -331,12 +331,12 @@
       /* FICHA PROVISORIA: falta definir composición, dosis y cultivos */
       id: "foz-vio",
       linea: "fertilizantes",
-      nombre: "Foz-Vio",
+      nombre: "FozVio O+",
       bajada: "Próximamente",
       tipo: "Fertilizante",
       resumen: "Nuevo desarrollo de la familia Vio. Estamos preparando su ficha técnica: consultanos por composición, dosis y disponibilidad.",
       descripcion: [
-        "Foz-Vio es un nuevo desarrollo de la familia Vio de Seiker.",
+        "FozVio O+ es un nuevo desarrollo de la familia Vio de Seiker.",
         "Estamos terminando su ficha técnica. Mientras tanto, escribinos y un asesor te cuenta composición, dosis recomendada y disponibilidad."
       ],
       composicion: [],
