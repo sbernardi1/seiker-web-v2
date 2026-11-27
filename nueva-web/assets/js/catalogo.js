@@ -254,7 +254,7 @@
         "NitroVio O+ combina nutrientes de origen orgánico con sales convencionales.",
         "Su bajo tamaño molecular le da alta eficiencia: se incorpora de inmediato al suelo y reduce la volatilización."
       ],
-      composicion: [["N equiv.", "24%"], ["P equiv.", "9,5%"], ["M.O.", "36%"]],
+      composicion: [["N equiv.", "21%"], ["P equiv.", "9,5%"], ["M.O.", "36%"]],
       dosis: "Consultar según cultivo y análisis de suelo",
       cultivos: [],
       aplicacion: [],
