@@ -58,6 +58,7 @@
       resumen: "Nutrición vegetal mineral y orgánica: micronutrientes para el arranque, nutrición completa, nitrógeno foliar, balance fuente/sumidero y potasio para el llenado.",
       iconos: ["escudo", "gota", "planta", "check"],
       beneficios: [
+        // REVISAR (B10): claim "absorción cercana al 100%" sin respaldo visible.
         ["Nutrientes protegidos", "Micronutrientes quelatados o acomplejados, con una absorción cercana al 100%."],
         ["Rápida absorción", "Ingresan por hojas, tallos y tejidos verdes, en una sola pasada."],
         ["Cada etapa del cultivo", "Del arranque y el macollaje al llenado de granos, frutos y tubérculos."],
@@ -98,6 +99,7 @@
   ];
 
   /* Características que comparten todos los caudalímetros Seiker */
+  // REVISAR (B3): las 5 series comparten características, mediciones y usos. ¿Son realmente iguales?
   var CAUDA_COMUN = [
     "Grado de protección IP68",
     "Garantía de 5 años",
@@ -107,6 +109,7 @@
     "Software de análisis incluido",
     "Sin partes móviles: sin desgaste ni obstrucciones"
   ];
+  // REVISAR (B1): un electromagnético mide caudal por inducción. ¿Conductividad, nivel y presión son mediciones propias, sensores adicionales u opcionales?
   var CAUDA_MIDE = ["Caudal", "Conductividad", "Nivel", "Presión"];
   var CAUDA_USOS = [
     "Extracción de aguas subterráneas",
@@ -115,6 +118,7 @@
     "Riego y agroindustria",
     "Industria alimentaria",
     "Industria química",
+    // REVISAR (B3): ¿minería, hidrocarburos e industria química van dentro de la línea "Agroprecisión"?
     "Minería e hidrocarburos",
     "Medición fiscal y facturación"
   ];
@@ -169,6 +173,7 @@
       descripcion: [
         "NitroSol es un fertilizante líquido nitrogenado y azufrado, de formulación equivalente 26-0-0-7,5 S: una solución de nitrógeno ureico, amoniacal y nítrico, más azufre."
       ],
+      // REVISAR (B4): NitroSol, NitroSol Zn y NitroSol B comparten N 26%, pH 6,5 y dosis 100–300 l/ha (el S 7,5% ya está confirmado).
       composicion: [["N", "26%", "Ureico, amoniacal y nítrico"], ["S", "7,5%", "Azufre"], ["pH", "6,5"], ["Densidad", "1,26"]],
       dosis: "100 – 300 l/ha",
       cultivos: ["Trigo", "Cebada", "Maíz", "Sorgo", "Girasol"],   // sin soja ni alfalfa: las leguminosas fijan su propio nitrógeno
@@ -297,6 +302,7 @@
         ],
         pie: "Nutrientes expresados en % p/p."
       },
+      // REVISAR (B7): rango general 60–180 frente a la guía (cereales y oleaginosas 90–180, pasturas 60–120). Parece la unión de los rangos.
       dosis: "60 – 180 l/ha según cultivo",
       cultivos: ["Maíz", "Trigo", "Sorgo", "Cebada", "Girasol", "Pasturas"],   // la ficha dice cereales, oleaginosas y pasturas
       aplicacion: ["Cobertura total", "Chorreado entre surcos"],
@@ -332,6 +338,7 @@
       destacado: true
     },
     {
+      // REVISAR (B13): FozVio O+ sin datos técnicos; la imagen es solo el logo.
       /* FICHA PROVISORIA: falta definir composición, dosis y cultivos */
       id: "foz-vio",
       linea: "fertilizantes",
@@ -367,6 +374,7 @@
         "Starter Plus es un fertilizante líquido de aplicación foliar que suministra zinc, manganeso, cobre y boro de forma equilibrada: cuatro micronutrientes en una sola aplicación.",
         "Se absorbe rápidamente por hojas, tallos y demás tejidos verdes, y la fracción que llega al suelo puede ser aprovechada por las raíces."
       ],
+      // REVISAR (B10): claim "absorción cercana al 100%" (también en "Cómo actúa").
       frase: "Micronutrientes protegidos, absorción cercana al 100%.",
       composicion: [["Zinc (Zn)", "5%", "≈ 65 g/L"], ["Manganeso (Mn)", "3%", "≈ 39 g/L"], ["Cobre (Cu)", "0,5%", "≈ 6,5 g/L"], ["Boro (B)", "0,5%", "≈ 6,5 g/L"]],
       propiedades: [["Formulación", "Líquido, quelatado"], ["Densidad", "1,3 g/ml"], ["pH", "7,9"], ["Aplicación", "Foliar · semilla · fertirriego"], ["Envase", "Bidón 5 L"]],
@@ -378,6 +386,7 @@
         ["Zinc disponible", "Aporta zinc rápidamente disponible para la planta."],
         ["Equilibrio", "Suministra micronutrientes de forma equilibrada."],
         ["Macollaje", "Favorece el macollaje y la sanidad del cultivo."],
+        // REVISAR (B5): Starter Plus no declara N en su composición; el título "Más nitrógeno" puede leerse como que lo aporta.
         ["Más nitrógeno", "Complementa y potencia la fertilización nitrogenada."],
         ["Rendimiento", "Contribuye al logro de altos rendimientos."],
         ["Hojas activas", "Hojas más verdes y fotosintéticamente activas."],
@@ -442,6 +451,7 @@
         ["Manganeso (Mn)", "2%", "≈ 28 g/L"], ["Fósforo (P)", "1,7%", "≈ 24 g/L · asimilable"], ["Magnesio (Mg)", "1%", "≈ 14 g/L"],
         ["Azufre (S)", "1%", "≈ 14 g/L"], ["Boro (B)", "0,5%", "≈ 7 g/L"], ["Molibdeno (Mo)", "0,05%", "≈ 0,7 g/L"]
       ],
+      // REVISAR (B6): pH 1,8 (Mastermins Plus) frente a 7,9 (Starter Plus). ¿Es correcto?
       propiedades: [["Densidad", "1,4 g/ml"], ["pH", "1,8"], ["Aspecto", "Líquido marrón, no inflamable"], ["Envase", "Bidón 5 L"]],
       presentacion: "Bidón 5 L",
       dosis: "2–6 l/ha en extensivos",
@@ -464,6 +474,7 @@
         modo: "comparar",
         pasos: [
           ["Sin protección", "El ion libre forma compuestos insolubles en el caldo o en el suelo y la planta no lo aprovecha."],
+          // REVISAR (B10): claim "absorción cercana al 100%".
           ["Quelatado · Mastermins Plus", "Llega protegido a la hoja: eficiencia de absorción cercana al 100% y baja interferencia con plaguicidas."]
         ]
       },
@@ -517,6 +528,7 @@
       frase: "Lo que la hoja produce, que llegue a la cosecha.",
       composicion: [["Boro (B)", "8%", "acomplejado · p/v"], ["Molibdeno (Mo)", "0,03%", "acomplejado · p/v"]],
       propiedades: [["Complejante", "Aminas y ácidos carboxílicos"], ["pH", "7,5"], ["Densidad (20 °C)", "1,3 g/ml"], ["Solubilidad (20 °C)", "100%"]],
+      // REVISAR (B9): Nitrate Balancer sin presentación (envase).
       presentacion: "",
       dosis: "1–6 l/ha según cultivo",
       cultivos: ["Papa", "Maní", "Maíz", "Cebolla", "Pera", "Manzana", "Vid", "Frutales", "Frutilla", "Palto",
@@ -538,6 +550,7 @@
           ["Sin balance", "La planta sigue armando hojas y tallos: los azúcares se quedan arriba y el órgano de reserva llena menos."],
           ["Con Nitrate Balancer", "Freno vegetativo temporario: los asimilados bajan al tubérculo, al fruto o a la madera."]
         ],
+        // REVISAR (B10): claim "la absorción se acerca al 100%".
         nota: "Nutrientes acomplejados. Boro y molibdeno van rodeados por un agente complejante (aminas primarias y ácidos carboxílicos) que evita que formen compuestos insolubles en el caldo o en el suelo. Así la absorción se acerca al 100%."
       },
       guia: [{
@@ -643,6 +656,7 @@
       nombre: "Nitroplus 18",
       bajada: "Nitrógeno amínico + Calcio",
       tipo: "Fertilizante foliar",
+      // REVISAR (B10): claims "100% de eficiencia en el uso del nitrógeno" y "sin pérdidas por volatilización ni lixiviación" (resumen, descripción y beneficios).
       resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
       descripcion: [
         "Nitroplus 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
@@ -688,6 +702,7 @@
         "Funciona como adhesivo antievaporante para herbicidas, insecticidas, acaricidas y fungicidas. También está registrado como insecticida/acaricida."
       ],
       frase: "Lo que se aplica, se queda donde tiene que estar.",
+      // REVISAR (B8): 85 g por cada 100 cm³ es p/v; 93% p/p × 0,92 g/cm³ ≈ 85 g/100 cm³. ¿Corregir la unidad a p/v?
       composicion: [["Aceite de soja", "93%", "85 g por cada 100 cm³ · p/p"], ["Dosis general", "0,5% v/v", "en todos los cultivos"]],
       tituloComposicion: "Composición y dosis",
       propiedades: [["Emulsionante", "c.s.p. 100 cm³"], ["Densidad", "0,916–0,922 g/cm³"], ["Clase · inflamabilidad", "IV · 3ª categoría"], ["Envase", "Bidón 20 L"]],
@@ -756,6 +771,7 @@
     },
 
     /* ─────────── AGROPRECISIÓN: CAUDALÍMETROS Y EQUIPOS DE RIEGO ─────────── */
+    // REVISAR (B2): presión nominal por serie 10 / 20 / 40 / 60 / 100 kg/cm². Confirmar valores y unidad.
     serie("s150",  "Caudalímetro S150",  "10 kg/cm²",  "PU / Teflon", "AISI 316L",        "±0,25%",
       "La serie de mayor precisión de la línea: ±0,25%. Presión nominal de 10 kg/cm², liner de PU o Teflon y electrodos de acero inoxidable AISI 316L.", "#27221f"),
     serie("s300",  "Caudalímetro S300",  "20 kg/cm²",  "Teflon",      "316L / Hastelloy", "±0,3%",
@@ -768,6 +784,7 @@
       "Para las presiones más altas de la línea: 100 kg/cm². Liner de Teflon y electrodos de Tantalio. Precisión de ±0,5%.", "#27221f"),
 
     {
+      // REVISAR (B13): Equipos de riego sin datos técnicos ni foto propia.
       /* FICHA PROVISORIA: completar con modelos, marcas y especificaciones */
       id: "equipos-riego",
       linea: "caudalimetros",
