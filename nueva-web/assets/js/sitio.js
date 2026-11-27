@@ -1093,9 +1093,10 @@
   /* ----------------------------------------------------------
      CONTACTO: completa línea y producto desde la URL y envía la
      consulta directo a la casilla de contacto.email a través de
-     FormSubmit (ver SEIKER_CONFIG.formulario). Si el envío falla,
-     o el servicio está desactivado, ofrece abrir el programa de
-     correo con la consulta ya escrita: nunca finge un envío.
+     FormSubmit (ver SEIKER_CONFIG.formulario). Nunca abre solo el
+     programa de correo: si el envío falla, avisa y deja un enlace
+     para escribir por mail. En la vista previa de claude.ai el envío
+     está bloqueado y lo dice; nunca finge un envío.
      ---------------------------------------------------------- */
   function initContacto() {
     var f = $("#form-contacto");
@@ -1126,13 +1127,22 @@
     }
 
     var c = CFG.contacto || {};
-    var servicio = CFG.formulario === "formsubmit" && c.email;
+    /* Activado salvo que config.js diga formulario: "" */
+    var servicio = (CFG.formulario === undefined || CFG.formulario === "formsubmit") && c.email;
+    /* La web publicada no va dentro de un marco; la vista previa sí, y bloquea el envío */
+    var bloqueado = false, enMarco = false;
+    try { enMarco = window.self !== window.top; } catch (er) { enMarco = true; }
+    document.addEventListener("securitypolicyviolation", function (ev) {
+      if (String(ev.blockedURI || "").indexOf("formsubmit") >= 0) bloqueado = true;
+    });
     var btn = $("#f-enviar"), btnTxt = btn ? $("span", btn) : null;
-    var avisoOk = $("#f-ok"), avisoErr = $("#f-error");
+    var avisos = { ok: $("#f-ok"), error: $("#f-error"), previa: $("#f-previa") };
     function aviso(cual) {
-      avisoOk.hidden = cual !== "ok"; avisoErr.hidden = cual !== "error";
-      var el = cual === "ok" ? avisoOk : cual === "error" ? avisoErr : null;
-      if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+      Object.keys(avisos).forEach(function (k) { if (avisos[k]) avisos[k].hidden = k !== cual; });
+      if (avisos[cual]) avisos[cual].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+    }
+    function fallo() {   // espera un instante: el aviso de bloqueo llega después del error
+      setTimeout(function () { aviso(bloqueado || enMarco ? "previa" : "error"); enviando(false); }, 80);
     }
     function enviando(si) {
       if (!btn) return;
@@ -1170,11 +1180,7 @@
       var trampa = $('[name="_honey"]', f);
       if (trampa && trampa.value) { f.reset(); aviso("ok"); return; }
 
-      if (!servicio || !window.fetch) {           // sin servicio: se abre el correo del visitante
-        aviso("error");
-        try { location.href = href; } catch (er) {}
-        return;
-      }
+      if (!servicio || !window.fetch) { aviso("error"); return; }   // sin servicio: aviso con el mail
       enviando(true);
       fetch("https://formsubmit.co/ajax/" + c.email, {
         method: "POST",
@@ -1196,9 +1202,9 @@
       }).then(function (r) {
         return r.json().then(function (j) { return r.ok && String(j.success) === "true"; }, function () { return false; });
       }).then(function (ok) {
-        if (ok) { f.reset(); llenarProductos(); aviso("ok"); }
-        else aviso("error");
-      }, function () { aviso("error"); }).then(function () { enviando(false); });
+        if (ok) { f.reset(); llenarProductos(); aviso("ok"); enviando(false); }
+        else { aviso("error"); enviando(false); }
+      }, fallo);
     });
     f.addEventListener("input", function (e) {
       var g = e.target.closest(".fg");
