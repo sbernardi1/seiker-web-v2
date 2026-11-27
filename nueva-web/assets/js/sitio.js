@@ -1184,7 +1184,7 @@
 
       if (!servicio || !window.fetch) { aviso("error"); return; }   // sin servicio: aviso con el mail
       enviando(true);
-      fetch("https://formsubmit.co/ajax/" + c.email, {
+      fetch("https://formsubmit.co/ajax/" + (CFG.formularioClave || c.email), {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({

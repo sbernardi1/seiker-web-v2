@@ -132,7 +132,8 @@ en `assets/js/config.js` con `formulario: "formsubmit"`.
   directo al visitante.
 - **Si el envío falla** (sin conexión, servicio caído o sin activar), el visitante ve un
   aviso con el mail y un enlace que abre su correo con la consulta ya escrita.
-- **Spam:** un campo oculto que las personas no ven frena a la mayoría de los robots.
+- **Spam:** un campo oculto que las personas no ven frena a la mayoría de los robots, y
+  `formularioClave` (el código del mail de activación) evita mostrar el mail en el código.
 - En la vista previa de claude.ai el envío no funciona (bloquea conexiones externas):
   hay que probarlo con la web ya publicada.
 
