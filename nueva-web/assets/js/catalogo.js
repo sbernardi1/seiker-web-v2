@@ -17,7 +17,7 @@
    5. Si el producto cambió de nombre, poné el nombre viejo en
       "antes": los enlaces y búsquedas viejas lo siguen encontrando.
 
-   FICHAS COMPLETAS: STARTER PLUS es el modelo con todos los
+   FICHAS COMPLETAS: Starter Plus es el modelo con todos los
    campos (beneficios con título, cómo actúa, guía de dosis,
    notas, folleto PDF). El detalle de cada campo está en LEEME.md.
 
@@ -359,7 +359,7 @@
     {
       id: "starter-plus",
       linea: "nutricion",
-      nombre: "STARTER PLUS",
+      nombre: "Starter Plus",
       bajada: "Micronutrientes foliares",
       tipo: "Fertilizante líquido foliar",
       resumen: "Zinc, manganeso, cobre y boro quelatados, de rápida absorción, para más macollaje, sanidad y rendimiento.",
@@ -428,7 +428,7 @@
     {
       id: "mastermins-plus",
       linea: "nutricion",
-      nombre: "MASTERMINS PLUS",
+      nombre: "Mastermins Plus",
       bajada: "Macro y micronutrientes",
       tipo: "Fertilizante líquido foliar",
       resumen: "Macro y micronutrientes de rápida absorción, con micros quelatados de baja interferencia en mezcla con plaguicidas.",
@@ -506,7 +506,7 @@
     {
       id: "nitrate-balancer",
       linea: "nutricion",
-      nombre: "NITRATE BALANCER",
+      nombre: "Nitrate Balancer",
       bajada: "Balance fuente / sumidero",
       tipo: "Fertilizante líquido foliar",
       resumen: "Regula el crecimiento vegetativo y lleva los asimilados desde las hojas hacia tubérculos, frutos y órganos de reserva.",
@@ -573,7 +573,7 @@
     {
       id: "harvest-more",
       linea: "nutricion",
-      nombre: "HARVEST MORE 5-5-45",
+      nombre: "Harvest More 5-5-45",
       bajada: "Llenado de frutos",
       tipo: "Fertilizante soluble en polvo",
       resumen: "Fertilizante en polvo 100% soluble, alto en potasio, que moviliza los azúcares hacia frutos y órganos de reserva.",
@@ -640,12 +640,12 @@
     {
       id: "nitroplus-18",
       linea: "nutricion",
-      nombre: "NITROPLUS 18",
+      nombre: "Nitroplus 18",
       bajada: "Nitrógeno amínico + Calcio",
       tipo: "Fertilizante foliar",
       resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
       descripcion: [
-        "NITROPLUS 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
+        "Nitroplus 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
         "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
       ],
       composicion: [["N", "18%"], ["Ca", "7%"]],          // la vía foliar va en "aplicacion"
@@ -661,7 +661,7 @@
         pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
       }],
       notas: [
-        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, NITROPLUS 18 y después los demás productos."]
+        ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, Nitroplus 18 y después los demás productos."]
       ],
       beneficios: [
         "Nitrógeno amínico + calcio",
@@ -679,7 +679,7 @@
     {
       id: "naturl-oleo",
       linea: "coadyuvantes",
-      nombre: "NATUR'L ÓLEO",
+      nombre: "Natur'l Óleo",
       bajada: "Aceite vegetal de soja",
       tipo: "Coadyuvante · Insecticida / acaricida",
       resumen: "Mejora la emulsión, la cobertura y la adherencia del caldo, y reduce las pérdidas por evaporación y volatilización.",
