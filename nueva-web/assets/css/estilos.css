@@ -908,7 +908,15 @@ a.ci-v:hover { text-decoration: underline; }
 }
 
 /* ---------- Marcas bicolor de producto ---------- */
-.mkw { white-space: nowrap; }   /* la marca no se corta en el guion */
+.mkw { white-space: nowrap; }   /* la marca no se corta entre línea y línea */
+/* Las cuatro marcas en fila, separadas por una línea fina (sin comas ni "y") */
+.marcas { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15em .7em; }
+.marcas > .mkw + .mkw { border-left: 2px solid var(--gris-300); padding-left: .7em; }
+@media (max-width: 640px) {   /* en el celular, dos por fila: la línea solo entre las de cada fila */
+  .marcas { display: grid; grid-template-columns: auto auto; justify-content: start; }
+  .marcas > .mkw + .mkw { border-left: 0; padding-left: 0; }
+  .marcas > .mkw:nth-child(even) { border-left: 2px solid var(--gris-300); padding-left: .7em; }
+}
 .mk-nitro { color: var(--mk-nitro); }
 .mk-foz { color: var(--mk-foz); }
 .mk-sol { color: var(--mk-sol); }
