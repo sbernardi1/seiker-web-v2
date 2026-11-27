@@ -359,6 +359,9 @@ a.chip:hover, button.chip:hover { border-color: var(--prim); background: var(--p
    ============================================================ */
 .sec { padding: 96px 0; }
 .sec--gris { background: var(--gris-50); }
+/* Dos secciones seguidas con el mismo fondo no se separan por color: la segunda no repite
+   el relleno de arriba, así el aire entre ellas es el mismo que dentro de una sección */
+.sec:not([class*="sec--"]) + .sec:not([class*="sec--"]), .sec--gris + .sec--gris { padding-top: 0; }
 .sec--prim { background: var(--prim); color: rgba(255, 255, 255, .85); }
 .sec--prim h2, .sec--prim h3 { color: #fff; }
 .sec--prim .eyebrow { color: var(--dorado-3); }
@@ -931,7 +934,7 @@ a.ci-v:hover { text-decoration: underline; }
 .mk-vio { color: var(--mk-vio); }
 .mk-junto { margin-left: -.045em; }   /* NitroVio O+: sin hueco visible entre "o" y "V" */
 /* Sobre fondos oscuros la marca hereda el color del texto (si no, no se lee) */
-.hs .mk, .banner .mk, .cat .mk, .sec--verde .mk, .ft-main .mk, .mega-promo .mk { color: inherit; }
+.hs .mk, .banner .mk, .cat .mk, .sec--prim .mk, .ft-main .mk, .mega-promo .mk { color: inherit; }
 
 /* ---------- Tarjeta fija (I+D): no lleva a ninguna página ---------- */
 .cat--fija { cursor: default; }
