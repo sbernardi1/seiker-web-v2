@@ -1129,20 +1129,22 @@
     var c = CFG.contacto || {};
     /* Activado salvo que config.js diga formulario: "" */
     var servicio = (CFG.formulario === undefined || CFG.formulario === "formsubmit") && c.email;
-    /* La web publicada no va dentro de un marco; la vista previa sí, y bloquea el envío */
-    var bloqueado = false, enMarco = false;
+    /* La web publicada está en su dominio (seikerag / seikeragro) y no va dentro de un
+       marco. Una vista previa (claude.ai, la app, un archivo abierto en la compu) no puede
+       enviar: si el envío falla ahí, se avisa que es una vista previa. */
+    var bloqueado = false, enMarco = false, publicada = /seiker/i.test(location.hostname);
     try { enMarco = window.self !== window.top; } catch (er) { enMarco = true; }
     document.addEventListener("securitypolicyviolation", function (ev) {
       if (String(ev.blockedURI || "").indexOf("formsubmit") >= 0) bloqueado = true;
     });
     var btn = $("#f-enviar"), btnTxt = btn ? $("span", btn) : null;
-    var avisos = { ok: $("#f-ok"), error: $("#f-error"), previa: $("#f-previa") };
+    var avisos = { ok: $("#f-ok"), error: $("#f-error"), previa: $("#f-previa"), activar: $("#f-activar") };
     function aviso(cual) {
       Object.keys(avisos).forEach(function (k) { if (avisos[k]) avisos[k].hidden = k !== cual; });
       if (avisos[cual]) avisos[cual].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
     }
     function fallo() {   // espera un instante: el aviso de bloqueo llega después del error
-      setTimeout(function () { aviso(bloqueado || enMarco ? "previa" : "error"); enviando(false); }, 80);
+      setTimeout(function () { aviso(bloqueado || enMarco || !publicada ? "previa" : "error"); enviando(false); }, 80);
     }
     function enviando(si) {
       if (!btn) return;
@@ -1200,10 +1202,13 @@
           "Mensaje": d("f-msg") || "—"
         })
       }).then(function (r) {
-        return r.json().then(function (j) { return r.ok && String(j.success) === "true"; }, function () { return false; });
-      }).then(function (ok) {
-        if (ok) { f.reset(); llenarProductos(); aviso("ok"); enviando(false); }
-        else { aviso("error"); enviando(false); }
+        return r.json().then(function (j) {
+          if (r.ok && String(j.success) === "true") return "ok";
+          return /activ/i.test(j.message || "") ? "activar" : "error";   // FormSubmit sin activar
+        }, function () { return "error"; });
+      }).then(function (res) {
+        if (res === "ok") { f.reset(); llenarProductos(); }
+        aviso(res); enviando(false);
       }, fallo);
     });
     f.addEventListener("input", function (e) {
