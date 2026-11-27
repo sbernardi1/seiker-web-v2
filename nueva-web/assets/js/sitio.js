@@ -913,8 +913,8 @@
           "</ul></aside>" : "") + "</div>")]);
 
     if (comp.length) secciones.push(["composicion", p.tituloComposicion || (esCauda ? "Especificaciones" : "Composición"),
-      '<p class="eyebrow">' + esc(p.tituloComposicion || (esCauda ? "Especificaciones técnicas" : "Composición")) + "</p>" +
-      '<h2 class="h2">' + (esCauda ? "Especificaciones de la serie" : "Composición garantizada") + "</h2>" +
+      /* Un solo título, sin repetir el de la pestaña en un antetítulo */
+      '<h2 class="h2">' + esc(p.tituloComposicion || (esCauda ? "Especificaciones técnicas" : "Composición")) + "</h2>" +
       '<div class="spec-grid">' + comp.map(function (c) {
         return '<div class="spec"><span class="spec-v">' + esc(c[1]) + '</span><span class="spec-k">' + esc(c[0]) + "</span>" +
           (c[2] ? '<span class="spec-d">' + esc(c[2]) + "</span>" : "") + "</div>";
