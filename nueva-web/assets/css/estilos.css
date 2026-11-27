@@ -309,10 +309,12 @@ a.chip:hover, button.chip:hover { border-color: var(--prim); background: var(--p
 .hs--prim::before { background: none; }
 .hs-bg--suave { opacity: .28; mix-blend-mode: luminosity; }
 .hs-pat { position: absolute; inset: 0; opacity: .14; background-image: url("../img/isotipo.png"); background-repeat: no-repeat; background-size: 820px; background-position: 118% 40%; filter: grayscale(1) brightness(2.2); }
-/* El texto se apoya abajo, a la misma distancia de los controles en todas las diapositivas
-   (controles: 92px desde abajo + 40px de alto + 40px de aire) */
-.hs-in { position: relative; z-index: 2; height: 100%; display: flex; align-items: flex-end; padding-bottom: 172px; }
-.hs-txt { max-width: 640px; }
+/* Los textos de las 4 diapositivas miden lo mismo (--hs-alto, lo calcula sitio.js) y se
+   centran en el espacio que queda arriba de los controles (92px desde abajo + 40px de alto
+   + 40px de aire). Los botones van al pie del bloque: quedan a la misma altura en todas. */
+.hs-in { position: relative; z-index: 2; height: 100%; display: flex; align-items: center; padding-top: 32px; padding-bottom: 172px; }
+.hs-txt { max-width: 640px; display: flex; flex-direction: column; align-items: flex-start; min-height: var(--hs-alto, 0); }
+.hs-txt .btns { margin-top: auto; }
 .hs-txt .eyebrow { color: var(--dorado-3); }
 .hs-txt h1, .hs-txt h2 { color: #fff; margin-bottom: 20px; }
 .hs-txt p { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, .88); margin-bottom: 32px; max-width: 540px; }

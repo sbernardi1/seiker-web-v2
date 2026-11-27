@@ -689,6 +689,17 @@
     }).join("");
     var bts = $$("button", dots);
 
+    /* Mismo alto para los 4 textos (el del más largo): centrados y con los botones a la
+       misma altura en todas las diapositivas. Se recalcula al cambiar el ancho. */
+    function igualar() {
+      h.style.removeProperty("--hs-alto");
+      var alto = Math.max.apply(null, $$(".hs-txt", h).map(function (x) { return x.offsetHeight; }));
+      if (alto > 0) h.style.setProperty("--hs-alto", alto + "px");
+    }
+    igualar();
+    window.addEventListener("resize", function () { clearTimeout(igualar.t); igualar.t = setTimeout(igualar, 120); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(igualar);
+
     function ir(k) {
       i = (k + slides.length) % slides.length;
       slides.forEach(function (s, n) {
