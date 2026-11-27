@@ -422,7 +422,7 @@
           ["Hortalizas en general", "300 ml/100 l agua", "4 aplic. c/7 días, desde la 1ª aplicación de defensivos"],
           ["Ajo · Cebolla", "300 ml/100 l agua", "4 aplic. c/7 días, desde la 1ª aplicación de defensivos"]
         ],
-        pie: "Complemento, no sustituto, de la fertilización de base al suelo. Consulte a su ingeniero agrónomo."
+        pie: "Complemento, no sustituto, de la fertilización de base al suelo. Consultá a tu ingeniero agrónomo."
       }],
       notas: [
         ["Preparación", "Orden de carga: 1 · agua, 2 · Starter Plus, 3 · agroquímicos + Natur'l Óleo. En fertirriego, diluir en no más del 50% del volumen final y aplicar en el último tercio del riego."],
@@ -502,7 +502,7 @@
           ["Tomate", "400–500 ml/100 l", "Cada 7–10 días durante todo el ciclo"],
           ["Melón · Sandía", "300–400 ml/100 l", "Cada 7–10 días desde estados vegetativos tempranos"]
         ],
-        pie: "Antes de mezclar con otros productos, hacer una prueba de compatibilidad física. Consulte a su ingeniero agrónomo."
+        pie: "Antes de mezclar con otros productos, hacer una prueba de compatibilidad física. Consultá a tu ingeniero agrónomo."
       }],
       notas: [
         ["Orden de carga", "1 · Agua, 2 · Mastermins Plus, 3 · Agroquímicos + Natur'l Óleo."],
@@ -638,7 +638,7 @@
           ["Hortícolas", "3–5 kg/ha", "Según requerimiento del cultivo"],
           ["Cereales · oleaginosas · pasturas · caña", "0,5–3 kg/100 l", "Aplicación foliar"]
         ],
-        pie: "Las dosis pueden variar según zona, suelo y cultivo. Consulte a su ingeniero agrónomo."
+        pie: "Las dosis pueden variar según zona, suelo y cultivo. Consultá a tu ingeniero agrónomo."
       }],
       notas: [
         ["Preparación", "Solución madre: mezclar la dosis con 50 l de agua, agitar e incorporar al tanque. La solubilidad aumenta con la temperatura del agua. En fertirriego, la CE de la solución del suelo no debe superar 2 dS/m."],
@@ -672,7 +672,7 @@
         filas: [
           ["Trigo · Cebada", "10 l/ha", "Desde macollaje hasta hoja bandera"]
         ],
-        pie: "Para otros cultivos, consulte a su ingeniero agrónomo."
+        pie: "Para otros cultivos, consultá a tu ingeniero agrónomo."
       }],
       notas: [
         ["Importante", "No aplicar en días calurosos ni en las horas de máxima insolación. Orden de carga: agua, Nitroplus 18 y después los demás productos."]
