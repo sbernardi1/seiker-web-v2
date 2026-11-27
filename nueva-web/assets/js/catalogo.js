@@ -198,7 +198,7 @@
         "NitroSol Zn suma zinc quelado a la base de nitrógeno y azufre. El zinc es un micronutriente esencial para las gramíneas.",
         "Favorece la síntesis de proteínas, la floración y el cuaje de granos, con el objetivo de maximizar el rendimiento."
       ],
-      composicion: [["N", "26%"], ["S", "8%"], ["Zn", "0,5%"], ["pH", "6,5"]],
+      composicion: [["N", "26%"], ["S", "7,5%"], ["Zn", "0,5%"], ["pH", "6,5"]],
       dosis: "100 – 300 l/ha",
       cultivos: ["Maíz", "Sorgo", "Trigo"],
       aplicacion: [],
@@ -226,7 +226,7 @@
         "NitroSol B incorpora boro a la base de nitrógeno y azufre y está pensado especialmente para girasol.",
         "Aplicado a la siembra asegura una emergencia uniforme y un buen desarrollo radicular. En aplicación tardía acompaña una floración homogénea y el llenado de granos."
       ],
-      composicion: [["N", "26%"], ["S", "8%"], ["B", "0,5%"], ["pH", "6,5"]],
+      composicion: [["N", "26%"], ["S", "7,5%"], ["B", "0,5%"], ["pH", "6,5"]],
       dosis: "100 – 300 l/ha",
       cultivos: ["Girasol", "Canola"],
       aplicacion: [],
