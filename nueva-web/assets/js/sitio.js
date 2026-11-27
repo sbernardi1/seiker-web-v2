@@ -729,12 +729,16 @@
     }
     var cultivos = unicos("cultivos"), aplic = unicos("aplicacion");
 
-    /* Más de 8 opciones: se muestran las primeras y el resto con "Ver todos" */
+    /* Más de 8 opciones: se muestran las primeras y el resto con "Ver todos",
+       que abre la lista completa en un recuadro con su propio scroll */
     function grupoChecks(titulo, nombre, valores) {
       if (!valores.length) return "";
-      return '<fieldset class="fl-g' + (valores.length > 8 ? " fl-g--corto" : "") + '"><legend>' + titulo + "</legend>" + valores.map(function (v) {
-        return '<label class="ck"><input type="checkbox" name="' + nombre + '" value="' + esc(v) + '"><span>' + esc(v) + "</span></label>";
-      }).join("") + (valores.length > 8 ? '<button type="button" class="fl-mas" data-mas>Ver todos (' + valores.length + ")</button>" : "") +
+      var largo = valores.length > 8;
+      return '<fieldset class="fl-g' + (largo ? " fl-g--largo fl-g--corto" : "") + '"><legend>' + titulo + "</legend>" +
+        '<div class="fl-lista">' + valores.map(function (v) {
+          return '<label class="ck"><input type="checkbox" name="' + nombre + '" value="' + esc(v) + '"><span>' + esc(v) + "</span></label>";
+        }).join("") + "</div>" +
+        (largo ? '<button type="button" class="fl-mas" data-mas aria-expanded="false">Ver todos (' + valores.length + ")</button>" : "") +
       "</fieldset>";
     }
     $("#fl-campos").innerHTML = '' +
@@ -831,8 +835,10 @@
       var mas = e.target.closest("[data-mas]");
       if (mas) {
         var g = mas.closest(".fl-g");
-        g.classList.toggle("fl-g--corto");
-        mas.textContent = g.classList.contains("fl-g--corto") ? "Ver todos (" + $$(".ck", g).length + ")" : "Ver menos";
+        var corto = g.classList.toggle("fl-g--corto");
+        mas.textContent = corto ? "Ver todos (" + $$(".ck", g).length + ")" : "Ver menos";
+        mas.setAttribute("aria-expanded", corto ? "false" : "true");
+        var lista = $(".fl-lista", g); if (lista) lista.scrollTop = 0;
       }
       if (e.target.closest("[data-limpiar]")) {
         estado = { q: "", linea: "", cultivos: [], aplic: [] };
