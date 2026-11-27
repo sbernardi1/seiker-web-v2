@@ -41,12 +41,11 @@
       pagina: "fertilizantes.html",   // si no tiene página propia, se usa linea.html?id=...
       envase: "bidon",                // dibujo por defecto: "bidon", "bolsa" o "caudalimetro"
       imagen: "assets/img/campo-girasol.webp",  // foto de la tarjeta y del encabezado de la línea
-      resumen: "NitroSol, NitroVio O+, FozSol y FozVio O+: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización, disponibilidad inmediata y logística con camiones propios hasta su lote.",
-      iconos: ["hoja", "gota", "camion", "persona"],
+      resumen: "NitroSol, NitroVio O+, FozSol y FozVio O+: nitrógeno, fósforo, azufre, zinc y boro, también de base orgánica. Mínima volatilización y disponibilidad inmediata.",
+      iconos: ["hoja", "gota", "persona"],
       beneficios: [
         ["Mínima volatilización", "Formulaciones pensadas para que el nitrógeno quede en el lote y no se pierda en el aire."],
         ["Disponibilidad inmediata", "Nutrientes en solución, listos para que el cultivo los tome desde la aplicación."],
-        ["Logística propia", "Entrega con camiones propios hasta su lote, para no perder la ventana de aplicación."],
         ["Asesoramiento agronómico", "Ingenieros agrónomos disponibles todo el año, sin costo adicional."]
       ]
     },
