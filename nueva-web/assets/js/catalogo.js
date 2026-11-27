@@ -582,7 +582,8 @@
         "Está formulado para movilizar los azúcares de las hojas hacia los frutos y órganos de almacenamiento durante el crecimiento y el llenado, aumentando el rendimiento y la calidad."
       ],
       frase: "Lo que la hoja produce, el fruto lo cosecha.",
-      composicion: [["Nitrógeno (N)", "5%", "Nitrógeno total, sin nitratos"], ["Fósforo (P₂O₅)", "5%", "2,1% de fósforo asimilable (P)"], ["Potasio (K₂O)", "45%", "37,5% de potasio soluble (K)"]],
+      composicion: [["Nitrógeno (N)", "5%", "Nitrógeno total, sin nitratos"], ["Fósforo (P₂O₅)", "5%", "2,1% de fósforo asimilable (P)"], ["Potasio (K₂O)", "45%", "37,4% de potasio soluble (K)"]],   // 45% K₂O × 0,830 = 37,35% K
+      // REVISAR: 5% P₂O₅ × 0,436 = 2,18% P (redondeado da 2,2%); la ficha dice 2,1%.
       propiedades: [["Micronutrientes", "Zn 0,1% · Cu 0,05% · B 0,02% · Co 0,001%"], ["Trazas", "Mn y Mo"], ["Formulación", "Polvo soluble, azul"], ["Envase", "Bolsa 25 kg"]],
       presentacion: "Bolsa 25 kg",
       envase: "bolsa",
@@ -640,14 +641,14 @@
       id: "nitroplus-18",
       linea: "nutricion",
       nombre: "NITROPLUS 18",
-      bajada: "Fertilizante foliar",
+      bajada: "Nitrógeno amínico + Calcio",
       tipo: "Fertilizante foliar",
       resumen: "Aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio. Alcanza 100% de eficiencia en el uso del nitrógeno aplicado.",
       descripcion: [
         "NITROPLUS 18 es un fertilizante de aplicación foliar con una combinación exclusiva de nitrógeno amínico y calcio.",
         "Alcanza el 100% de eficiencia en el uso del nitrógeno aplicado, eliminando las pérdidas por volatilización y lixiviación."
       ],
-      composicion: [["N", "18%"], ["Ca", "7%"], ["Vía", "Foliar"]],
+      composicion: [["N", "18%"], ["Ca", "7%"]],          // la vía foliar va en "aplicacion"
       dosis: "10 l/ha en trigo y cebada",
       cultivos: ["Trigo", "Cebada"],
       aplicacion: ["Foliar"],
@@ -692,7 +693,10 @@
       propiedades: [["Emulsionante", "c.s.p. 100 cm³"], ["Densidad", "0,916–0,922 g/cm³"], ["Clase · inflamabilidad", "IV · 3ª categoría"], ["Envase", "Bidón 20 L"]],
       presentacion: "Bidón 20 L",
       dosis: "0,5% v/v (dosis general)",
-      cultivos: [],
+      // REVISAR: son los cultivos del uso como insecticida/acaricida (manzano y mandarina, tabla de abajo).
+      // Como coadyuvante la ficha dice "en todos los cultivos". Se escriben como en el resto del catálogo
+      // (Manzana, Mandarina) para que el filtro del buscador no duplique opciones.
+      cultivos: ["Manzana", "Mandarina"],
       aplicacion: ["Pulverización"],
       beneficios: [
         ["Mejor emulsión", "Mejora la emulsión del caldo de aplicación."],

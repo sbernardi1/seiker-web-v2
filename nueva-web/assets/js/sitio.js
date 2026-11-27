@@ -890,7 +890,11 @@
     var cotizar = "contacto.html?producto=" + encodeURIComponent(p.id);
     var comp = p.composicion || [], props = p.propiedades || [], cu = p.cultivos || [], ap = p.aplicacion || [];
     var guia = p.guia || [], notas = p.notas || [], docs = p.documentos || [];
-    var ben = p.beneficios || [], benPares = ben.length && typeof ben[0] !== "string";
+    /* Beneficios: textos sueltos (lista al costado) o pares [título, texto] (tarjetas).
+       Si una lista mezcla los dos formatos, se muestra como tarjetas sin romperse. */
+    var ben = p.beneficios || [];
+    var benPares = ben.some(function (b) { return typeof b !== "string"; });
+    ben = ben.map(function (b) { return typeof b === "string" ? (benPares ? ["", b] : b) : b; });
     var esCauda = p.linea === "caudalimetros";
 
     /* Datos clave del encabezado */
@@ -910,7 +914,7 @@
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
           '<h3 class="h4 pd-ben-t">' + esc(p.tituloBeneficios || "Beneficios") + "</h3>" +
           '<div class="ben-grid' + (ben.length % 4 === 0 ? " ben-grid--4" : "") + '">' + ben.map(function (b) {
-            return '<div class="ben">' + ico("check") + "<h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
+            return '<div class="ben">' + ico("check") + (b[0] ? "<h3>" + esc(b[0]) + "</h3>" : "") + "<p>" + esc(b[1]) + "</p></div>";
           }).join("") + "</div>"
         : '<div class="pd-cols"><div><p class="eyebrow">Descripción</p><h2 class="h2">' + nombreHTML(p) + "</h2>" +
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
