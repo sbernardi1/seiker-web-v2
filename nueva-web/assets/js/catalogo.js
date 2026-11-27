@@ -165,20 +165,20 @@
       antes: "NITROMIX NS",
       bajada: "Nitrógeno + Azufre",
       tipo: "Fertilizante líquido",
-      resumen: "Fertilizante base para producciones extensivas. Disponibilidad inmediata. Apto para fertirriego y aplicaciones motrices.",
+      resumen: "Fertilizante líquido nitrogenado y azufrado, de formulación equivalente 26-0-0-7,5 S. Bajas pérdidas por volatilización y distribución uniforme.",
       descripcion: [
-        "NitroSol es el fertilizante base de la línea para producciones extensivas: combina nitrógeno y azufre en solución, con disponibilidad inmediata para el cultivo.",
-        "Es apto para fertirriego y para aplicaciones motrices, lo que permite integrarlo al esquema de trabajo del establecimiento."
+        "NitroSol es un fertilizante líquido nitrogenado y azufrado, de formulación equivalente 26-0-0-7,5 S: una solución de nitrógeno ureico, amoniacal y nítrico, más azufre."
       ],
-      composicion: [["N", "26%"], ["S", "8%"], ["pH", "6,5"], ["Densidad", "1,26"]],
+      composicion: [["N", "26%", "Ureico, amoniacal y nítrico"], ["S", "7,5%", "Azufre"], ["pH", "6,5"], ["Densidad", "1,26"]],
       dosis: "100 – 300 l/ha",
-      cultivos: ["Maíz", "Sorgo", "Trigo", "Girasol"],   // sin soja ni alfalfa: las leguminosas fijan su propio nitrógeno
-      aplicacion: ["Fertirriego", "Aplicación motriz"],
+      cultivos: ["Trigo", "Cebada", "Maíz", "Sorgo", "Girasol"],   // sin soja ni alfalfa: las leguminosas fijan su propio nitrógeno
+      aplicacion: ["Chorreado en superficie", "Fertirriego", "Aplicación motriz"],
+      tituloBeneficios: "Características",
       beneficios: [
-        "Fertilizante base para producciones extensivas",
-        "Nitrógeno y azufre con disponibilidad inmediata",
-        "Apto para fertirriego y aplicaciones motrices",
-        "Mínima volatilización"
+        ["Presentación", "Solución líquida cristalina, con una densidad aproximada de 1,26."],
+        ["Eficiencia", "Bajas pérdidas por volatilización e inmovilización frente a los fertilizantes sólidos aplicados en superficie, con una distribución uniforme."],
+        ["Aplicación", "Apto para aplicaciones chorreadas en superficie, con dosificación precisa."],
+        ["Cultivos habituales", "Trigo, cebada, maíz y otros cultivos extensivos que requieren nitrógeno y azufre, con efecto residual del azufre para la rotación."]
       ],
       color: "#1F7A4D",
       imagen: "assets/img/productos/nitro-sol.webp",

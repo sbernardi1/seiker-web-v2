@@ -58,6 +58,7 @@ Nitrate Balancer, Harvest More y Natur'l Óleo; copiá uno de esos como modelo):
 | Campo | Qué muestra |
 |---|---|
 | `beneficios` como pares | `[["Macollaje", "Favorece el macollaje..."]]`: grilla de beneficios con título |
+| `tituloBeneficios` | Cambia el título "Beneficios" de esa grilla, por ejemplo `"Características"` (lo usa NitroSol) |
 | `frase` | Frase destacada en una franja oscura |
 | `composicion` con detalle | `[["Zinc (Zn)", "5%", "≈ 65 g/L"]]`: el tercer dato va en letra chica |
 | `propiedades` | Densidad, pH, formulación, envase, etc. |

@@ -902,13 +902,13 @@
       (benPares
         ? '<div class="pd-desc"><p class="eyebrow">Descripción</p><h2 class="h2">' + nombreHTML(p) + "</h2>" +
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
-          '<h3 class="h4 pd-ben-t">Beneficios</h3>' +
+          '<h3 class="h4 pd-ben-t">' + esc(p.tituloBeneficios || "Beneficios") + "</h3>" +
           '<div class="ben-grid' + (ben.length % 4 === 0 ? " ben-grid--4" : "") + '">' + ben.map(function (b) {
             return '<div class="ben">' + ico("check") + "<h3>" + esc(b[0]) + "</h3><p>" + esc(b[1]) + "</p></div>";
           }).join("") + "</div>"
         : '<div class="pd-cols"><div><p class="eyebrow">Descripción</p><h2 class="h2">' + nombreHTML(p) + "</h2>" +
             (p.descripcion || [p.resumen]).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>" +
-          (ben.length ? '<aside class="pd-ben"><h3>Beneficios y características</h3><ul>' +
+          (ben.length ? '<aside class="pd-ben"><h3>' + esc(p.tituloBeneficios || "Beneficios y características") + "</h3><ul>" +
             ben.map(function (b) { return "<li>" + ico("check") + "<span>" + esc(b) + "</span></li>"; }).join("") +
           "</ul></aside>" : "") + "</div>")]);
 
