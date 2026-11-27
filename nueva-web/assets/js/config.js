@@ -39,11 +39,14 @@
       youtube: ""
     },
 
+    /* Cifras de la franja oscura: [número, unidad, texto]. El "+" va solo si es "más de". */
     cifras: [
-      ["+15", "años en el sector agropecuario e industrial"],
-      ["+10", "productos de nutrición y coadyuvantes"],
-      ["24 h", "de respuesta técnica"],
-      ["5 años", "de garantía en caudalímetros"]
+      ["+15", "años", "en el sector agropecuario e industrial"],
+      // REVISAR: en la web hay 6 productos de nutrición y coadyuvantes (5 + 1); ¿cuenta otros que no están publicados?
+      ["+10", "productos", "de nutrición y coadyuvantes"],
+      // REVISAR: el horario es de lunes a viernes 8 a 18 h; propuesta: "24 h hábiles" (no aplicado)
+      ["24", "h", "de respuesta técnica"],
+      ["5", "años", "de garantía en caudalímetros"]
     ]
   };
 })();

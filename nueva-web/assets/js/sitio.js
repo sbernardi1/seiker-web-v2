@@ -592,7 +592,10 @@
     });
     $$("[data-cifras]").forEach(function (g) {
       g.innerHTML = (CFG.cifras || []).map(function (c) {
-        return '<div class="stat"><span class="stat-n">' + esc(c[0]) + '</span><span class="stat-l">' + esc(c[1]) + "</span></div>";
+        /* [número, unidad, texto]; también acepta el formato viejo [número, texto] */
+        var u = c.length > 2 ? c[1] : "", t = c.length > 2 ? c[2] : c[1];
+        return '<div class="stat"><span class="stat-n">' + esc(c[0]) + (u ? '<span class="stat-u">' + esc(u) + "</span>" : "") +
+          '</span><span class="stat-l">' + esc(t) + "</span></div>";
       }).join("");
     });
     $$("[data-envase]").forEach(function (el) {
