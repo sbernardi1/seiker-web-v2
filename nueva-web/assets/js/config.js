@@ -16,10 +16,17 @@
     contacto: {
       direccion: "Av. Rural 1200, Rosario, Santa Fe",   // PENDIENTE
       telefono: "+54 341 000-0000",                     // PENDIENTE
-      email: "info@seikerag.com.ar",                    // PENDIENTE
+      email: "info@seikeragro.com",                     // casilla de consultas: le llegan los formularios
       horario: "Lunes a viernes · 8:00 – 18:00 h",
       whatsapp: ""                                       // ej. "5493410000000" (sin + ni espacios)
     },
+
+    /* Formulario de contacto: "formsubmit" envía cada consulta directo a contacto.email
+       a través de FormSubmit (formsubmit.co), sin servidor propio ni cuenta.
+       La primera vez llega a esa casilla un mail de FormSubmit con el botón
+       "Activate Form": hay que abrirlo una sola vez. Vacío ("") = el formulario
+       abre el programa de correo del visitante con la consulta ya escrita. */
+    formulario: "formsubmit",
 
     /* Dejar la URL vacía oculta el ícono. */
     redes: {

@@ -122,9 +122,19 @@ legal de la empresa antes de publicar.
 
 ## Formulario de contacto
 
-No hay servidor detrás. Al enviar, se abre el programa de correo del visitante con la
-consulta ya escrita para `info@...`. Si más adelante querés que llegue sin pasar por el
-correo del visitante, se puede conectar a un servicio de formularios.
+Cada consulta llega directo a la casilla de `contacto.email` (hoy `info@seikeragro.com`)
+a través de [FormSubmit](https://formsubmit.co), sin servidor propio ni cuenta. Se activa
+en `assets/js/config.js` con `formulario: "formsubmit"`.
+
+- **Activación:** la primera consulta que se envíe desde la web publicada hace que llegue a
+  esa casilla un mail de FormSubmit con el botón "Activate Form". Hay que abrirlo una sola
+  vez; desde ahí las consultas llegan solas, con los datos en una tabla y "Responder" va
+  directo al visitante.
+- **Si el envío falla** (sin conexión, servicio caído o sin activar), el visitante ve un
+  aviso con el mail y un enlace que abre su correo con la consulta ya escrita.
+- **Spam:** un campo oculto que las personas no ven frena a la mayoría de los robots.
+- En la vista previa de claude.ai el envío no funciona (bloquea conexiones externas):
+  hay que probarlo con la web ya publicada.
 
 ## Después de cambiar algo
 

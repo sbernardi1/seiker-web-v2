@@ -725,6 +725,9 @@ a.ci-v:hover { text-decoration: underline; }
 .form .btn { width: 100%; margin-top: 6px; }
 .form-ok { margin-top: 18px; background: var(--prim-claro); border-radius: var(--r); padding: 16px 18px; font-size: .94rem; color: var(--prim); }
 .form-ok a { text-decoration: underline; font-weight: 500; }
+.form-ok--err { background: #f7e6df; color: #7a2e14; }
+.form .btn[disabled] { opacity: .7; cursor: progress; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }   /* trampa para robots */
 
 /* FAQ */
 .faq { display: grid; gap: 12px; }

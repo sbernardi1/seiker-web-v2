@@ -80,10 +80,15 @@
         <div class="fg fg--ck"><label><input type="checkbox" id="f-priv" required />
           <span>Acepto la <a href="privacidad.html">política de privacidad</a>.</span></label>
           <span class="fg-err">Necesitamos tu aceptación para responderte.</span></div>
-        <button class="btn btn--pri" type="submit">Enviar consulta <i data-ico="flecha"></i></button>
+        <div class="hp" aria-hidden="true"><label for="f-hp">No completar</label>
+          <input id="f-hp" name="_honey" tabindex="-1" autocomplete="off" /></div>
+        <button class="btn btn--pri" type="submit" id="f-enviar"><span>Enviar consulta</span> <i data-ico="flecha"></i></button>
         <div class="form-ok" id="f-ok" role="status" hidden>
-          Se abrió tu programa de correo con la consulta lista para enviar. Si no se abrió,
-          <a id="f-ok-mail" href="#">hacé clic acá</a> o escribinos a <span data-cfg="email"></span>.
+          <b>Recibimos tu consulta.</b> Te respondemos a la brevedad por email o por teléfono.
+        </div>
+        <div class="form-ok form-ok--err" id="f-error" role="alert" hidden>
+          No pudimos enviar la consulta desde la web. Escribinos a <span data-cfg="email"></span>
+          o <a id="f-err-mail" href="#">abrí tu correo con la consulta ya escrita</a>.
         </div>
       </form>
     </div>

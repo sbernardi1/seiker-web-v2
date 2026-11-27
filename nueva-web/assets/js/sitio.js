@@ -1091,9 +1091,11 @@
   }
 
   /* ----------------------------------------------------------
-     CONTACTO: completa línea y producto desde la URL y arma el
-     correo. No hay servidor detrás: en lugar de fingir un envío,
-     abre el programa de correo con la consulta ya escrita.
+     CONTACTO: completa línea y producto desde la URL y envía la
+     consulta directo a la casilla de contacto.email a través de
+     FormSubmit (ver SEIKER_CONFIG.formulario). Si el envío falla,
+     o el servicio está desactivado, ofrece abrir el programa de
+     correo con la consulta ya escrita: nunca finge un envío.
      ---------------------------------------------------------- */
   function initContacto() {
     var f = $("#form-contacto");
@@ -1124,8 +1126,22 @@
     }
 
     var c = CFG.contacto || {};
+    var servicio = CFG.formulario === "formsubmit" && c.email;
+    var btn = $("#f-enviar"), btnTxt = btn ? $("span", btn) : null;
+    var avisoOk = $("#f-ok"), avisoErr = $("#f-error");
+    function aviso(cual) {
+      avisoOk.hidden = cual !== "ok"; avisoErr.hidden = cual !== "error";
+      var el = cual === "ok" ? avisoOk : cual === "error" ? avisoErr : null;
+      if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+    }
+    function enviando(si) {
+      if (!btn) return;
+      btn.disabled = si; btn.setAttribute("aria-busy", si ? "true" : "false");
+      if (btnTxt) btnTxt.textContent = si ? "Enviando…" : "Enviar consulta";
+    }
     f.addEventListener("submit", function (e) {
       e.preventDefault();
+      aviso(null);
       var faltan = $$("[required]", f).filter(function (i) {
         var ok = i.type === "checkbox" ? i.checked : i.value.trim() && (!i.checkValidity || i.checkValidity());
         i.closest(".fg").classList.toggle("err", !ok);
@@ -1148,9 +1164,41 @@
         d("f-msg")
       ].join("\n");
       var href = "mailto:" + (c.email || "") + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent(cuerpo);
-      $("#f-ok").hidden = false;
-      $("#f-ok-mail").setAttribute("href", href);
-      try { location.href = href; } catch (er) {}
+      $("#f-err-mail").setAttribute("href", href);
+
+      /* Trampa para robots: un campo oculto que una persona nunca completa */
+      var trampa = $('[name="_honey"]', f);
+      if (trampa && trampa.value) { f.reset(); aviso("ok"); return; }
+
+      if (!servicio || !window.fetch) {           // sin servicio: se abre el correo del visitante
+        aviso("error");
+        try { location.href = href; } catch (er) {}
+        return;
+      }
+      enviando(true);
+      fetch("https://formsubmit.co/ajax/" + c.email, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _subject: asunto,
+          _template: "table",
+          _captcha: "false",
+          _replyto: d("f-email"),
+          "Nombre": d("f-nombre"),
+          "Empresa / establecimiento": d("f-empresa") || "—",
+          "Teléfono": d("f-tel"),
+          "Email": d("f-email"),
+          "Localidad / provincia": d("f-loc") || "—",
+          "Línea de interés": li && li.value ? li.text : "—",
+          "Producto": pr ? pr.nombre : "—",
+          "Mensaje": d("f-msg") || "—"
+        })
+      }).then(function (r) {
+        return r.json().then(function (j) { return r.ok && String(j.success) === "true"; }, function () { return false; });
+      }).then(function (ok) {
+        if (ok) { f.reset(); llenarProductos(); aviso("ok"); }
+        else aviso("error");
+      }, function () { aviso("error"); }).then(function () { enviando(false); });
     });
     f.addEventListener("input", function (e) {
       var g = e.target.closest(".fg");
