@@ -14,11 +14,11 @@
     pais: "Argentina",
 
     contacto: {
-      direccion: "Av. Rural 1200, Rosario, Santa Fe",   // PENDIENTE
-      telefono: "+54 341 000-0000",                     // PENDIENTE
-      email: "info@seikeragro.com",                     // casilla de consultas: le llegan los formularios
+      direccion: "Av. Rural 1200, Rosario, Santa Fe",   // REVISAR: dato de ejemplo de la web anterior
+      telefono: "+54 341 000-0000",                     // REVISAR: número de ejemplo
+      email: "info@seikeragro.com",                     // casilla de consultas: le llegan los formularios. REVISAR: confirmar dominio oficial
       horario: "Lunes a viernes · 8:00 – 18:00 h",
-      whatsapp: ""                                       // ej. "5493410000000" (sin + ni espacios)
+      whatsapp: ""                                       // REVISAR: falta el número. Ej. "5493410000000" (sin + ni espacios)
     },
 
     /* Formulario de contacto: "formsubmit" envía cada consulta directo a contacto.email
@@ -31,7 +31,7 @@
        en el código de la página (frena el spam). Vacío = se usa contacto.email. */
     formularioClave: "8c3643286cf116931a93379e3529ba81",
 
-    /* Dejar la URL vacía oculta el ícono. */
+    /* Dejar la URL vacía oculta el ícono. REVISAR: faltan las cuentas reales. */
     redes: {
       instagram: "",
       facebook: "",

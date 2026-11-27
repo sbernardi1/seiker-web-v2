@@ -30,6 +30,19 @@
     return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   }
   function ico(n, c) { return IL ? IL.ico(n, c) : ""; }
+  /* Enlaces de contacto a partir de config.js. Sin valor devuelve "" y el elemento no se muestra. */
+  function hrefContacto(tipo, v) {
+    v = String(v || "").trim();
+    if (!v) return "";
+    if (tipo === "email") return "mailto:" + v;
+    if (tipo === "telefono") return "tel:" + v.replace(/[^\d+]/g, "");
+    if (tipo === "whatsapp") return "https://wa.me/" + v.replace(/\D/g, "");
+    return "";
+  }
+  function textoContacto(tipo, v) {
+    v = String(v || "").trim();
+    return tipo === "whatsapp" ? "+" + v.replace(/\D/g, "") : v;
+  }
   function param(k) {
     var m = new RegExp("[?&]" + k + "=([^&#]*)").exec(location.search);
     return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
@@ -117,7 +130,7 @@
         '<nav class="util-r" aria-label="Secundario">' +
           '<a href="quienes-somos.html">Quiénes somos</a>' +
           '<a href="agronomia.html">Agronomía</a>' +
-          (c.telefono ? '<a href="tel:' + esc(c.telefono.replace(/[^\d+]/g, "")) + '">' + ico("tel") + esc(c.telefono) + "</a>" : "") +
+          (c.telefono ? '<a href="' + esc(hrefContacto("telefono", c.telefono)) + '">' + ico("tel") + esc(c.telefono) + "</a>" : "") +
           '<span class="util-pais">' + ico("mundo") + "Argentina | Español</span>" +
         "</nav>" +
       "</div></div>" +
@@ -166,8 +179,9 @@
           '<a class="mn-row" href="quienes-somos.html">Quiénes somos</a>' +
           '<a class="mn-row" href="contacto.html">Contacto</a>' +
           '<div class="mn-foot">' +
-            (c.telefono ? "<p>" + ico("tel") + esc(c.telefono) + "</p>" : "") +
-            (c.email ? "<p>" + ico("mail") + esc(c.email) + "</p>" : "") +
+            (c.telefono ? '<p><a href="' + esc(hrefContacto("telefono", c.telefono)) + '">' + ico("tel") + esc(c.telefono) + "</a></p>" : "") +
+            (c.whatsapp ? '<p><a href="' + esc(hrefContacto("whatsapp", c.whatsapp)) + '" target="_blank" rel="noopener">' + ico("whatsapp") + "WhatsApp</a></p>" : "") +
+            (c.email ? '<p><a href="' + esc(hrefContacto("email", c.email)) + '">' + ico("mail") + esc(c.email) + "</a></p>" : "") +
             "<p>" + ico("mundo") + "Argentina | Español</p>" +
           "</div>" +
         "</div>" +
@@ -201,7 +215,7 @@
       '<div class="ft-cta"><div class="wrap ft-cta-in">' +
         "<div><h2>¿Necesitás asesoramiento?</h2><p>Nuestro equipo técnico te ayuda a elegir la solución para tu campo o tu industria.</p></div>" +
         '<div class="ft-cta-b"><a class="btn btn--gold" href="contacto.html">Contactá a un asesor' + ico("flecha") + "</a>" +
-        (c.whatsapp ? '<a class="btn btn--ghost-light" href="https://wa.me/' + esc(c.whatsapp) + '" target="_blank" rel="noopener">' + ico("whatsapp") + "WhatsApp</a>" : "") +
+        (c.whatsapp ? '<a class="btn btn--ghost-light" href="' + esc(hrefContacto("whatsapp", c.whatsapp)) + '" target="_blank" rel="noopener">' + ico("whatsapp") + "WhatsApp</a>" : "") +
         "</div>" +
       "</div></div>";
     return cta +
@@ -1230,11 +1244,18 @@
     });
 
     $$("[data-cfg]").forEach(function (el) {
-      var v = c[el.getAttribute("data-cfg")];
+      var k = el.getAttribute("data-cfg"), v = String(c[k] || "").trim();
       if (!v) { var row = el.closest(".ci"); if (row) row.hidden = true; return; }
-      el.textContent = v;
-      if (el.tagName === "A") el.setAttribute("href", el.getAttribute("data-cfg") === "email" ? "mailto:" + v : "tel:" + v.replace(/[^\d+]/g, ""));
+      el.textContent = textoContacto(k, v);
+      if (el.tagName === "A") el.setAttribute("href", hrefContacto(k, v));
     });
+    var r = CFG.redes || {}, cajaRedes = $("[data-cfg-redes]");
+    if (cajaRedes) {
+      var links = ["instagram", "facebook", "linkedin", "youtube"].filter(function (k) { return r[k]; }).map(function (k) {
+        return '<a href="' + esc(r[k]) + '" target="_blank" rel="noopener" aria-label="' + k + '">' + ico(k) + "</a>";
+      }).join("");
+      if (links) { $(".ci-redes", cajaRedes).innerHTML = links; cajaRedes.hidden = false; }
+    }
   }
 
   /* ----------------------------------------------------------
