@@ -66,6 +66,10 @@
   function caudalimetro(p) {
     var a = uid("a"), v = uid("v"), d = uid("d");
     var serie = partir(p.nombre || "")[1] || "";
+    /* Lectura decorativa del display: crece con la serie para que no se vean todas iguales.
+       Es un ejemplo de pantalla, no una especificación del equipo. */
+    var LECTURA = { S150: "42,6", S300: "86,3", S600: "128,4", S900: "196,7", S1500: "312,5" };
+    var lectura = LECTURA[serie] || "128,4";
     function brida(x) {
       var r = '<rect x="' + x + '" y="128" width="22" height="104" rx="4" fill="url(#' + a + ')" stroke="#7d8784" stroke-width="1"/>';
       [140, 166, 194, 220].forEach(function (y) {
@@ -99,7 +103,7 @@
       '<rect x="66" y="22" width="128" height="80" rx="14" fill="url(#' + v + ')"/>' +
       '<rect x="66" y="22" width="128" height="6" rx="3" fill="#fff" opacity=".14"/>' +
       '<rect x="80" y="36" width="100" height="36" rx="5" fill="url(#' + d + ')"/>' +
-      '<text x="172" y="60" text-anchor="end" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="15" style="fill:var(--prim)">128,4</text>' +
+      '<text x="172" y="60" text-anchor="end" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="15" style="fill:var(--prim)">' + lectura + '</text>' +
       '<text x="88" y="48" font-family="Roboto, sans-serif" font-size="6.5" style="fill:var(--prim)" opacity=".75">m³/h</text>' +
       '<rect x="88" y="62" width="40" height="3" rx="1.5" style="fill:var(--prim)" opacity=".35"/>' +
       '<text x="80" y="90" font-family="Outfit, sans-serif" font-weight="700" font-size="10" fill="#fff" letter-spacing=".4">seiker</text>' +
