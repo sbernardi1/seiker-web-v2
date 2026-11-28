@@ -63,6 +63,7 @@ Nitrate Balancer, Harvest More y Natur'l Óleo; copiá uno de esos como modelo):
 | `composicion` con detalle | `[["Zinc (Zn)", "5%", "≈ 65 g/L"]]`: el tercer dato va en letra chica |
 | `propiedades` | Densidad, pH, formulación, envase, etc. |
 | `presentacion` | Envase, en los datos clave de la ficha |
+| `oculto` | `true` deja el producto en el catálogo pero no lo muestra en ninguna parte de la web (hoy: Equipos de riego). Los textos sacados están marcados con `RIEGO OCULTO` |
 | `envase` | `"bolsa"` dibuja una bolsa y `"riego"` un equipo de riego, en lugar de un bidón (si no hay foto) |
 | `formulaciones` | Tabla con una columna por formulación, dentro de Composición (la usa FozSol) |
 | `comoActua` | Título, texto y 2 tarjetas (`modo: "comparar"`) o 3 pasos (`modo: "flujo"`) |
@@ -139,5 +140,5 @@ en `assets/js/config.js` con `formulario: "formsubmit"`.
 
 ## Después de cambiar algo
 
-Si el hosting muestra la versión vieja, cambiá el número `?v=20261127e` de los
+Si el hosting muestra la versión vieja, cambiá el número `?v=20261128a` de los
 `<script>` y del `<link>` de estilos en las páginas (por ejemplo, a la fecha del día).

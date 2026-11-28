@@ -87,7 +87,8 @@
       pagina: "caudalimetros.html",
       envase: "caudalimetro",
       arte: "s600",                   // sin foto: se dibuja este producto
-      resumen: "Caudalímetros electromagnéticos y equipos de riego. Medición digital de caudal, conductividad, nivel y presión con transmisión remota, sin partes móviles dentro del caño.",
+      // RIEGO OCULTO: el texto original decía "Caudalímetros electromagnéticos y equipos de riego."
+      resumen: "Caudalímetros electromagnéticos. Medición digital de caudal, conductividad, nivel y presión con transmisión remota, sin partes móviles dentro del caño.",
       iconos: ["engranaje", "escudo", "senal", "check"],
       beneficios: [
         ["Sin partes móviles", "Nada se interpone en el caño: no hay desgaste mecánico ni obstrucciones."],
@@ -786,6 +787,9 @@
     {
       // REVISAR (B13): Equipos de riego sin datos técnicos ni foto propia.
       /* FICHA PROVISORIA: completar con modelos, marcas y especificaciones */
+      // OCULTO hasta tener la información. Para mostrarlo de nuevo: borrar "oculto: true"
+      // y restaurar los textos marcados "RIEGO OCULTO" en index, caudalimetros y quienes-somos.
+      oculto: true,
       id: "equipos-riego",
       linea: "caudalimetros",
       nombre: "Equipos de riego",
@@ -814,5 +818,6 @@
     }
   ];
 
-  window.SEIKER_CATALOGO = { lineas: lineas, productos: productos };
+  /* Los productos con "oculto: true" quedan en este archivo pero no se muestran en la web */
+  window.SEIKER_CATALOGO = { lineas: lineas, productos: productos.filter(function (p) { return !p.oculto; }) };
 })();
