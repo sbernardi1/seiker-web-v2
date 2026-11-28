@@ -14,8 +14,10 @@
     pais: "Argentina",
 
     contacto: {
-      direccion: "Av. Rural 1200, Rosario, Santa Fe",   // REVISAR: dato de ejemplo de la web anterior
-      telefono: "+54 341 000-0000",                     // REVISAR: número de ejemplo
+      /* Vacío = no se muestra. Estaban los datos de ejemplo "Av. Rural 1200, Rosario, Santa Fe"
+         y "+54 341 000-0000": se ocultaron hasta tener los reales. */
+      direccion: "",                                     // REVISAR: falta la dirección real
+      telefono: "",                                      // REVISAR: falta el teléfono real
       email: "info@seikeragro.com",                     // casilla de consultas: le llegan los formularios. REVISAR: confirmar dominio oficial
       horario: "Lunes a viernes · 8:00 – 18:00 h",
       whatsapp: ""                                       // REVISAR: falta el número. Ej. "5493410000000" (sin + ni espacios)
